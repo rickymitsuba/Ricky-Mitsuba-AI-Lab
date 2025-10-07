@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careful! It's A very Advanced Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #1abc9c;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --dark-color: #1a252f;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --border-radius: 12px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #1abc9c 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0 20px;
+            color: white;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.1), rgba(52, 152, 219, 0.1));
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            overflow-x: auto;
+            padding: 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 80px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            white-space: nowrap;
+            position: relative;
+            border-radius: 10px;
+            margin: 0 2px;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .tab:hover::before {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .tab:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .tab-content {
+            padding: 20px;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calculator-display {
+            background: linear-gradient(135deg, #1a252f, #2c3e50);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            text-align: right;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            word-break: break-all;
+        }
+
+        .calculator-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: sweep 4s ease-in-out infinite;
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .calculator-history {
+            background: rgba(236, 240, 241, 0.7);
+            padding: 10px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            max-height: 80px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--dark-color);
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .calc-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            position: relative;
+            overflow: hidden;
+            min-height: 50px;
+            user-select: none;
+        }
+
+        .calc-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .calc-btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .calc-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .calc-btn.operator {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+        }
+
+        .calc-btn.equals {
+            background: linear-gradient(135deg, var(--success-color), #27ae60);
+            color: white;
+            border: none;
+            grid-column: span 2;
+        }
+
+        .calc-btn.clear {
+            background: linear-gradient(135deg, var(--danger-color), #c0392b);
+            color: white;
+            border: none;
+        }
+
+        .calc-btn.function {
+            background: linear-gradient(135deg, var(--warning-color), #e67e22);
+            color: white;
+            border: none;
+        }
+
+        .calc-btn.scientific {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: white;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23334155' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            width: 100%;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            animation: slideUp 0.5s ease-out;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shimmerCard 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerCard {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .result-item:hover {
+            padding-left: 10px;
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.05), transparent);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--dark-color), #334155);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px) rotateX(90deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            z-index: 1000;
+            font-weight: 600;
+            max-width: 90%;
+        }
+
+        .toast.show {
+            transform: translateY(0) rotateX(0);
+            opacity: 1;
+        }
+
+        .equation-display {
+            background: rgba(236, 240, 241, 0.7);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--dark-color);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .equation-steps {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .step {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            margin-right: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .matrix-input {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .matrix-cell {
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .matrix-cell input {
+            width: 100%;
+            border: none;
+            padding: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .matrix-cell input:focus {
+            box-shadow: none;
+            transform: none;
+        }
+
+        .complex-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .complex-part {
+            flex: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 5px;
+            }
+            
+            header {
+                padding: 20px 0 15px;
+            }
+            
+            .tab-content {
+                padding: 15px;
+            }
+            
+            .calculator-buttons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            
+            .calc-btn {
+                padding: 12px;
+                font-size: 0.9rem;
+                min-height: 45px;
+            }
+            
+            .toast {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calculator-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .calc-btn.equals {
+                grid-column: span 3;
+            }
+            
+            .tab {
+                font-size: 0.8rem;
+                padding: 12px 8px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-square-root-alt"></i> Ricky Mitsuba AI Lab</h1>
+            <p>Advanced Scientific Calculator for Research and Study</p>
+        </header>
+
+        <div class="app-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="scientific">Scientific</div>
+                <div class="tab" data-tab="matrix">Matrix Calculator</div>
+                <div class="tab" data-tab="complex">Complex Numbers</div>
+                <div class="tab" data-tab="equation">Equation Solver</div>
+            </div>
+
+            <!-- Scientific Calculator -->
+            <div class="tab-content active" id="scientific">
+                <div class="calculator-display" id="scientific-display">0</div>
+                <div class="calculator-history" id="scientific-history"></div>
+                <div class="calculator-buttons">
+                    <button class="calc-btn clear" onclick="clearScientific()">C</button>
+                    <button class="calc-btn function" onclick="deleteLastScientific()">←</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('sin')">sin</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('cos')">cos</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('tan')">tan</button>
+                    
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('asin')">asin</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('acos')">acos</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('atan')">atan</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('log')">log</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('ln')">ln</button>
+                    
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('sqrt')">√</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('cbrt')">∛</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('pow2')">x²</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('pow3')">x³</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('pow')">xʸ</button>
+                    
+                    <button class="calc-btn scientific" onclick="appendConstantScientific('pi')">π</button>
+                    <button class="calc-btn scientific" onclick="appendConstantScientific('e')">e</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('abs')">|x|</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('exp')">eˣ</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('factorial')">n!</button>
+                    
+                    <button class="calc-btn" onclick="appendNumberScientific('7')">7</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('8')">8</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('9')">9</button>
+                    <button class="calc-btn function" onclick="appendOperatorScientific('/')">÷</button>
+                    <button class="calc-btn scientific" onclick="appendOperatorScientific('(')">(</button>
+                    
+                    <button class="calc-btn" onclick="appendNumberScientific('4')">4</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('5')">5</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('6')">6</button>
+                    <button class="calc-btn function" onclick="appendOperatorScientific('*')">×</button>
+                    <button class="calc-btn scientific" onclick="appendOperatorScientific(')')">)</button>
+                    
+                    <button class="calc-btn" onclick="appendNumberScientific('1')">1</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('2')">2</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('3')">3</button>
+                    <button class="calc-btn function" onclick="appendOperatorScientific('-')">−</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('1/x')">1/x</button>
+                    
+                    <button class="calc-btn" onclick="appendNumberScientific('0')">0</button>
+                    <button class="calc-btn" onclick="appendNumberScientific('.')">.</button>
+                    <button class="calc-btn scientific" onclick="appendFunctionScientific('percent')">%</button>
+                    <button class="calc-btn function" onclick="appendOperatorScientific('+')">+</button>
+                    <button class="calc-btn equals" onclick="calculateScientific()">=</button>
+                </div>
+            </div>
+
+            <!-- Matrix Calculator -->
+            <div class="tab-content" id="matrix">
+                <div class="input-group">
+                    <label for="matrix-size">Matrix Size</label>
+                    <select id="matrix-size" onchange="updateMatrixInputs()">
+                        <option value="2">2×2 Matrix</option>
+                        <option value="3">3×3 Matrix</option>
+                        <option value="4">4×4 Matrix</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="matrix-operation">Operation</label>
+                    <select id="matrix-operation" onchange="updateMatrixOperation()">
+                        <option value="determinant">Determinant</option>
+                        <option value="inverse">Inverse</option>
+                        <option value="transpose">Transpose</option>
+                        <option value="eigenvalues">Eigenvalues</option>
+                        <option value="multiply">Matrix Multiplication</option>
+                    </select>
+                </div>
+                
+                <div id="matrix-inputs">
+                    <!-- Matrix inputs will be generated here -->
+                </div>
+                
+                <div id="matrix-b-inputs" style="display: none;">
+                    <!-- Second matrix for multiplication -->
+                </div>
+                
+                <button class="btn" onclick="calculateMatrix()">
+                    <i class="fas fa-calculator"></i> Calculate
+                </button>
+                
+                <div id="matrix-result"></div>
+            </div>
+
+            <!-- Complex Numbers Calculator -->
+            <div class="tab-content" id="complex">
+                <div class="input-group">
+                    <label for="complex-operation">Operation</label>
+                    <select id="complex-operation" onchange="updateComplexInputs()">
+                        <option value="add">Addition</option>
+                        <option value="subtract">Subtraction</option>
+                        <option value="multiply">Multiplication</option>
+                        <option value="divide">Division</option>
+                        <option value="power">Power</option>
+                        <option value="conjugate">Conjugate</option>
+                        <option value="modulus">Modulus</option>
+                        <option value="argument">Argument</option>
+                        <option value="polar">Polar Form</option>
+                        <option value="exponential">Exponential Form</option>
+                    </select>
+                </div>
+                
+                <div id="complex-inputs">
+                    <!-- Complex number inputs will be generated here -->
+                </div>
+                
+                <button class="btn" onclick="calculateComplex()">
+                    <i class="fas fa-calculator"></i> Calculate
+                </button>
+                
+                <div id="complex-result"></div>
+            </div>
+
+            <!-- Equation Solver -->
+            <div class="tab-content" id="equation">
+                <div class="input-group">
+                    <label for="equation-type">Equation Type</label>
+                    <select id="equation-type" onchange="updateEquationInputs()">
+                        <option value="linear">Linear (ax + b = 0)</option>
+                        <option value="quadratic">Quadratic (ax² + bx + c = 0)</option>
+                        <option value="cubic">Cubic (ax³ + bx² + cx + d = 0)</option>
+                        <option value="system">System of Linear Equations</option>
+                    </select>
+                </div>
+                
+                <div id="equation-inputs"></div>
+                
+                <button class="btn" onclick="solveEquation()">
+                    <i class="fas fa-calculator"></i> Solve
+                </button>
+                
+                <div id="equation-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Initialize all event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Calculator initialized');
+            
+            // Tab switching
+            document.querySelectorAll('.tab').forEach((tab, index) => {
+                tab.style.animationDelay = `${index * 0.1}s`;
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Initialize all calculators
+            updateMatrixInputs();
+            updateComplexInputs();
+            updateEquationInputs();
+            
+            // Add keyboard support
+            document.addEventListener('keydown', handleKeyboard);
+        });
+
+        // Format number for display
+        function formatNumber(num) {
+            if (Math.abs(num) > 1e10 || (Math.abs(num) < 1e-6 && num !== 0)) {
+                return num.toExponential(6);
+            }
+            return parseFloat(num.toFixed(6)).toString();
+        }
+
+        // Scientific Calculator Functions
+        let scientificDisplay = '0';
+        let scientificHistory = '';
+        let scientificNewNumber = true;
+
+        function updateScientificDisplay() {
+            const display = document.getElementById('scientific-display');
+            if (display) {
+                display.textContent = scientificDisplay;
+            }
+        }
+
+        function updateScientificHistory() {
+            const history = document.getElementById('scientific-history');
+            if (history) {
+                history.textContent = scientificHistory;
+            }
+        }
+
+        function appendNumberScientific(num) {
+            console.log('Appending number:', num, 'current display:', scientificDisplay, 'newNumber:', scientificNewNumber);
+            
+            if (scientificNewNumber && num !== '.') {
+                scientificDisplay = num;
+                scientificNewNumber = false;
+            } else if (scientificDisplay === '0' && num !== '.') {
+                scientificDisplay = num;
+            } else if (num === '.' && scientificDisplay.includes('.')) {
+                return;
+            } else {
+                scientificDisplay += num;
+            }
+            updateScientificDisplay();
+        }
+
+        function appendOperatorScientific(op) {
+            console.log('Appending operator:', op);
+            if (scientificDisplay === '0' && op !== '-' && op !== '(') {
+                return;
+            }
+            
+            const lastChar = scientificDisplay[scientificDisplay.length - 1];
+            const operators = ['+', '-', '*', '/', '('];
+            
+            if (operators.includes(lastChar) && op !== '(') {
+                return;
+            }
+            
+            scientificDisplay += ' ' + op + ' ';
+            scientificNewNumber = false;
+            updateScientificDisplay();
+        }
+
+        function appendFunctionScientific(func) {
+            console.log('Appending function:', func);
+            
+            // Remove the trailing space if it exists
+            if (scientificDisplay.endsWith(' ')) {
+                scientificDisplay = scientificDisplay.trim();
+            }
+            
+            if (func === 'sqrt') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.sqrt(' : scientificDisplay + '*Math.sqrt(';
+            } else if (func === 'cbrt') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.cbrt(' : scientificDisplay + '*Math.cbrt(';
+            } else if (func === 'sin') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.sin(' : scientificDisplay + '*Math.sin(';
+            } else if (func === 'cos') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.cos(' : scientificDisplay + '*Math.cos(';
+            } else if (func === 'tan') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.tan(' : scientificDisplay + '*Math.tan(';
+            } else if (func === 'asin') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.asin(' : scientificDisplay + '*Math.asin(';
+            } else if (func === 'acos') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.acos(' : scientificDisplay + '*Math.acos(';
+            } else if (func === 'atan') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.atan(' : scientificDisplay + '*Math.atan(';
+            } else if (func === 'log') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.log10(' : scientificDisplay + '*Math.log10(';
+            } else if (func === 'ln') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.log(' : scientificDisplay + '*Math.log(';
+            } else if (func === 'pow2') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = 'Math.pow(' + scientificDisplay + ', 2)';
+                } else {
+                    scientificDisplay = 'Math.pow(';
+                    scientificNewNumber = false;
+                }
+            } else if (func === 'pow3') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = 'Math.pow(' + scientificDisplay + ', 3)';
+                } else {
+                    scientificDisplay = 'Math.pow(';
+                    scientificNewNumber = false;
+                }
+            } else if (func === 'pow') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = 'Math.pow(' + scientificDisplay + ', ';
+                } else {
+                    scientificDisplay = 'Math.pow(';
+                    scientificNewNumber = false;
+                }
+            } else if (func === 'abs') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.abs(' : scientificDisplay + '*Math.abs(';
+            } else if (func === 'exp') {
+                scientificDisplay = scientificDisplay === '0' || scientificNewNumber ? 'Math.exp(' : scientificDisplay + '*Math.exp(';
+            } else if (func === 'factorial') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = 'factorial(' + scientificDisplay + ')';
+                } else {
+                    scientificDisplay = 'factorial(';
+                    scientificNewNumber = false;
+                }
+            } else if (func === '1/x') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = '1/(' + scientificDisplay + ')';
+                } else {
+                    scientificDisplay = '1/(';
+                    scientificNewNumber = false;
+                }
+            } else if (func === 'percent') {
+                if (scientificDisplay !== '0' && !scientificNewNumber) {
+                    scientificDisplay = scientificDisplay + '/100';
+                } else {
+                    scientificDisplay = '/100';
+                }
+            }
+            
+            // Don't set newNumber to true for functions that need input
+            if (func !== 'pow2' && func !== 'pow3' && func !== 'pow' && func !== 'factorial' && func !== '1/x') {
+                scientificNewNumber = false;
+            }
+            
+            updateScientificDisplay();
+        }
+
+        function appendConstantScientific(constant) {
+            console.log('Appending constant:', constant);
+            
+            // Remove the trailing space if it exists
+            if (scientificDisplay.endsWith(' ')) {
+                scientificDisplay = scientificDisplay.trim();
+            }
+            
+            if (constant === 'pi') {
+                if (scientificDisplay === '0' || scientificNewNumber) {
+                    scientificDisplay = 'Math.PI';
+                } else {
+                    scientificDisplay += '*Math.PI';
+                }
+            } else if (constant === 'e') {
+                if (scientificDisplay === '0' || scientificNewNumber) {
+                    scientificDisplay = 'Math.E';
+                } else {
+                    scientificDisplay += '*Math.E';
+                }
+            }
+            scientificNewNumber = true;
+            updateScientificDisplay();
+        }
+
+        function clearScientific() {
+            console.log('Clearing scientific calculator');
+            scientificDisplay = '0';
+            scientificHistory = '';
+            scientificNewNumber = true;
+            updateScientificDisplay();
+            updateScientificHistory();
+        }
+
+        function deleteLastScientific() {
+            console.log('Deleting last character');
+            if (scientificDisplay.length > 1) {
+                scientificDisplay = scientificDisplay.slice(0, -1);
+                if (scientificDisplay.trim() === '') {
+                    scientificDisplay = '0';
+                }
+            } else {
+                scientificDisplay = '0';
+            }
+            updateScientificDisplay();
+        }
+
+        // Factorial function
+        function factorial(n) {
+            if (n < 0) return NaN;
+            if (n === 0) return 1;
+            if (n > 170) return Infinity;
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        // Safe math functions with input validation
+        function safeAsin(x) {
+            if (x < -1 || x > 1) {
+                throw new Error('Input out of range [-1, 1]');
+            }
+            return Math.asin(x);
+        }
+
+        function safeAcos(x) {
+            if (x < -1 || x > 1) {
+                throw new Error('Input out of range [-1, 1]');
+            }
+            return Math.acos(x);
+        }
+
+        function safeAtan(x) {
+            return Math.atan(x);
+        }
+
+        function safeSqrt(x) {
+            if (x < 0) {
+                throw new Error('Cannot calculate square root of negative number');
+            }
+            return Math.sqrt(x);
+        }
+
+        function safeCbrt(x) {
+            return Math.cbrt(x);
+        }
+
+        function safeLog10(x) {
+            if (x <= 0) {
+                throw new Error('Input must be positive');
+            }
+            return Math.log10(x);
+        }
+
+        function safeLog(x) {
+            if (x <= 0) {
+                throw new Error('Input must be positive');
+            }
+            return Math.log(x);
+        }
+
+        function safeFactorial(n) {
+            if (n < 0) {
+                throw new Error('Factorial is not defined for negative numbers');
+            }
+            if (n > 170) {
+                throw new Error('Input too large (factorial overflow)');
+            }
+            return factorial(n);
+        }
+
+        function calculateScientific() {
+            console.log('Calculating scientific expression');
+            try {
+                // Replace display symbols with actual operators
+                let expression = scientificDisplay.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                
+                // Replace factorial function with safe version
+                expression = expression.replace(/factorial\(([^)]+)\)/g, 'safeFactorial($1)');
+                
+                // Replace sqrt with safe version
+                expression = expression.replace(/Math\.sqrt\(([^)]+)\)/g, 'safeSqrt($1)');
+                
+                // Replace cbrt with safe version
+                expression = expression.replace(/Math\.cbrt\(([^)]+)\)/g, 'safeCbrt($1)');
+                
+                // Replace log10 with safe version
+                expression = expression.replace(/Math\.log10\(([^)]+)\)/g, 'safeLog10($1)');
+                
+                // Replace log with safe version
+                expression = expression.replace(/Math\.log\(([^)]+)\)/g, 'safeLog($1)');
+                
+                // Replace asin with safe version
+                expression = expression.replace(/Math\.asin\(([^)]+)\)/g, 'safeAsin($1)');
+                
+                // Replace acos with safe version
+                expression = expression.replace(/Math\.acos\(([^)]+)\)/g, 'safeAcos($1)');
+                
+                // Replace atan with safe version
+                expression = expression.replace(/Math\.atan\(([^)]+)\)/g, 'safeAtan($1)');
+                
+                // Handle inverse trigonometric functions - convert from radians to degrees
+                expression = expression.replace(/safeAsin\(([^)]+)\)/g, '(safeAsin($1) * 180/Math.PI)');
+                expression = expression.replace(/safeAcos\(([^)]+)\)/g, '(safeAcos($1) * 180/Math.PI)');
+                expression = expression.replace(/safeAtan\(([^)]+)\)/g, '(safeAtan($1) * 180/Math.PI)');
+                
+                console.log('Evaluating expression:', expression);
+                
+                // Calculate result
+                let result = eval(expression);
+                
+                // Handle errors
+                if (!isFinite(result)) {
+                    showToast('Math error');
+                    return;
+                }
+                
+                // Update history
+                scientificHistory = scientificDisplay + ' = ' + formatNumber(result);
+                updateScientificHistory();
+                
+                // Update display
+                scientificDisplay = formatNumber(result);
+                scientificNewNumber = true;
+                updateScientificDisplay();
+            } catch (error) {
+                console.error('Calculation error:', error);
+                if (error.message.includes('out of range')) {
+                    showToast('Input out of range. For inverse trig functions, use values between -1 and 1.');
+                } else if (error.message.includes('negative number')) {
+                    showToast('Cannot calculate square root of negative number');
+                } else if (error.message.includes('positive')) {
+                    showToast('Input must be positive for logarithm functions');
+                } else if (error.message.includes('not defined')) {
+                    showToast('Factorial is not defined for negative numbers');
+                } else if (error.message.includes('too large')) {
+                    showToast('Input too large (factorial overflow)');
+                } else {
+                    showToast('Invalid expression');
+                }
+            }
+        }
+
+        // Keyboard support
+        function handleKeyboard(event) {
+            const activeTab = document.querySelector('.tab.active');
+            if (!activeTab) return;
+            
+            const tabId = activeTab.dataset.tab;
+            
+            if (tabId === 'scientific') {
+                const key = event.key;
+                
+                if (key >= '0' && key <= '9') {
+                    appendNumberScientific(key);
+                } else if (key === '.') {
+                    appendNumberScientific('.');
+                } else if (key === '+') {
+                    appendOperatorScientific('+');
+                } else if (key === '-') {
+                    appendOperatorScientific('-');
+                } else if (key === '*') {
+                    appendOperatorScientific('*');
+                } else if (key === '/') {
+                    event.preventDefault();
+                    appendOperatorScientific('/');
+                } else if (key === '(') {
+                    appendOperatorScientific('(');
+                } else if (key === ')') {
+                    appendOperatorScientific(')');
+                } else if (key === 'Enter' || key === '=') {
+                    calculateScientific();
+                } else if (key === 'Escape') {
+                    clearScientific();
+                } else if (key === 'Backspace') {
+                    deleteLastScientific();
+                }
+            }
+        }
+
+        // Matrix Calculator Functions
+        function updateMatrixInputs() {
+            console.log('Updating matrix inputs');
+            const size = parseInt(document.getElementById('matrix-size').value);
+            const matrixInputs = document.getElementById('matrix-inputs');
+            
+            if (!matrixInputs) return;
+            
+            matrixInputs.innerHTML = '';
+            
+            let html = '<div class="matrix-input" style="grid-template-columns: repeat(' + size + ', 1fr);">';
+            
+            for (let i = 0; i < size * size; i++) {
+                html += `
+                    <div class="matrix-cell">
+                        <input type="number" id="matrix-a-${i}" placeholder="a${Math.floor(i/size)+1}${(i%size)+1}" step="any">
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            matrixInputs.innerHTML = html;
+            
+            updateMatrixOperation();
+        }
+
+        function updateMatrixOperation() {
+            console.log('Updating matrix operation');
+            const operation = document.getElementById('matrix-operation').value;
+            const matrixBInputs = document.getElementById('matrix-b-inputs');
+            
+            if (!matrixBInputs) return;
+            
+            if (operation === 'multiply') {
+                const size = parseInt(document.getElementById('matrix-size').value);
+                
+                let html = '<h3 style="margin-top: 20px;">Second Matrix</h3>';
+                html += '<div class="matrix-input" style="grid-template-columns: repeat(' + size + ', 1fr);">';
+                
+                for (let i = 0; i < size * size; i++) {
+                    html += `
+                        <div class="matrix-cell">
+                            <input type="number" id="matrix-b-${i}" placeholder="b${Math.floor(i/size)+1}${(i%size)+1}" step="any">
+                        </div>
+                    `;
+                }
+                
+                html += '</div>';
+                matrixBInputs.innerHTML = html;
+                matrixBInputs.style.display = 'block';
+            } else {
+                matrixBInputs.style.display = 'none';
+            }
+        }
+
+        function calculateMatrix() {
+            console.log('Calculating matrix operation');
+            const size = parseInt(document.getElementById('matrix-size').value);
+            const operation = document.getElementById('matrix-operation').value;
+            
+            // Get matrix A
+            const matrixA = [];
+            for (let i = 0; i < size; i++) {
+                matrixA[i] = [];
+                for (let j = 0; j < size; j++) {
+                    const value = parseFloat(document.getElementById(`matrix-a-${i*size+j}`).value);
+                    if (isNaN(value)) {
+                        showToast('Please enter valid numbers for all matrix elements');
+                        return;
+                    }
+                    matrixA[i][j] = value;
+                }
+            }
+            
+            let result;
+            
+            if (operation === 'determinant') {
+                result = calculateDeterminant(matrixA);
+                
+                let html = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Determinant Result</h3>
+                        <div class="result-item">
+                            <span class="result-label">Determinant</span>
+                            <span class="result-value">${formatNumber(result)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('matrix-result').innerHTML = html;
+            } else if (operation === 'inverse') {
+                result = calculateInverse(matrixA);
+                
+                if (!result) {
+                    showToast('Matrix is not invertible (determinant is zero)');
+                    return;
+                }
+                
+                let html = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Inverse Matrix</h3>
+                        <div class="matrix-input" style="grid-template-columns: repeat(${size}, 1fr);">
+                `;
+                
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        html += `
+                            <div class="matrix-cell">
+                                ${formatNumber(result[i][j])}
+                            </div>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('matrix-result').innerHTML = html;
+            } else if (operation === 'transpose') {
+                result = calculateTranspose(matrixA);
+                
+                let html = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Transpose Matrix</h3>
+                        <div class="matrix-input" style="grid-template-columns: repeat(${size}, 1fr);">
+                `;
+                
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        html += `
+                            <div class="matrix-cell">
+                                ${formatNumber(result[i][j])}
+                            </div>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('matrix-result').innerHTML = html;
+            } else if (operation === 'eigenvalues') {
+                result = calculateEigenvalues(matrixA);
+                
+                let html = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Eigenvalues</h3>
+                `;
+                
+                for (let i = 0; i < result.length; i++) {
+                    if (result[i].imag === 0) {
+                        html += `
+                            <div class="result-item">
+                                <span class="result-label">λ${i+1}</span>
+                                <span class="result-value">${formatNumber(result[i].real)}</span>
+                            </div>
+                        `;
+                    } else {
+                        html += `
+                            <div class="result-item">
+                                <span class="result-label">λ${i+1}</span>
+                                <span class="result-value">${formatNumber(result[i].real)} + ${formatNumber(result[i].imag)}i</span>
+                            </div>
+                        `;
+                    }
+                }
+                
+                html += `
+                    </div>
+                `;
+                
+                document.getElementById('matrix-result').innerHTML = html;
+            } else if (operation === 'multiply') {
+                // Get matrix B
+                const matrixB = [];
+                for (let i = 0; i < size; i++) {
+                    matrixB[i] = [];
+                    for (let j = 0; j < size; j++) {
+                        const value = parseFloat(document.getElementById(`matrix-b-${i*size+j}`).value);
+                        if (isNaN(value)) {
+                            showToast('Please enter valid numbers for all matrix elements');
+                            return;
+                        }
+                        matrixB[i][j] = value;
+                    }
+                }
+                
+                result = multiplyMatrices(matrixA, matrixB);
+                
+                let html = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Matrix Multiplication Result</h3>
+                        <div class="matrix-input" style="grid-template-columns: repeat(${size}, 1fr);">
+                `;
+                
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        html += `
+                            <div class="matrix-cell">
+                                ${formatNumber(result[i][j])}
+                            </div>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('matrix-result').innerHTML = html;
+            }
+        }
+
+        function calculateDeterminant(matrix) {
+            const n = matrix.length;
+            
+            if (n === 1) {
+                return matrix[0][0];
+            }
+            
+            if (n === 2) {
+                return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+            }
+            
+            let det = 0;
+            
+            for (let j = 0; j < n; j++) {
+                det += Math.pow(-1, j) * matrix[0][j] * calculateDeterminant(getMinor(matrix, 0, j));
+            }
+            
+            return det;
+        }
+
+        function getMinor(matrix, row, col) {
+            const n = matrix.length;
+            const minor = [];
+            
+            for (let i = 0, mi = 0; i < n; i++) {
+                if (i === row) continue;
+                
+                minor[mi] = [];
+                for (let j = 0, mj = 0; j < n; j++) {
+                    if (j === col) continue;
+                    minor[mi][mj] = matrix[i][j];
+                    mj++;
+                }
+                mi++;
+            }
+            
+            return minor;
+        }
+
+        function calculateInverse(matrix) {
+            const n = matrix.length;
+            const det = calculateDeterminant(matrix);
+            
+            if (Math.abs(det) < 1e-10) {
+                return null;
+            }
+            
+            const inverse = [];
+            
+            for (let i = 0; i < n; i++) {
+                inverse[i] = [];
+                for (let j = 0; j < n; j++) {
+                    const cofactor = Math.pow(-1, i + j) * calculateDeterminant(getMinor(matrix, i, j));
+                    inverse[i][j] = cofactor / det;
+                }
+            }
+            
+            return transposeMatrix(inverse);
+        }
+
+        function transposeMatrix(matrix) {
+            const n = matrix.length;
+            const transpose = [];
+            
+            for (let i = 0; i < n; i++) {
+                transpose[i] = [];
+                for (let j = 0; j < n; j++) {
+                    transpose[i][j] = matrix[j][i];
+                }
+            }
+            
+            return transpose;
+        }
+
+        function calculateTranspose(matrix) {
+            return transposeMatrix(matrix);
+        }
+
+        function multiplyMatrices(a, b) {
+            const n = a.length;
+            const result = [];
+            
+            for (let i = 0; i < n; i++) {
+                result[i] = [];
+                for (let j = 0; j < n; j++) {
+                    result[i][j] = 0;
+                    for (let k = 0; k < n; k++) {
+                        result[i][j] += a[i][k] * b[k][j];
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        function calculateEigenvalues(matrix) {
+            const n = matrix.length;
+            
+            if (n === 2) {
+                const a = matrix[0][0];
+                const b = matrix[0][1];
+                const c = matrix[1][0];
+                const d = matrix[1][1];
+                
+                const trace = a + d;
+                const det = a * d - b * c;
+                
+                const discriminant = trace * trace - 4 * det;
+                
+                if (discriminant >= 0) {
+                    const sqrtDiscriminant = Math.sqrt(discriminant);
+                    return [
+                        { real: (trace + sqrtDiscriminant) / 2, imag: 0 },
+                        { real: (trace - sqrtDiscriminant) / 2, imag: 0 }
+                    ];
+                } else {
+                    const sqrtDiscriminant = Math.sqrt(-discriminant);
+                    return [
+                        { real: trace / 2, imag: sqrtDiscriminant / 2 },
+                        { real: trace / 2, imag: -sqrtDiscriminant / 2 }
+                    ];
+                }
+            } else {
+                // For larger matrices, return diagonal elements as approximation
+                const eigenvalues = [];
+                for (let i = 0; i < n; i++) {
+                    eigenvalues.push({ real: matrix[i][i], imag: 0 });
+                }
+                return eigenvalues;
+            }
+        }
+
+        // Complex Numbers Calculator Functions
+        function updateComplexInputs() {
+            console.log('Updating complex inputs');
+            const operation = document.getElementById('complex-operation').value;
+            const complexInputs = document.getElementById('complex-inputs');
+            
+            if (!complexInputs) return;
+            
+            let html = '';
+            
+            if (operation === 'conjugate' || operation === 'modulus' || operation === 'argument' || 
+                operation === 'polar' || operation === 'exponential') {
+                html = `
+                    <div class="input-group">
+                        <label>Complex Number (a + bi)</label>
+                        <div class="complex-input">
+                            <div class="complex-part">
+                                <input type="number" id="complex-a" placeholder="Real part (a)" step="any">
+                            </div>
+                            <div class="complex-part">
+                                <input type="number" id="complex-b" placeholder="Imaginary part (b)" step="any">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (operation === 'power') {
+                html = `
+                    <div class="input-group">
+                        <label>Complex Number (a + bi)</label>
+                        <div class="complex-input">
+                            <div class="complex-part">
+                                <input type="number" id="complex-a" placeholder="Real part (a)" step="any">
+                            </div>
+                            <div class="complex-part">
+                                <input type="number" id="complex-b" placeholder="Imaginary part (b)" step="any">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="complex-power">Power (n)</label>
+                        <input type="number" id="complex-power" placeholder="Enter power" step="any">
+                    </div>
+                `;
+            } else {
+                html = `
+                    <div class="input-group">
+                        <label>First Complex Number (a + bi)</label>
+                        <div class="complex-input">
+                            <div class="complex-part">
+                                <input type="number" id="complex-a" placeholder="Real part (a)" step="any">
+                            </div>
+                            <div class="complex-part">
+                                <input type="number" id="complex-b" placeholder="Imaginary part (b)" step="any">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Second Complex Number (c + di)</label>
+                        <div class="complex-input">
+                            <div class="complex-part">
+                                <input type="number" id="complex-c" placeholder="Real part (c)" step="any">
+                            </div>
+                            <div class="complex-part">
+                                <input type="number" id="complex-d" placeholder="Imaginary part (d)" step="any">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            complexInputs.innerHTML = html;
+        }
+
+        function calculateComplex() {
+            console.log('Calculating complex operation');
+            const operation = document.getElementById('complex-operation').value;
+            
+            let result;
+            
+            if (operation === 'add') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                const c = parseFloat(document.getElementById('complex-c').value);
+                const d = parseFloat(document.getElementById('complex-d').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const real = a + c;
+                const imag = b + d;
+                
+                result = {
+                    real: real,
+                    imag: imag,
+                    text: formatComplexNumber(real, imag)
+                };
+            } else if (operation === 'subtract') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                const c = parseFloat(document.getElementById('complex-c').value);
+                const d = parseFloat(document.getElementById('complex-d').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const real = a - c;
+                const imag = b - d;
+                
+                result = {
+                    real: real,
+                    imag: imag,
+                    text: formatComplexNumber(real, imag)
+                };
+            } else if (operation === 'multiply') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                const c = parseFloat(document.getElementById('complex-c').value);
+                const d = parseFloat(document.getElementById('complex-d').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const real = a * c - b * d;
+                const imag = a * d + b * c;
+                
+                result = {
+                    real: real,
+                    imag: imag,
+                    text: formatComplexNumber(real, imag)
+                };
+            } else if (operation === 'divide') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                const c = parseFloat(document.getElementById('complex-c').value);
+                const d = parseFloat(document.getElementById('complex-d').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const denominator = c * c + d * d;
+                
+                if (Math.abs(denominator) < 1e-10) {
+                    showToast('Cannot divide by zero');
+                    return;
+                }
+                
+                const real = (a * c + b * d) / denominator;
+                const imag = (b * c - a * d) / denominator;
+                
+                result = {
+                    real: real,
+                    imag: imag,
+                    text: formatComplexNumber(real, imag)
+                };
+            } else if (operation === 'power') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                const n = parseFloat(document.getElementById('complex-power').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(n)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                // Convert to polar form
+                const r = Math.sqrt(a * a + b * b);
+                const theta = Math.atan2(b, a);
+                
+                // Apply De Moivre's theorem
+                const newR = Math.pow(r, n);
+                const newTheta = n * theta;
+                
+                const real = newR * Math.cos(newTheta);
+                const imag = newR * Math.sin(newTheta);
+                
+                result = {
+                    real: real,
+                    imag: imag,
+                    text: formatComplexNumber(real, imag)
+                };
+            } else if (operation === 'conjugate') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                result = {
+                    real: a,
+                    imag: -b,
+                    text: formatComplexNumber(a, -b)
+                };
+            } else if (operation === 'modulus') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const modulus = Math.sqrt(a * a + b * b);
+                
+                result = {
+                    modulus: modulus,
+                    text: formatNumber(modulus)
+                };
+            } else if (operation === 'argument') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const argument = Math.atan2(b, a);
+                
+                result = {
+                    argument: argument,
+                    radians: argument,
+                    degrees: argument * 180 / Math.PI,
+                    text: `${formatNumber(argument)} rad (${formatNumber(argument * 180 / Math.PI)}°)`
+                };
+            } else if (operation === 'polar') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const r = Math.sqrt(a * a + b * b);
+                const theta = Math.atan2(b, a);
+                
+                result = {
+                    r: r,
+                    theta: theta,
+                    text: `${formatNumber(r)} ∠ ${formatNumber(theta * 180 / Math.PI)}°`
+                };
+            } else if (operation === 'exponential') {
+                const a = parseFloat(document.getElementById('complex-a').value);
+                const b = parseFloat(document.getElementById('complex-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid numbers');
+                    return;
+                }
+                
+                const r = Math.sqrt(a * a + b * b);
+                const theta = Math.atan2(b, a);
+                
+                result = {
+                    r: r,
+                    theta: theta,
+                    text: `${formatNumber(r)}e^(i${formatNumber(theta)})`
+                };
+            }
+            
+            // Display result
+            let html = `
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Complex Number Result</h3>
+            `;
+            
+            if (operation === 'modulus') {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Modulus</span>
+                        <span class="result-value">${result.text}</span>
+                    </div>
+                `;
+            } else if (operation === 'argument') {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Argument (radians)</span>
+                        <span class="result-value">${formatNumber(result.radians)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Argument (degrees)</span>
+                        <span class="result-value">${formatNumber(result.degrees)}°</span>
+                    </div>
+                `;
+            } else if (operation === 'polar') {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Polar Form</span>
+                        <span class="result-value">${result.text}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Radius (r)</span>
+                        <span class="result-value">${formatNumber(result.r)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Angle (θ)</span>
+                        <span class="result-value">${formatNumber(result.theta * 180 / Math.PI)}°</span>
+                    </div>
+                `;
+            } else if (operation === 'exponential') {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Exponential Form</span>
+                        <span class="result-value">${result.text}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Radius (r)</span>
+                        <span class="result-value">${formatNumber(result.r)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Angle (θ)</span>
+                        <span class="result-value">${formatNumber(result.theta)} rad</span>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="result-item">
+                        <span class="result-label">Result</span>
+                        <span class="result-value">${result.text}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Real Part</span>
+                        <span class="result-value">${formatNumber(result.real)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Imaginary Part</span>
+                        <span class="result-value">${formatNumber(result.imag)}</span>
+                    </div>
+                `;
+            }
+            
+            html += `
+                </div>
+            `;
+            
+            document.getElementById('complex-result').innerHTML = html;
+        }
+
+        function formatComplexNumber(real, imag) {
+            if (Math.abs(imag) < 1e-10) {
+                return formatNumber(real);
+            } else if (Math.abs(real) < 1e-10) {
+                return `${formatNumber(imag)}i`;
+            } else if (imag > 0) {
+                return `${formatNumber(real)} + ${formatNumber(imag)}i`;
+            } else {
+                return `${formatNumber(real)} - ${formatNumber(Math.abs(imag))}i`;
+            }
+        }
+
+        // Equation Solver Functions
+        function updateEquationInputs() {
+            console.log('Updating equation inputs');
+            const equationType = document.getElementById('equation-type').value;
+            const equationInputs = document.getElementById('equation-inputs');
+            
+            if (!equationInputs) return;
+            
+            equationInputs.innerHTML = '';
+            
+            if (equationType === 'linear') {
+                equationInputs.innerHTML = `
+                    <div class="input-group">
+                        <label for="linear-a">Coefficient a</label>
+                        <input type="number" id="linear-a" placeholder="Enter coefficient a" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="linear-b">Coefficient b</label>
+                        <input type="number" id="linear-b" placeholder="Enter coefficient b" step="any">
+                    </div>
+                    <div class="equation-display">
+                        ax + b = 0
+                    </div>
+                `;
+            } else if (equationType === 'quadratic') {
+                equationInputs.innerHTML = `
+                    <div class="input-group">
+                        <label for="quadratic-a">Coefficient a</label>
+                        <input type="number" id="quadratic-a" placeholder="Enter coefficient a" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="quadratic-b">Coefficient b</label>
+                        <input type="number" id="quadratic-b" placeholder="Enter coefficient b" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="quadratic-c">Coefficient c</label>
+                        <input type="number" id="quadratic-c" placeholder="Enter coefficient c" step="any">
+                    </div>
+                    <div class="equation-display">
+                        ax² + bx + c = 0
+                    </div>
+                `;
+            } else if (equationType === 'cubic') {
+                equationInputs.innerHTML = `
+                    <div class="input-group">
+                        <label for="cubic-a">Coefficient a</label>
+                        <input type="number" id="cubic-a" placeholder="Enter coefficient a" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="cubic-b">Coefficient b</label>
+                        <input type="number" id="cubic-b" placeholder="Enter coefficient b" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="cubic-c">Coefficient c</label>
+                        <input type="number" id="cubic-c" placeholder="Enter coefficient c" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label for="cubic-d">Coefficient d</label>
+                        <input type="number" id="cubic-d" placeholder="Enter coefficient d" step="any">
+                    </div>
+                    <div class="equation-display">
+                        ax³ + bx² + cx + d = 0
+                    </div>
+                `;
+            } else if (equationType === 'system') {
+                equationInputs.innerHTML = `
+                    <div class="input-group">
+                        <label for="system-size">System Size</label>
+                        <select id="system-size" onchange="updateSystemInputs()">
+                            <option value="2">2×2 System</option>
+                            <option value="3">3×3 System</option>
+                            <option value="4">4×4 System</option>
+                        </select>
+                    </div>
+                    <div id="system-inputs">
+                        <!-- System inputs will be generated here -->
+                    </div>
+                `;
+                updateSystemInputs();
+            }
+        }
+
+        function updateSystemInputs() {
+            console.log('Updating system inputs');
+            const size = parseInt(document.getElementById('system-size').value);
+            const systemInputs = document.getElementById('system-inputs');
+            
+            if (!systemInputs) return;
+            
+            let html = '';
+            
+            for (let i = 0; i < size; i++) {
+                html += `<h3 style="margin-top: 20px;">Equation ${i+1}</h3>`;
+                
+                for (let j = 0; j < size; j++) {
+                    html += `
+                        <div class="input-group">
+                            <label for="system-a${i}${j}">Coefficient a${i+1}${j+1}</label>
+                            <input type="number" id="system-a${i}${j}" placeholder="Enter coefficient a${i+1}${j+1}" step="any">
+                        </div>
+                    `;
+                }
+                
+                html += `
+                    <div class="input-group">
+                        <label for="system-b${i}">Constant b${i+1}</label>
+                        <input type="number" id="system-b${i}" placeholder="Enter constant b${i+1}" step="any">
+                    </div>
+                `;
+            }
+            
+            systemInputs.innerHTML = html;
+        }
+
+        function solveEquation() {
+            console.log('Solving equation');
+            const equationType = document.getElementById('equation-type').value;
+            let result = '';
+            
+            if (equationType === 'linear') {
+                const a = parseFloat(document.getElementById('linear-a').value);
+                const b = parseFloat(document.getElementById('linear-b').value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    showToast('Please enter valid coefficients');
+                    return;
+                }
+                
+                let x;
+                if (a === 0) {
+                    if (b === 0) {
+                        result = 'Infinite solutions (0 = 0)';
+                    } else {
+                        result = 'No solution (contradiction)';
+                    }
+                } else {
+                    x = -b / a;
+                    result = `x = ${formatNumber(x)}`;
+                }
+                
+                result = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Solution</h3>
+                        <div class="equation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                Equation: ${a}x + ${b} = 0
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                ${a}x = ${-b}
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                x = ${-b}/${a}
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                x = ${x ? formatNumber(x) : 'undefined'}
+                            </div>
+                        </div>
+                        <div class="result-item" style="margin-top: 20px;">
+                            <span class="result-label">Result</span>
+                            <span class="result-value">${result}</span>
+                        </div>
+                    </div>
+                `;
+            } else if (equationType === 'quadratic') {
+                const a = parseFloat(document.getElementById('quadratic-a').value);
+                const b = parseFloat(document.getElementById('quadratic-b').value);
+                const c = parseFloat(document.getElementById('quadratic-c').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                    showToast('Please enter valid coefficients');
+                    return;
+                }
+                
+                let roots = [];
+                
+                if (a === 0) {
+                    // It's actually a linear equation
+                    if (b === 0) {
+                        if (c === 0) {
+                            result = 'Infinite solutions (0 = 0)';
+                        } else {
+                            result = 'No solution (contradiction)';
+                        }
+                    } else {
+                        const x = -c / b;
+                        result = `x = ${formatNumber(x)}`;
+                    }
+                } else {
+                    const discriminant = b * b - 4 * a * c;
+                    
+                    if (discriminant > 0) {
+                        const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                        const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                        roots.push(formatNumber(x1));
+                        roots.push(formatNumber(x2));
+                        result = `x₁ = ${roots[0]}, x₂ = ${roots[1]}`;
+                    } else if (Math.abs(discriminant) < 1e-10) {
+                        const x = -b / (2 * a);
+                        roots.push(formatNumber(x));
+                        result = `x = ${roots[0]} (double root)`;
+                    } else {
+                        const realPart = (-b / (2 * a)).toFixed(6);
+                        const imaginaryPart = (Math.sqrt(-discriminant) / (2 * a)).toFixed(6);
+                        roots.push(`${realPart} + ${imaginaryPart}i`);
+                        roots.push(`${realPart} - ${imaginaryPart}i`);
+                        result = `x₁ = ${roots[0]}, x₂ = ${roots[1]}`;
+                    }
+                }
+                
+                result = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Solution</h3>
+                        <div class="equation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                Equation: ${a}x² + ${b}x + ${c} = 0
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                Discriminant: Δ = b² - 4ac = ${(b*b).toFixed(2)} - 4×${a}×${c} = ${formatNumber(b*b - 4*a*c)}
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                ${(b*b - 4*a*c) > 0 ? 'Two real roots' : (Math.abs(b*b - 4*a*c) < 1e-10 ? 'One real root (double)' : 'Two complex roots')}
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                x = (-b ± √Δ) / 2a
+                            </div>
+                        </div>
+                        <div class="result-item" style="margin-top: 20px;">
+                            <span class="result-label">Result</span>
+                            <span class="result-value">${result}</span>
+                        </div>
+                    </div>
+                `;
+            } else if (equationType === 'cubic') {
+                const a = parseFloat(document.getElementById('cubic-a').value);
+                const b = parseFloat(document.getElementById('cubic-b').value);
+                const c = parseFloat(document.getElementById('cubic-c').value);
+                const d = parseFloat(document.getElementById('cubic-d').value);
+                
+                if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+                    showToast('Please enter valid coefficients');
+                    return;
+                }
+                
+                // Normalize coefficients
+                const A = b / a;
+                const B = c / a;
+                const C = d / a;
+                
+                // Calculate depressed cubic coefficients
+                const p = B - (A * A) / 3;
+                const q = (2 * A * A * A) / 27 - (A * B) / 3 + C;
+                
+                const discriminant = (q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3);
+                
+                let roots = [];
+                
+                if (Math.abs(discriminant) < 1e-10) {
+                    // Three real roots, at least two equal
+                    const u = Math.cbrt(-q / 2);
+                    roots.push(formatNumber(2 * u - A / 3));
+                    roots.push(formatNumber(-u - A / 3));
+                    roots.push(formatNumber(-u - A / 3));
+                } else if (discriminant > 0) {
+                    // One real root and two complex roots
+                    const u = Math.cbrt(-q / 2 + Math.sqrt(discriminant));
+                    const v = Math.cbrt(-q / 2 - Math.sqrt(discriminant));
+                    roots.push(formatNumber(u + v - A / 3));
+                    
+                    const realPart = (-(u + v) / 2 - A / 3).toFixed(6);
+                    const imaginaryPart = (Math.sqrt(3) * (u - v) / 2).toFixed(6);
+                    roots.push(`${realPart} + ${imaginaryPart}i`);
+                    roots.push(`${realPart} - ${imaginaryPart}i`);
+                } else {
+                    // Three distinct real roots
+                    const r = Math.sqrt(-Math.pow(p, 3) / 27);
+                    const phi = Math.acos(-q / (2 * r));
+                    const t = 2 * Math.cbrt(r);
+                    
+                    roots.push(formatNumber(t * Math.cos(phi / 3) - A / 3));
+                    roots.push(formatNumber(t * Math.cos((phi + 2 * Math.PI) / 3) - A / 3));
+                    roots.push(formatNumber(t * Math.cos((phi + 4 * Math.PI) / 3) - A / 3));
+                }
+                
+                result = `
+                    <div class="result-card">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Solution</h3>
+                        <div class="equation-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                Equation: ${a}x³ + ${b}x² + ${c}x + ${d} = 0
+                            </div>
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                Normalized: x³ + ${formatNumber(A)}x² + ${formatNumber(B)}x + ${formatNumber(C)} = 0
+                            </div>
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                Depressed cubic: x³ + px + q = 0
+                            </div>
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                p = ${formatNumber(p)}, q = ${formatNumber(q)}
+                            </div>
+                            <div class="step">
+                                <span class="step-number">5</span>
+                                Discriminant: Δ = ${formatNumber((q/2)*(q/2) + (p/3)*(p/3)*(p/3))}
+                            </div>
+                        </div>
+                        <div class="result-item" style="margin-top: 20px;">
+                            <span class="result-label">Roots</span>
+                            <span class="result-value">x₁ = ${roots[0]}</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label"></span>
+                            <span class="result-value">x₂ = ${roots[1]}</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label"></span>
+                            <span class="result-value">x₃ = ${roots[2]}</span>
+                        </div>
+                    </div>
+                `;
+            } else if (equationType === 'system') {
+                const size = parseInt(document.getElementById('system-size').value);
+                
+                // Get the coefficient matrix and constant vector
+                const matrix = [];
+                const constants = [];
+                
+                for (let i = 0; i < size; i++) {
+                    matrix[i] = [];
+                    for (let j = 0; j < size; j++) {
+                        const value = parseFloat(document.getElementById(`system-a${i}${j}`).value);
+                        if (isNaN(value)) {
+                            showToast('Please enter valid coefficients');
+                            return;
+                        }
+                        matrix[i][j] = value;
+                    }
+                    
+                    const constant = parseFloat(document.getElementById(`system-b${i}`).value);
+                    if (isNaN(constant)) {
+                        showToast('Please enter valid constants');
+                        return;
+                    }
+                    constants[i] = constant;
+                }
+                
+                // Solve the system using Gaussian elimination
+                const solution = solveLinearSystem(matrix, constants);
+                
+                if (!solution) {
+                    result = `
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Solution</h3>
+                            <div class="result-item">
+                                <span class="result-label">Result</span>
+                                <span class="result-value">No unique solution (system is singular or inconsistent)</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    let html = `
+                        <div class="result-card">
+                            <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Solution</h3>
+                    `;
+                    
+                    for (let i = 0; i < size; i++) {
+                        html += `
+                            <div class="result-item">
+                                <span class="result-label">x${i+1}</span>
+                                <span class="result-value">${formatNumber(solution[i])}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                        </div>
+                    `;
+                    
+                    result = html;
+                }
+            }
+            
+            document.getElementById('equation-result').innerHTML = result;
+        }
+
+        function solveLinearSystem(matrix, constants) {
+            const n = matrix.length;
+            
+            // Create an augmented matrix
+            const augmented = [];
+            for (let i = 0; i < n; i++) {
+                augmented[i] = [];
+                for (let j = 0; j < n; j++) {
+                    augmented[i][j] = matrix[i][j];
+                }
+                augmented[i][n] = constants[i];
+            }
+            
+            // Forward elimination
+            for (let i = 0; i < n; i++) {
+                // Find the pivot
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(augmented[k][i]) > Math.abs(augmented[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+                
+                // Swap the maximum row with the current row
+                [augmented[i], augmented[maxRow]] = [augmented[maxRow], augmented[i]];
+                
+                // If the pivot is zero, the system is singular
+                if (Math.abs(augmented[i][i]) < 1e-10) {
+                    return null;
+                }
+                
+                // Eliminate all rows below the pivot
+                for (let k = i + 1; k < n; k++) {
+                    const factor = augmented[k][i] / augmented[i][i];
+                    for (let j = i; j <= n; j++) {
+                        augmented[k][j] -= factor * augmented[i][j];
+                    }
+                }
+            }
+            
+            // Back substitution
+            const solution = new Array(n);
+            for (let i = n - 1; i >= 0; i--) {
+                solution[i] = augmented[i][n];
+                for (let j = i + 1; j < n; j++) {
+                    solution[i] -= augmented[i][j] * solution[j];
+                }
+                solution[i] /= augmented[i][i];
+            }
+            
+            return solution;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            console.log('Showing toast:', message);
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

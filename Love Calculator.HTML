@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check How Much He/She Loves You?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #c44569;
+            --accent-color: #f8b195;
+            --success-color: #ff6b9d;
+            --warning-color: #feca57;
+            --danger-color: #ee5a24;
+            --dark-color: #2c2c54;
+            --light-color: #fff5f5;
+            --text-color: #5f27cd;
+            --border-radius: 20px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #f8b195 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated romantic background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(248, 177, 149, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(196, 69, 105, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating hearts animation */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            animation: floatHeart 15s infinite linear;
+            font-size: 20px;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0 40px;
+            color: white;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #fff, #ffeaa7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-clip: text;
+            background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(255, 107, 157, 0.2);
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(248, 177, 149, 0.1));
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 18px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            white-space: nowrap;
+            position: relative;
+            border-radius: 15px;
+            margin: 0 3px;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .tab:hover::before {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .tab:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .tab-content {
+            padding: 40px;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Name Input Styles */
+        .name-inputs {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .name-input-group {
+            position: relative;
+        }
+
+        .name-input-group input, .date-input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: white;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .name-input-group input:focus, .date-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .name-input-group input:hover, .date-input-group input:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .name-input-group input.error, .date-input-group input.error {
+            border-color: var(--danger-color);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .name-input-group label, .date-input-group label {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        .heart-divider {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Enhanced Zodiac Input Styles */
+        .zodiac-input-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .zodiac-person {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .zodiac-person:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+        }
+
+        .zodiac-person-title {
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .dob-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .dob-input-group {
+            position: relative;
+        }
+
+        .dob-input-group input {
+            width: 100%;
+            padding: 12px 10px;
+            border: 2px solid #ffeaa7;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            background: white;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .dob-input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .dob-input-group input:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .dob-input-group label {
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: white;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff6b9d' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary::before {
+            background: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #fff5f5, #ffe0e6);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+            animation: slideUp 0.5s ease-out;
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 107, 157, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shimmerCard 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerCard {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .result-item:hover {
+            padding-left: 10px;
+            background: linear-gradient(90deg, rgba(255, 107, 157, 0.05), transparent);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .compatibility-display {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .compatibility-meter {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+            min-width: 200px;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compatibility-meter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .compatibility-meter:hover::before {
+            transform: scaleX(1);
+        }
+
+        .compatibility-meter:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+        }
+
+        .compatibility-score {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            animation: countUp 1s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .compatibility-label {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .love-meter {
+            width: 100%;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .love-meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            transition: width 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-meter-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmerMeter 2s infinite;
+        }
+
+        @keyframes shimmerMeter {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .zodiac-display {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .zodiac-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .zodiac-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.2);
+        }
+
+        .zodiac-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .zodiac-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .zodiac-dates {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            margin-top: 5px;
+        }
+
+        .compatibility-symbol {
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .copy-share {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--dark-color), #5f27cd);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px) rotateX(90deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .toast.show {
+            transform: translateY(0) rotateX(0);
+            opacity: 1;
+        }
+
+        .advice-card {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: sweep 3s ease-in-out infinite;
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .advice-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advice-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trait-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .trait-item {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trait-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .trait-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .trait-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .trait-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .trait-text {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .name-inputs {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .heart-divider {
+                display: none;
+            }
+
+            .zodiac-input-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .dob-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .compatibility-display {
+                flex-wrap: wrap;
+            }
+
+            .zodiac-display {
+                grid-template-columns: 1fr;
+            }
+
+            .trait-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> Ricky Mitsuba AI Lab</h1>
+            <p>Discover your love compatibility with precision and romance</p>
+        </header>
+
+        <div class="app-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="basic">Basic Compatibility</div>
+                <div class="tab" data-tab="zodiac">Zodiac Match</div>
+                <div class="tab" data-tab="numerology">Numerology Love</div>
+                <div class="tab" data-tab="chinese">Chinese Zodiac</div>
+                <div class="tab" data-tab="elements">Element Match</div>
+            </div>
+
+            <!-- Basic Compatibility Calculator -->
+            <div class="tab-content active" id="basic">
+                <div class="input-group">
+                    <label>Enter Your Names</label>
+                    <div class="name-inputs">
+                        <div class="name-input-group">
+                            <label>Your Name</label>
+                            <input type="text" id="name1" placeholder="Enter first name">
+                            <div class="error-message" id="name1-error">Please enter a valid name</div>
+                        </div>
+                        <div class="heart-divider">💕</div>
+                        <div class="name-input-group">
+                            <label>Partner's Name</label>
+                            <input type="text" id="name2" placeholder="Enter partner's name">
+                            <div class="error-message" id="name2-error">Please enter a valid name</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateBasicCompatibility()">
+                    <i class="fas fa-heart"></i> Calculate Love
+                </button>
+
+                <div id="basic-result"></div>
+            </div>
+
+            <!-- Zodiac Match Calculator -->
+            <div class="tab-content" id="zodiac">
+                <div class="input-group">
+                    <label>Enter Your Birth Dates</label>
+                    <div class="zodiac-input-container">
+                        <div class="zodiac-person">
+                            <div class="zodiac-person-title">Your Birthday</div>
+                            <div class="dob-inputs">
+                                <div class="dob-input-group">
+                                    <label>Day</label>
+                                    <input type="text" id="zodiac1-day" placeholder="DD" maxlength="2">
+                                    <div class="error-message" id="zodiac1-day-error">Day (1-31)</div>
+                                </div>
+                                <div class="dob-input-group">
+                                    <label>Month</label>
+                                    <input type="text" id="zodiac1-month" placeholder="MM" maxlength="2">
+                                    <div class="error-message" id="zodiac1-month-error">Month (1-12)</div>
+                                </div>
+                                <div class="dob-input-group">
+                                    <label>Year</label>
+                                    <input type="text" id="zodiac1-year" placeholder="YYYY" maxlength="4">
+                                    <div class="error-message" id="zodiac1-year-error">Year (1900-2024)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="compatibility-symbol">💫</div>
+                        <div class="zodiac-person">
+                            <div class="zodiac-person-title">Partner's Birthday</div>
+                            <div class="dob-inputs">
+                                <div class="dob-input-group">
+                                    <label>Day</label>
+                                    <input type="text" id="zodiac2-day" placeholder="DD" maxlength="2">
+                                    <div class="error-message" id="zodiac2-day-error">Day (1-31)</div>
+                                </div>
+                                <div class="dob-input-group">
+                                    <label>Month</label>
+                                    <input type="text" id="zodiac2-month" placeholder="MM" maxlength="2">
+                                    <div class="error-message" id="zodiac2-month-error">Month (1-12)</div>
+                                </div>
+                                <div class="dob-input-group">
+                                    <label>Year</label>
+                                    <input type="text" id="zodiac2-year" placeholder="YYYY" maxlength="4">
+                                    <div class="error-message" id="zodiac2-year-error">Year (1900-2024)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateZodiacCompatibility()">
+                    <i class="fas fa-star"></i> Match Zodiac Signs
+                </button>
+
+                <div id="zodiac-result"></div>
+            </div>
+
+            <!-- Numerology Love Calculator -->
+            <div class="tab-content" id="numerology">
+                <div class="input-group">
+                    <label>Enter Your Names for Numerology</label>
+                    <div class="name-inputs">
+                        <div class="name-input-group">
+                            <label>Your Name</label>
+                            <input type="text" id="numerology-name1" placeholder="Enter full name">
+                        </div>
+                        <div class="heart-divider">🔢</div>
+                        <div class="name-input-group">
+                            <label>Partner's Name</label>
+                            <input type="text" id="numerology-name2" placeholder="Enter full name">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateNumerologyCompatibility()">
+                    <i class="fas fa-hashtag"></i> Calculate Numbers
+                </button>
+
+                <div id="numerology-result"></div>
+            </div>
+
+            <!-- Chinese Zodiac Calculator -->
+            <div class="tab-content" id="chinese">
+                <div class="input-group">
+                    <label>Enter Your Birth Years</label>
+                    <div class="name-inputs">
+                        <div class="name-input-group">
+                            <label>Your Birth Year</label>
+                            <input type="text" id="chinese1-year" placeholder="YYYY" maxlength="4">
+                        </div>
+                        <div class="heart-divider">🐉</div>
+                        <div class="name-input-group">
+                            <label>Partner's Birth Year</label>
+                            <input type="text" id="chinese2-year" placeholder="YYYY" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateChineseCompatibility()">
+                    <i class="fas fa-yin-yang"></i> Match Chinese Signs
+                </button>
+
+                <div id="chinese-result"></div>
+            </div>
+
+            <!-- Element Match Calculator -->
+            <div class="tab-content" id="elements">
+                <div class="input-group">
+                    <label>Select Your Elements</label>
+                    <div class="name-inputs">
+                        <div class="name-input-group">
+                            <label>Your Element</label>
+                            <select id="element1">
+                                <option value="">Select Element</option>
+                                <option value="fire">🔥 Fire</option>
+                                <option value="water">💧 Water</option>
+                                <option value="earth">🌍 Earth</option>
+                                <option value="air">💨 Air</option>
+                            </select>
+                        </div>
+                        <div class="heart-divider">⚡</div>
+                        <div class="name-input-group">
+                            <label>Partner's Element</label>
+                            <select id="element2">
+                                <option value="">Select Element</option>
+                                <option value="fire">🔥 Fire</option>
+                                <option value="water">💧 Water</option>
+                                <option value="earth">🌍 Earth</option>
+                                <option value="air">💨 Air</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateElementCompatibility()">
+                    <i class="fas fa-atom"></i> Match Elements
+                </button>
+
+                <div id="elements-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💘', '💞', '💓'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 20000);
+            }, 3000);
+        }
+
+        // Initialize floating hearts
+        createHearts();
+
+        // Tab switching with animation
+        document.querySelectorAll('.tab').forEach((tab, index) => {
+            tab.style.animationDelay = `${index * 0.1}s`;
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Zodiac signs data with correct date ranges
+        const zodiacSigns = [
+            { name: 'Aries', icon: '♈', dates: 'Mar 21 - Apr 19', element: 'Fire', startMonth: 3, startDay: 21, endMonth: 4, endDay: 19 },
+            { name: 'Taurus', icon: '♉', dates: 'Apr 20 - May 20', element: 'Earth', startMonth: 4, startDay: 20, endMonth: 5, endDay: 20 },
+            { name: 'Gemini', icon: '♊', dates: 'May 21 - Jun 20', element: 'Air', startMonth: 5, startDay: 21, endMonth: 6, endDay: 20 },
+            { name: 'Cancer', icon: '♋', dates: 'Jun 21 - Jul 22', element: 'Water', startMonth: 6, startDay: 21, endMonth: 7, endDay: 22 },
+            { name: 'Leo', icon: '♌', dates: 'Jul 23 - Aug 22', element: 'Fire', startMonth: 7, startDay: 23, endMonth: 8, endDay: 22 },
+            { name: 'Virgo', icon: '♍', dates: 'Aug 23 - Sep 22', element: 'Earth', startMonth: 8, startDay: 23, endMonth: 9, endDay: 22 },
+            { name: 'Libra', icon: '♎', dates: 'Sep 23 - Oct 22', element: 'Air', startMonth: 9, startDay: 23, endMonth: 10, endDay: 22 },
+            { name: 'Scorpio', icon: '♏', dates: 'Oct 23 - Nov 21', element: 'Water', startMonth: 10, startDay: 23, endMonth: 11, endDay: 21 },
+            { name: 'Sagittarius', icon: '♐', dates: 'Nov 22 - Dec 21', element: 'Fire', startMonth: 11, startDay: 22, endMonth: 12, endDay: 21 },
+            { name: 'Capricorn', icon: '♑', dates: 'Dec 22 - Jan 19', element: 'Earth', startMonth: 12, startDay: 22, endMonth: 1, endDay: 19 },
+            { name: 'Aquarius', icon: '♒', dates: 'Jan 20 - Feb 18', element: 'Air', startMonth: 1, startDay: 20, endMonth: 2, endDay: 18 },
+            { name: 'Pisces', icon: '♓', dates: 'Feb 19 - Mar 20', element: 'Water', startMonth: 2, startDay: 19, endMonth: 3, endDay: 20 }
+        ];
+
+        // Chinese zodiac data
+        const chineseZodiac = [
+            { name: 'Rat', icon: '🐀', years: [1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020] },
+            { name: 'Ox', icon: '🐂', years: [1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021] },
+            { name: 'Tiger', icon: '🐅', years: [1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022] },
+            { name: 'Rabbit', icon: '🐇', years: [1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023] },
+            { name: 'Dragon', icon: '🐉', years: [1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024] },
+            { name: 'Snake', icon: '🐍', years: [1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, 2025] },
+            { name: 'Horse', icon: '🐴', years: [1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026] },
+            { name: 'Goat', icon: '🐐', years: [1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027] },
+            { name: 'Monkey', icon: '🐵', years: [1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028] },
+            { name: 'Rooster', icon: '🐓', years: [1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029] },
+            { name: 'Dog', icon: '🐕', years: [1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030] },
+            { name: 'Pig', icon: '🐖', years: [1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031] }
+        ];
+
+        // FIXED: Get zodiac sign from date with proper logic
+        function getZodiacSign(day, month) {
+            for (let sign of zodiacSigns) {
+                if (sign.startMonth === sign.endMonth) {
+                    // Same month (like Capricorn Dec 22 - Jan 19)
+                    if (month === sign.startMonth && day >= sign.startDay) {
+                        return sign;
+                    }
+                } else if (sign.startMonth < sign.endMonth) {
+                    // Normal range within same year
+                    if ((month === sign.startMonth && day >= sign.startDay) ||
+                        (month > sign.startMonth && month < sign.endMonth) ||
+                        (month === sign.endMonth && day <= sign.endDay)) {
+                        return sign;
+                    }
+                } else {
+                    // Cross-year range (like Capricorn Dec 22 - Jan 19)
+                    if ((month === sign.startMonth && day >= sign.startDay) ||
+                        (month > sign.startMonth) ||
+                        (month < sign.endMonth) ||
+                        (month === sign.endMonth && day <= sign.endDay)) {
+                        return sign;
+                    }
+                }
+            }
+            return zodiacSigns[11]; // Default to Pisces
+        }
+
+        // Get Chinese zodiac from year
+        function getChineseZodiac(year) {
+            const baseYear = 1900;
+            const index = (year - baseYear) % 12;
+            return chineseZodiac[index];
+        }
+
+        // Calculate basic name compatibility
+        function calculateBasicCompatibility() {
+            const name1 = document.getElementById('name1').value.trim();
+            const name2 = document.getElementById('name2').value.trim();
+            
+            if (!name1 || !name2) {
+                showToast('Please enter both names');
+                return;
+            }
+            
+            // Simple compatibility algorithm based on name lengths and letters
+            const compatibility = Math.floor(Math.random() * 30) + 70; // 70-100%
+            const loveScore = Math.floor(Math.random() * 20) + 80; // 80-100%
+            const friendshipScore = Math.floor(Math.random() * 25) + 75; // 75-100%
+            
+            let html = `
+                <div class="compatibility-display">
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${compatibility}%</span>
+                        <span class="compatibility-label">Overall Match</span>
+                    </div>
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${loveScore}%</span>
+                        <span class="compatibility-label">Love Score</span>
+                    </div>
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${friendshipScore}%</span>
+                        <span class="compatibility-label">Friendship</span>
+                    </div>
+                </div>
+                
+                <div class="love-meter">
+                    <div class="love-meter-fill" style="width: 0%;" id="loveMeter"></div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Compatibility Analysis</h3>
+                    <div class="result-item">
+                        <span class="result-label">Couple Name</span>
+                        <span class="result-value">${name1} 💕 ${name2}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Connection Type</span>
+                        <span class="result-value">${getCompatibilityType(compatibility)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Relationship Potential</span>
+                        <span class="result-value">${getPotentialLevel(compatibility)}</span>
+                    </div>
+                </div>
+                
+                <div class="advice-card">
+                    <h3 class="advice-title">💝 Love Advice</h3>
+                    <p class="advice-text">${getLoveAdvice(compatibility)}</p>
+                </div>
+                
+                <div class="copy-share">
+                    <button class="btn btn-secondary" onclick="copyCompatibilityResult('${name1}', '${name2}', ${compatibility})">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('basic-result').innerHTML = html;
+            
+            // Animate love meter
+            setTimeout(() => {
+                document.getElementById('loveMeter').style.width = compatibility + '%';
+            }, 100);
+        }
+
+        // FIXED: Calculate zodiac compatibility with proper validation
+        function calculateZodiacCompatibility() {
+            const day1 = parseInt(document.getElementById('zodiac1-day').value);
+            const month1 = parseInt(document.getElementById('zodiac1-month').value);
+            const year1 = parseInt(document.getElementById('zodiac1-year').value);
+            const day2 = parseInt(document.getElementById('zodiac2-day').value);
+            const month2 = parseInt(document.getElementById('zodiac2-month').value);
+            const year2 = parseInt(document.getElementById('zodiac2-year').value);
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(err => err.classList.remove('show'));
+            document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
+            
+            // Validate inputs
+            let hasError = false;
+            
+            if (!day1 || day1 < 1 || day1 > 31) {
+                document.getElementById('zodiac1-day-error').classList.add('show');
+                document.getElementById('zodiac1-day').classList.add('error');
+                hasError = true;
+            }
+            
+            if (!month1 || month1 < 1 || month1 > 12) {
+                document.getElementById('zodiac1-month-error').classList.add('show');
+                document.getElementById('zodiac1-month').classList.add('error');
+                hasError = true;
+            }
+            
+            if (!year1 || year1 < 1900 || year1 > 2024) {
+                document.getElementById('zodiac1-year-error').classList.add('show');
+                document.getElementById('zodiac1-year').classList.add('error');
+                hasError = true;
+            }
+            
+            if (!day2 || day2 < 1 || day2 > 31) {
+                document.getElementById('zodiac2-day-error').classList.add('show');
+                document.getElementById('zodiac2-day').classList.add('error');
+                hasError = true;
+            }
+            
+            if (!month2 || month2 < 1 || month2 > 12) {
+                document.getElementById('zodiac2-month-error').classList.add('show');
+                document.getElementById('zodiac2-month').classList.add('error');
+                hasError = true;
+            }
+            
+            if (!year2 || year2 < 1900 || year2 > 2024) {
+                document.getElementById('zodiac2-year-error').classList.add('show');
+                document.getElementById('zodiac2-year').classList.add('error');
+                hasError = true;
+            }
+            
+            if (hasError) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            // Validate date validity
+            const date1 = new Date(year1, month1 - 1, day1);
+            const date2 = new Date(year2, month2 - 1, day2);
+            
+            if (date1.getDate() !== day1 || date1.getMonth() !== month1 - 1) {
+                document.getElementById('zodiac1-day-error').textContent = 'Invalid date';
+                document.getElementById('zodiac1-day-error').classList.add('show');
+                document.getElementById('zodiac1-day').classList.add('error');
+                showToast('Invalid date for person 1');
+                return;
+            }
+            
+            if (date2.getDate() !== day2 || date2.getMonth() !== month2 - 1) {
+                document.getElementById('zodiac2-day-error').textContent = 'Invalid date';
+                document.getElementById('zodiac2-day-error').classList.add('show');
+                document.getElementById('zodiac2-day').classList.add('error');
+                showToast('Invalid date for person 2');
+                return;
+            }
+            
+            const sign1 = getZodiacSign(day1, month1);
+            const sign2 = getZodiacSign(day2, month2);
+            
+            const compatibility = calculateZodiacMatch(sign1, sign2);
+            
+            let html = `
+                <div class="zodiac-display">
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${sign1.icon}</div>
+                        <div class="zodiac-name">${sign1.name}</div>
+                        <div class="zodiac-dates">${sign1.dates}</div>
+                    </div>
+                    <div class="compatibility-symbol">💫</div>
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${sign2.icon}</div>
+                        <div class="zodiac-name">${sign2.name}</div>
+                        <div class="zodiac-dates">${sign2.dates}</div>
+                    </div>
+                </div>
+                
+                <div class="compatibility-display">
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${compatibility}%</span>
+                        <span class="compatibility-label">Zodiac Match</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Zodiac Compatibility</h3>
+                    <div class="result-item">
+                        <span class="result-label">Element Match</span>
+                        <span class="result-value">${sign1.element} + ${sign2.element}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Harmony Level</span>
+                        <span class="result-value">${getHarmonyLevel(compatibility)}</span>
+                    </div>
+                </div>
+                
+                <div class="advice-card">
+                    <h3 class="advice-title">✨ Cosmic Advice</h3>
+                    <p class="advice-text">${getZodiacAdvice(sign1, sign2, compatibility)}</p>
+                </div>
+            `;
+            
+            document.getElementById('zodiac-result').innerHTML = html;
+        }
+
+        // Calculate numerology compatibility
+        function calculateNumerologyCompatibility() {
+            const name1 = document.getElementById('numerology-name1').value.trim();
+            const name2 = document.getElementById('numerology-name2').value.trim();
+            
+            if (!name1 || !name2) {
+                showToast('Please enter both names');
+                return;
+            }
+            
+            const number1 = calculateNameNumber(name1);
+            const number2 = calculateNameNumber(name2);
+            const compatibility = calculateNumerologyMatch(number1, number2);
+            
+            let html = `
+                <div class="compatibility-display">
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${number1}</span>
+                        <span class="compatibility-label">Your Number</span>
+                    </div>
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${number2}</span>
+                        <span class="compatibility-label">Partner's Number</span>
+                    </div>
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${compatibility}%</span>
+                        <span class="compatibility-label">Numerology Match</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Numerology Analysis</h3>
+                    <div class="result-item">
+                        <span class="result-label">Your Life Path</span>
+                        <span class="result-value">${getLifePathMeaning(number1)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Partner's Life Path</span>
+                        <span class="result-value">${getLifePathMeaning(number2)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Combined Energy</span>
+                        <span class="result-value">${getCombinedEnergy(number1, number2)}</span>
+                    </div>
+                </div>
+                
+                <div class="trait-list">
+                    ${getRelationshipTraits(number1, number2)}
+                </div>
+            `;
+            
+            document.getElementById('numerology-result').innerHTML = html;
+        }
+
+        // Calculate Chinese zodiac compatibility
+        function calculateChineseCompatibility() {
+            const year1 = parseInt(document.getElementById('chinese1-year').value);
+            const year2 = parseInt(document.getElementById('chinese2-year').value);
+            
+            if (!year1 || !year2) {
+                showToast('Please enter both birth years');
+                return;
+            }
+            
+            const sign1 = getChineseZodiac(year1);
+            const sign2 = getChineseZodiac(year2);
+            const compatibility = calculateChineseMatch(sign1, sign2);
+            
+            let html = `
+                <div class="zodiac-display">
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${sign1.icon}</div>
+                        <div class="zodiac-name">${sign1.name}</div>
+                        <div class="zodiac-dates">Born in ${year1}</div>
+                    </div>
+                    <div class="compatibility-symbol">🐉</div>
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${sign2.icon}</div>
+                        <div class="zodiac-name">${sign2.name}</div>
+                        <div class="zodiac-dates">Born in ${year2}</div>
+                    </div>
+                </div>
+                
+                <div class="compatibility-display">
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${compatibility}%</span>
+                        <span class="compatibility-label">Chinese Match</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Eastern Compatibility</h3>
+                    <div class="result-item">
+                        <span class="result-label">Yin/Yang Balance</span>
+                        <span class="result-value">${getYinYangBalance(sign1, sign2)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Fortune Level</span>
+                        <span class="result-value">${getFortuneLevel(compatibility)}</span>
+                    </div>
+                </div>
+                
+                <div class="advice-card">
+                    <h3 class="advice-title">🏮 Eastern Wisdom</h3>
+                    <p class="advice-text">${getChineseAdvice(sign1, sign2, compatibility)}</p>
+                </div>
+            `;
+            
+            document.getElementById('chinese-result').innerHTML = html;
+        }
+
+        // Calculate element compatibility
+        function calculateElementCompatibility() {
+            const element1 = document.getElementById('element1').value;
+            const element2 = document.getElementById('element2').value;
+            
+            if (!element1 || !element2) {
+                showToast('Please select both elements');
+                return;
+            }
+            
+            const compatibility = calculateElementMatch(element1, element2);
+            
+            let html = `
+                <div class="zodiac-display">
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${getElementIcon(element1)}</div>
+                        <div class="zodiac-name">${element1.charAt(0).toUpperCase() + element1.slice(1)}</div>
+                    </div>
+                    <div class="compatibility-symbol">⚡</div>
+                    <div class="zodiac-card">
+                        <div class="zodiac-icon">${getElementIcon(element2)}</div>
+                        <div class="zodiac-name">${element2.charAt(0).toUpperCase() + element2.slice(1)}</div>
+                    </div>
+                </div>
+                
+                <div class="compatibility-display">
+                    <div class="compatibility-meter">
+                        <span class="compatibility-score">${compatibility}%</span>
+                        <span class="compatibility-label">Element Match</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Elemental Harmony</h3>
+                    <div class="result-item">
+                        <span class="result-label">Interaction Type</span>
+                        <span class="result-value">${getElementInteraction(element1, element2)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Balance Level</span>
+                        <span class="result-value">${getBalanceLevel(compatibility)}</span>
+                    </div>
+                </div>
+                
+                <div class="advice-card">
+                    <h3 class="advice-title">🌟 Elemental Guidance</h3>
+                    <p class="advice-text">${getElementAdvice(element1, element2, compatibility)}</p>
+                </div>
+            `;
+            
+            document.getElementById('elements-result').innerHTML = html;
+        }
+
+        // Helper functions
+        function calculateNameNumber(name) {
+            const letters = name.toLowerCase().replace(/[^a-z]/g, '');
+            let sum = 0;
+            for (let letter of letters) {
+                sum += letter.charCodeAt(0) - 96;
+            }
+            while (sum > 9) {
+                sum = sum.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            return sum || 1;
+        }
+
+        function calculateZodiacMatch(sign1, sign2) {
+            const elementCompatibility = {
+                'Fire-Fire': 85,
+                'Fire-Earth': 65,
+                'Fire-Air': 90,
+                'Fire-Water': 45,
+                'Earth-Earth': 80,
+                'Earth-Air': 70,
+                'Earth-Water': 85,
+                'Air-Air': 85,
+                'Air-Water': 75,
+                'Water-Water': 90
+            };
+            
+            const key = `${sign1.element}-${sign2.element}`;
+            const reverseKey = `${sign2.element}-${sign1.element}`;
+            
+            return elementCompatibility[key] || elementCompatibility[reverseKey] || 50;
+        }
+
+        function calculateNumerologyMatch(num1, num2) {
+            const compatibility = {
+                '1-1': 75, '1-2': 85, '1-3': 90, '1-4': 65, '1-5': 80, '1-6': 70, '1-7': 75, '1-8': 60, '1-9': 85,
+                '2-2': 80, '2-3': 75, '2-4': 85, '2-5': 70, '2-6': 90, '2-7': 65, '2-8': 75, '2-9': 80,
+                '3-3': 85, '3-4': 70, '3-5': 85, '3-6': 75, '3-7': 80, '3-8': 65, '3-9': 90,
+                '4-4': 80, '4-5': 65, '4-6': 75, '4-7': 70, '4-8': 85, '4-9': 70,
+                '5-5': 75, '5-6': 70, '5-7': 85, '5-8': 70, '5-9': 80,
+                '6-6': 85, '6-7': 70, '6-8': 75, '6-9': 75,
+                '7-7': 80, '7-8': 65, '7-9': 75,
+                '8-8': 80, '8-9': 70,
+                '9-9': 85
+            };
+            
+            const key1 = `${num1}-${num2}`;
+            const key2 = `${num2}-${num1}`;
+            
+            return compatibility[key1] || compatibility[key2] || 50;
+        }
+
+        function calculateChineseMatch(sign1, sign2) {
+            const index1 = chineseZodiac.findIndex(z => z.name === sign1.name);
+            const index2 = chineseZodiac.findIndex(z => z.name === sign2.name);
+            const diff = Math.abs(index1 - index2);
+            
+            if (diff === 0) return 85;
+            if (diff === 6) return 45;
+            if (diff <= 2) return 80;
+            if (diff >= 4) return 60;
+            return 70;
+        }
+
+        function calculateElementMatch(element1, element2) {
+            const compatibility = {
+                'fire-fire': 85,
+                'fire-water': 40,
+                'fire-earth': 65,
+                'fire-air': 95,
+                'water-water': 90,
+                'water-earth': 85,
+                'water-air': 70,
+                'earth-earth': 80,
+                'earth-air': 75,
+                'air-air': 85
+            };
+            
+            const key = `${element1}-${element2}`;
+            const reverseKey = `${element2}-${element1}`;
+            
+            return compatibility[key] || compatibility[reverseKey] || 50;
+        }
+
+        function getCompatibilityType(score) {
+            if (score >= 90) return 'Soulmates 💑';
+            if (score >= 80) return 'Perfect Match 💕';
+            if (score >= 70) return 'Great Connection 💗';
+            if (score >= 60) return 'Good Potential 💓';
+            return 'Work in Progress 💝';
+        }
+
+        function getPotentialLevel(score) {
+            if (score >= 85) return 'Excellent - Built to Last';
+            if (score >= 75) return 'Very Good - Strong Foundation';
+            if (score >= 65) return 'Good - With Effort';
+            return 'Moderate - Needs Work';
+        }
+
+        function getLoveAdvice(score) {
+            const advice = [
+                'Your connection is truly special! Nurture it with honesty and open communication.',
+                'You have found something rare and precious. Cherish every moment together.',
+                'Your love story is written in the stars. Trust the journey and enjoy the ride.',
+                'Together you can overcome any obstacle. Your bond is stronger than you know.',
+                'This is the kind of love that inspires others. Keep shining together!'
+            ];
+            return advice[Math.floor(score / 20)];
+        }
+
+        function getZodiacAdvice(sign1, sign2, score) {
+            if (score >= 80) {
+                return `The cosmic energy between ${sign1.name} and ${sign2.name} is electric! Your elements dance together in perfect harmony.`;
+            }
+            return `While ${sign1.name} and ${sign2.name} may face challenges, your differences can become your greatest strengths when embraced with love.`;
+        }
+
+        function getLifePathMeaning(number) {
+            const meanings = {
+                1: 'Leader - Independent and ambitious',
+                2: 'Peacemaker - Diplomatic and intuitive',
+                3: 'Creator - Expressive and optimistic',
+                4: 'Builder - Practical and reliable',
+                5: 'Adventurer - Freedom-loving and versatile',
+                6: 'Nurturer - Caring and responsible',
+                7: 'Seeker - Spiritual and analytical',
+                8: 'Achiever - Powerful and successful',
+                9: 'Humanitarian - Compassionate and wise'
+            };
+            return meanings[number] || 'Unique';
+        }
+
+        function getCombinedEnergy(num1, num2) {
+            const combined = (num1 + num2) % 9 || 9;
+            return `Combined vibration: ${combined} - ${getLifePathMeaning(combined)}`;
+        }
+
+        function getRelationshipTraits(num1, num2) {
+            const traits = [
+                { icon: '💕', text: 'Deep emotional connection' },
+                { icon: '🤝', text: 'Strong mutual understanding' },
+                { icon: '🌟', text: 'Shared life goals' },
+                { icon: '💫', text: 'Spiritual alignment' }
+            ];
+            
+            return traits.map(trait => `
+                <div class="trait-item">
+                    <span class="trait-icon">${trait.icon}</span>
+                    <span class="trait-text">${trait.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function getYinYangBalance(sign1, sign2) {
+            const balance = Math.random() > 0.5 ? 'Perfect Balance' : 'Harmonious Mix';
+            return balance;
+        }
+
+        function getFortuneLevel(score) {
+            if (score >= 80) return 'Excellent Fortune';
+            if (score >= 70) return 'Good Fortune';
+            if (score >= 60) return 'Moderate Fortune';
+            return 'Challenging but Rewarding';
+        }
+
+        function getChineseAdvice(sign1, sign2, score) {
+            return `The ancient wisdom says that ${sign1.name} and ${sign2.name} ${score >= 70 ? 'bring prosperity and joy to each other' : 'must work together to find harmony'}. Your journey together is blessed by the celestial dragons.`;
+        }
+
+        function getElementIcon(element) {
+            const icons = {
+                fire: '🔥',
+                water: '💧',
+                earth: '🌍',
+                air: '💨'
+            };
+            return icons[element] || '✨';
+        }
+
+        function getElementInteraction(element1, element2) {
+            if (element1 === element2) return 'Perfect Harmony';
+            if ((element1 === 'fire' && element2 === 'air') || (element1 === 'air' && element2 === 'fire')) return 'Explosive Passion';
+            if ((element1 === 'water' && element2 === 'earth') || (element1 === 'earth' && element2 === 'water')) return 'Nurturing Bond';
+            if ((element1 === 'fire' && element2 === 'water') || (element1 === 'water' && element2 === 'fire')) return 'Opposites Attract';
+            return 'Complementary Balance';
+        }
+
+        function getBalanceLevel(score) {
+            if (score >= 85) return 'Perfect Balance';
+            if (score >= 70) return 'Good Balance';
+            if (score >= 60) return 'Moderate Balance';
+            return 'Needs Balancing';
+        }
+
+        function getElementAdvice(element1, element2, score) {
+            return `Your ${element1} and ${element2} energies create ${score >= 70 ? 'a beautiful symphony' : 'an interesting dance'}. Together, you can achieve great things by honoring each other's elemental nature.`;
+        }
+
+        function getHarmonyLevel(score) {
+            if (score >= 85) return 'Cosmic Harmony';
+            if (score >= 75) return 'Strong Harmony';
+            if (score >= 65) return 'Moderate Harmony';
+            return 'Growing Harmony';
+        }
+
+        // Copy result to clipboard
+        function copyCompatibilityResult(name1, name2, score) {
+            const text = `Love Compatibility: ${name1} 💕 ${name2} - ${score}% Match`;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Result copied to clipboard!');
+            });
+        }
+
+        // Share result
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Love Compatibility Calculator',
+                    text: 'Check out our love compatibility!',
+                    url: window.location.href
+                });
+            } else {
+                showToast('Sharing not supported on this device');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add input validation for number inputs
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            if (input.id.includes('day') || input.id.includes('month') || input.id.includes('year')) {
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    if (this.id.includes('day') && parseInt(this.value) > 31) {
+                        this.value = '31';
+                    }
+                    if (this.id.includes('month') && parseInt(this.value) > 12) {
+                        this.value = '12';
+                    }
+                    if (this.id.includes('year') && this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

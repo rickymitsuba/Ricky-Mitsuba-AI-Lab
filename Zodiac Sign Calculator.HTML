@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curious About Your Zodiac Sign? Check here for Free</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-color: #6B46C1;
+            --secondary-color: #4C1D95;
+            --accent-color: #8B5CF6;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+            --dark-color: #0F172A;
+            --light-color: #F8FAFC;
+            --text-color: #CBD5E1;
+            --border-radius: 16px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --cosmic-blue: #1E3A8A;
+            --cosmic-purple: #581C87;
+            --cosmic-pink: #BE185D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 25%, #334155 50%, #1E293B 75%, #0F172A 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated stars background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0 40px;
+            color: white;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .app-container {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.2), rgba(76, 29, 149, 0.2));
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 18px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            white-space: nowrap;
+            position: relative;
+            border-radius: 12px;
+            margin: 0 3px;
+            color: var(--text-color);
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .tab:hover::before {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .tab:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .tab-content {
+            padding: 40px;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .dob-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .dob-input-group {
+            position: relative;
+        }
+
+        .dob-input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: rgba(30, 41, 59, 0.7);
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .dob-input-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .dob-input-group input:hover {
+            border-color: var(--primary-color);
+        }
+
+        .dob-input-group input.error {
+            border-color: var(--danger-color);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .dob-input-group label {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 0 5px;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.8));
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.5s ease-out;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shimmerCard 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerCard {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .zodiac-display {
+            text-align: center;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+        }
+
+        .zodiac-icon {
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            font-family: 'Segoe UI Symbol', 'Arial Unicode MS', sans-serif;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .zodiac-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .zodiac-dates {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .zodiac-element {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .trait-item {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+
+        .trait-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .trait-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .trait-name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .compatibility-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .compatibility-item {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .compatibility-item.high {
+            border: 2px solid var(--success-color);
+        }
+
+        .compatibility-item.medium {
+            border: 2px solid var(--warning-color);
+        }
+
+        .compatibility-item.low {
+            border: 2px solid var(--danger-color);
+        }
+
+        .compatibility-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .compatibility-sign {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .compatibility-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .compatibility-percentage.high {
+            color: var(--success-color);
+        }
+
+        .compatibility-percentage.medium {
+            color: var(--warning-color);
+        }
+
+        .compatibility-percentage.low {
+            color: var(--danger-color);
+        }
+
+        .lucky-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .lucky-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .lucky-number:nth-child(2) { animation-delay: 0.2s; }
+        .lucky-number:nth-child(3) { animation-delay: 0.4s; }
+        .lucky-number:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--dark-color), #4B5563);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px) rotateX(90deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .toast.show {
+            transform: translateY(0) rotateX(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .dob-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .compatibility-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated stars background -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-rocket"></i> Ricky Mitsuba AI Lab</h1>
+            <p>Discover your zodiac sign and unlock the mysteries of the cosmos</p>
+        </header>
+
+        <div class="app-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="zodiac">Your Sign</div>
+                <div class="tab" data-tab="traits">Traits</div>
+                <div class="tab" data-tab="compatibility">Compatibility</div>
+                <div class="tab" data-tab="lucky">Lucky Elements</div>
+            </div>
+
+            <!-- Zodiac Sign Calculator -->
+            <div class="tab-content active" id="zodiac">
+                <div class="input-group">
+                    <label>Enter Your Date of Birth</label>
+                    <div class="dob-inputs">
+                        <div class="dob-input-group">
+                            <label>Day</label>
+                            <input type="text" id="zodiac-day" placeholder="DD" maxlength="2">
+                            <div class="error-message" id="zodiac-day-error">Please enter a valid day (1-31)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Month</label>
+                            <input type="text" id="zodiac-month" placeholder="MM" maxlength="2">
+                            <div class="error-message" id="zodiac-month-error">Please enter a valid month (1-12)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Year</label>
+                            <input type="text" id="zodiac-year" placeholder="YYYY" maxlength="4">
+                            <div class="error-message" id="zodiac-year-error">Please enter a valid year</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateZodiac()">
+                    <i class="fas fa-star"></i> Discover My Sign
+                </button>
+
+                <div id="zodiac-result"></div>
+            </div>
+
+            <!-- Traits -->
+            <div class="tab-content" id="traits">
+                <div class="input-group">
+                    <label>Enter Your Date of Birth</label>
+                    <div class="dob-inputs">
+                        <div class="dob-input-group">
+                            <label>Day</label>
+                            <input type="text" id="traits-day" placeholder="DD" maxlength="2">
+                            <div class="error-message" id="traits-day-error">Please enter a valid day (1-31)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Month</label>
+                            <input type="text" id="traits-month" placeholder="MM" maxlength="2">
+                            <div class="error-message" id="traits-month-error">Please enter a valid month (1-12)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Year</label>
+                            <input type="text" id="traits-year" placeholder="YYYY" maxlength="4">
+                            <div class="error-message" id="traits-year-error">Please enter a valid year</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="showTraits()">
+                    <i class="fas fa-meteor"></i> Show My Traits
+                </button>
+
+                <div id="traits-result"></div>
+            </div>
+
+            <!-- Compatibility -->
+            <div class="tab-content" id="compatibility">
+                <div class="input-group">
+                    <label>Enter Your Date of Birth</label>
+                    <div class="dob-inputs">
+                        <div class="dob-input-group">
+                            <label>Day</label>
+                            <input type="text" id="comp1-day" placeholder="DD" maxlength="2">
+                            <div class="error-message" id="comp1-day-error">Please enter a valid day (1-31)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Month</label>
+                            <input type="text" id="comp1-month" placeholder="MM" maxlength="2">
+                            <div class="error-message" id="comp1-month-error">Please enter a valid month (1-12)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Year</label>
+                            <input type="text" id="comp1-year" placeholder="YYYY" maxlength="4">
+                            <div class="error-message" id="comp1-year-error">Please enter a valid year</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Enter Partner's Date of Birth</label>
+                    <div class="dob-inputs">
+                        <div class="dob-input-group">
+                            <label>Day</label>
+                            <input type="text" id="comp2-day" placeholder="DD" maxlength="2">
+                            <div class="error-message" id="comp2-day-error">Please enter a valid day (1-31)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Month</label>
+                            <input type="text" id="comp2-month" placeholder="MM" maxlength="2">
+                            <div class="error-message" id="comp2-month-error">Please enter a valid month (1-12)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Year</label>
+                            <input type="text" id="comp2-year" placeholder="YYYY" maxlength="4">
+                            <div class="error-message" id="comp2-year-error">Please enter a valid year</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="checkCompatibility()">
+                    <i class="fas fa-satellite"></i> Check Compatibility
+                </button>
+
+                <div id="compatibility-result"></div>
+            </div>
+
+            <!-- Lucky Elements -->
+            <div class="tab-content" id="lucky">
+                <div class="input-group">
+                    <label>Enter Your Date of Birth</label>
+                    <div class="dob-inputs">
+                        <div class="dob-input-group">
+                            <label>Day</label>
+                            <input type="text" id="lucky-day" placeholder="DD" maxlength="2">
+                            <div class="error-message" id="lucky-day-error">Please enter a valid day (1-31)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Month</label>
+                            <input type="text" id="lucky-month" placeholder="MM" maxlength="2">
+                            <div class="error-message" id="lucky-month-error">Please enter a valid month (1-12)</div>
+                        </div>
+                        <div class="dob-input-group">
+                            <label>Year</label>
+                            <input type="text" id="lucky-year" placeholder="YYYY" maxlength="4">
+                            <div class="error-message" id="lucky-year-error">Please enter a valid year</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="showLuckyElements()">
+                    <i class="fas fa-moon"></i> Reveal Lucky Elements
+                </button>
+
+                <div id="lucky-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 3;
+                
+                // Random animation delay
+                const delay = Math.random() * 4;
+                
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Zodiac signs data
+        const zodiacSigns = [
+            { name: "Aries", symbol: "♈", dates: "Mar 21 - Apr 19", element: "Fire", icon: "fa-fire" },
+            { name: "Taurus", symbol: "♉", dates: "Apr 20 - May 20", element: "Earth", icon: "fa-mountain" },
+            { name: "Gemini", symbol: "♊", dates: "May 21 - Jun 20", element: "Air", icon: "fa-wind" },
+            { name: "Cancer", symbol: "♋", dates: "Jun 21 - Jul 22", element: "Water", icon: "fa-water" },
+            { name: "Leo", symbol: "♌", dates: "Jul 23 - Aug 22", element: "Fire", icon: "fa-sun" },
+            { name: "Virgo", symbol: "♍", dates: "Aug 23 - Sep 22", element: "Earth", icon: "fa-seedling" },
+            { name: "Libra", symbol: "♎", dates: "Sep 23 - Oct 22", element: "Air", icon: "fa-balance-scale" },
+            { name: "Scorpio", symbol: "♏", dates: "Oct 23 - Nov 21", element: "Water", icon: "fa-spider" },
+            { name: "Sagittarius", symbol: "♐", dates: "Nov 22 - Dec 21", element: "Fire", icon: "fa-bow-arrow" },
+            { name: "Capricorn", symbol: "♑", dates: "Dec 22 - Jan 19", element: "Earth", icon: "fa-mountain-city" },
+            { name: "Aquarius", symbol: "♒", dates: "Jan 20 - Feb 18", element: "Air", icon: "fa-droplet" },
+            { name: "Pisces", symbol: "♓", dates: "Feb 19 - Mar 20", element: "Water", icon: "fa-fish" }
+        ];
+
+        const zodiacTraits = {
+            "Aries": {
+                positive: ["Courageous", "Determined", "Confident", "Enthusiastic", "Optimistic"],
+                negative: ["Impatient", "Moody", "Short-tempered", "Impulsive", "Aggressive"],
+                love: "Passionate and adventurous in love",
+                career: "Natural leaders, excel in entrepreneurship"
+            },
+            "Taurus": {
+                positive: ["Reliable", "Patient", "Practical", "Devoted", "Responsible"],
+                negative: ["Stubborn", "Possessive", "Uncompromising", "Self-indulgent"],
+                love: "Loyal and committed partners",
+                career: "Excel in banking, art, and culinary fields"
+            },
+            "Gemini": {
+                positive: ["Gentle", "Affectionate", "Curious", "Adaptable", "Quick learner"],
+                negative: ["Nervous", "Inconsistent", "Indecisive", "Impulsive"],
+                love: "Playful and intellectually stimulating",
+                career: "Thrive in communication, writing, and teaching"
+            },
+            "Cancer": {
+                positive: ["Tenacious", "Loyal", "Emotional", "Sympathetic", "Persuasive"],
+                negative: ["Moody", "Pessimistic", "Suspicious", "Manipulative", "Insecure"],
+                love: "Nurturing and deeply emotional",
+                career: "Excel in healthcare, hospitality, and social work"
+            },
+            "Leo": {
+                positive: ["Creative", "Passionate", "Generous", "Warm-hearted", "Humorous"],
+                negative: ["Arrogant", "Stubborn", "Self-centered", "Lazy", "Inflexible"],
+                love: "Dramatic and fiercely loyal",
+                career: "Natural performers, excel in entertainment and leadership"
+            },
+            "Virgo": {
+                positive: ["Loyal", "Analytical", "Kind", "Hardworking", "Practical"],
+                negative: ["Shyness", "Worry", "Overly critical", "All work"],
+                love: "Devoted and service-oriented",
+                career: "Perfect for analytical and detail-oriented professions"
+            },
+            "Libra": {
+                positive: ["Cooperative", "Diplomatic", "Fair-minded", "Social", "Gracious"],
+                negative: ["Indecisive", "Avoids confrontations", "Self-pity", "Holds grudges"],
+                love: "Harmonious and partnership-focused",
+                career: "Excel in law, diplomacy, and creative fields"
+            },
+            "Scorpio": {
+                positive: ["Resourceful", "Brave", "Passionate", "Stubborn", "True friend"],
+                negative: ["Distrusting", "Jealous", "Secretive", "Violent"],
+                love: "Intense and deeply transformative",
+                career: "Excel in investigation, research, and psychology"
+            },
+            "Sagittarius": {
+                positive: ["Generous", "Idealistic", "Great humor", "Freedom-loving"],
+                negative: ["Impatient", "Tactless", "Superficial", "Inconsistent"],
+                love: "Adventurous and freedom-loving",
+                career: "Perfect for travel, philosophy, and education"
+            },
+            "Capricorn": {
+                positive: ["Responsible", "Disciplined", "Self-control", "Good managers"],
+                negative: ["Know-it-all", "Unforgiving", "Condescending", "Expect the worst"],
+                love: "Committed and traditional",
+                career: "Excel in business, finance, and management"
+            },
+            "Aquarius": {
+                positive: ["Progressive", "Original", "Independent", "Humanitarian"],
+                negative: ["Temperamental", "Uncompromising", "Aloof", "Runs from emotion"],
+                love: "Intellectual and unconventional",
+                career: "Innovators in technology and social causes"
+            },
+            "Pisces": {
+                positive: ["Compassionate", "Artistic", "Intuitive", "Gentle", "Wise"],
+                negative: ["Fearful", "Overly trusting", "Sad", "Desire to escape"],
+                love: "Romantic and spiritually connected",
+                career: "Excel in arts, music, and healing professions"
+            }
+        };
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach((tab, index) => {
+            tab.style.animationDelay = `${index * 0.1}s`;
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Get zodiac sign from date
+        function getZodiacSign(day, month) {
+            const date = new Date(2000, month - 1, day);
+            const monthDay = (month * 100) + day;
+            
+            if (monthDay >= 321 && monthDay <= 419) return zodiacSigns[0]; // Aries
+            if (monthDay >= 420 && monthDay <= 520) return zodiacSigns[1]; // Taurus
+            if (monthDay >= 521 && monthDay <= 620) return zodiacSigns[2]; // Gemini
+            if (monthDay >= 621 && monthDay <= 722) return zodiacSigns[3]; // Cancer
+            if (monthDay >= 723 && monthDay <= 822) return zodiacSigns[4]; // Leo
+            if (monthDay >= 823 && monthDay <= 922) return zodiacSigns[5]; // Virgo
+            if (monthDay >= 923 && monthDay <= 1022) return zodiacSigns[6]; // Libra
+            if (monthDay >= 1023 && monthDay <= 1121) return zodiacSigns[7]; // Scorpio
+            if (monthDay >= 1122 && monthDay <= 1221) return zodiacSigns[8]; // Sagittarius
+            if (monthDay >= 1222 || monthDay <= 119) return zodiacSigns[9]; // Capricorn
+            if (monthDay >= 120 && monthDay <= 218) return zodiacSigns[10]; // Aquarius
+            if (monthDay >= 219 && monthDay <= 320) return zodiacSigns[11]; // Pisces
+        }
+
+        // Validate date inputs
+        function validateDateInputs(prefix) {
+            let isValid = true;
+            
+            const dayInput = document.getElementById(`${prefix}-day`);
+            const dayError = document.getElementById(`${prefix}-day-error`);
+            const day = parseInt(dayInput.value);
+            
+            if (!day || day < 1 || day > 31) {
+                dayError.classList.add('show');
+                dayInput.classList.add('error');
+                isValid = false;
+            } else {
+                dayError.classList.remove('show');
+                dayInput.classList.remove('error');
+            }
+            
+            const monthInput = document.getElementById(`${prefix}-month`);
+            const monthError = document.getElementById(`${prefix}-month-error`);
+            const month = parseInt(monthInput.value);
+            
+            if (!month || month < 1 || month > 12) {
+                monthError.classList.add('show');
+                monthInput.classList.add('error');
+                isValid = false;
+            } else {
+                monthError.classList.remove('show');
+                monthInput.classList.remove('error');
+            }
+            
+            const yearInput = document.getElementById(`${prefix}-year`);
+            const yearError = document.getElementById(`${prefix}-year-error`);
+            const year = parseInt(yearInput.value);
+            
+            if (!year || year < 1900 || year.toString().length !== 4) {
+                yearError.classList.add('show');
+                yearInput.classList.add('error');
+                isValid = false;
+            } else {
+                yearError.classList.remove('show');
+                yearInput.classList.remove('error');
+            }
+            
+            return isValid;
+        }
+
+        // Calculate zodiac sign
+        function calculateZodiac() {
+            if (!validateDateInputs('zodiac')) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const day = parseInt(document.getElementById('zodiac-day').value);
+            const month = parseInt(document.getElementById('zodiac-month').value);
+            const year = parseInt(document.getElementById('zodiac-year').value);
+            
+            const sign = getZodiacSign(day, month);
+            
+            let html = `
+                <div class="zodiac-display">
+                    <div class="zodiac-icon">${sign.symbol}</div>
+                    <div class="zodiac-name">${sign.name}</div>
+                    <div class="zodiac-dates">${sign.dates}</div>
+                    <div class="zodiac-element">
+                        <i class="fas ${sign.icon}"></i> ${sign.element} Sign
+                    </div>
+                    <p style="margin-top: 20px; color: #CBD5E1; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Born under the ${sign.element} element, ${sign.name} individuals are known for their unique characteristics and powerful personality traits.
+                    </p>
+                </div>
+            `;
+            
+            document.getElementById('zodiac-result').innerHTML = html;
+        }
+
+        // Show traits
+        function showTraits() {
+            if (!validateDateInputs('traits')) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const day = parseInt(document.getElementById('traits-day').value);
+            const month = parseInt(document.getElementById('traits-month').value);
+            const sign = getZodiacSign(day, month);
+            const traits = zodiacTraits[sign.name];
+            
+            let html = `
+                <div class="result-card">
+                    <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">
+                        <span style="font-size: 3rem; vertical-align: middle;">${sign.symbol}</span> ${sign.name} Traits
+                    </h3>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--success-color); margin-bottom: 15px;">
+                            <i class="fas fa-star"></i> Positive Traits
+                        </h4>
+                        <div class="traits-grid">
+                            ${traits.positive.map(trait => `
+                                <div class="trait-item">
+                                    <div class="trait-icon">✨</div>
+                                    <div class="trait-name">${trait}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--warning-color); margin-bottom: 15px;">
+                            <i class="fas fa-exclamation-triangle"></i> Areas for Growth
+                        </h4>
+                        <div class="traits-grid">
+                            ${traits.negative.map(trait => `
+                                <div class="trait-item">
+                                    <div class="trait-icon">🌱</div>
+                                    <div class="trait-name">${trait}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: rgba(30, 41, 59, 0.7); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">
+                                <i class="fas fa-heart"></i> In Love
+                            </h4>
+                            <p>${traits.love}</p>
+                        </div>
+                        <div style="background: rgba(30, 41, 59, 0.7); padding: 20px; border-radius: 12px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">
+                                <i class="fas fa-briefcase"></i> Career
+                            </h4>
+                            <p>${traits.career}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('traits-result').innerHTML = html;
+        }
+
+        // Check compatibility
+        function checkCompatibility() {
+            if (!validateDateInputs('comp1') || !validateDateInputs('comp2')) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const day1 = parseInt(document.getElementById('comp1-day').value);
+            const month1 = parseInt(document.getElementById('comp1-month').value);
+            const sign1 = getZodiacSign(day1, month1);
+            
+            const day2 = parseInt(document.getElementById('comp2-day').value);
+            const month2 = parseInt(document.getElementById('comp2-month').value);
+            const sign2 = getZodiacSign(day2, month2);
+            
+            // Calculate compatibility
+            const compatibility = calculateCompatibility(sign1.name, sign2.name);
+            
+            let html = `
+                <div class="result-card">
+                    <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">
+                        Compatibility Analysis
+                    </h3>
+                    
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem;">${sign1.symbol}</div>
+                            <div style="font-weight: 600; margin-top: 10px;">${sign1.name}</div>
+                        </div>
+                        <div style="font-size: 2rem;">💕</div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem;">${sign2.symbol}</div>
+                            <div style="font-weight: 600; margin-top: 10px;">${sign2.name}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div class="compatibility-percentage ${compatibility.level}" style="font-size: 3rem;">
+                            ${compatibility.percentage}%
+                        </div>
+                        <div style="font-size: 1.2rem; color: #CBD5E1; margin-top: 10px;">
+                            ${compatibility.description}
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 20px; border-radius: 12px;">
+                        <h4 style="margin-bottom: 15px;">Relationship Insights</h4>
+                        <p>${compatibility.insight}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('compatibility-result').innerHTML = html;
+        }
+
+        // Calculate compatibility between two signs (Fixed - No more randomness)
+        function calculateCompatibility(sign1, sign2) {
+            // Element-based compatibility matrix
+            const elementCompatibility = {
+                'Fire-Fire': 85,
+                'Fire-Earth': 45,
+                'Fire-Air': 90,
+                'Fire-Water': 35,
+                'Earth-Earth': 80,
+                'Earth-Air': 50,
+                'Earth-Water': 70,
+                'Air-Air': 85,
+                'Air-Water': 40,
+                'Water-Water': 90
+            };
+            
+            // Get elements for both signs
+            const element1 = zodiacSigns.find(s => s.name === sign1).element;
+            const element2 = zodiacSigns.find(s => s.name === sign2).element;
+            
+            // Check both possible combinations
+            const key1 = `${element1}-${element2}`;
+            const key2 = `${element2}-${element1}`;
+            
+            // Get base compatibility from element matrix
+            let percentage = elementCompatibility[key1] || elementCompatibility[key2] || 60;
+            
+            // Additional sign-specific adjustments for more accurate results
+            const signAdjustments = {
+                'Aries-Leo': 5, 'Aries-Sagittarius': 5, 'Aries-Gemini': -5,
+                'Taurus-Virgo': 5, 'Taurus-Capricorn': 5, 'Taurus-Scorpio': -5,
+                'Gemini-Libra': 5, 'Gemini-Aquarius': 5, 'Gemini-Virgo': -5,
+                'Cancer-Scorpio': 5, 'Cancer-Pisces': 5, 'Cancer-Aries': -5,
+                'Leo-Aries': 5, 'Leo-Sagittarius': 5, 'Leo-Taurus': -5,
+                'Virgo-Taurus': 5, 'Virgo-Capricorn': 5, 'Virgo-Gemini': -5,
+                'Libra-Gemini': 5, 'Libra-Aquarius': 5, 'Libra-Cancer': -5,
+                'Scorpio-Cancer': 5, 'Scorpio-Pisces': 5, 'Scorpio-Leo': -5,
+                'Sagittarius-Aries': 5, 'Sagittarius-Leo': 5, 'Sagittarius-Virgo': -5,
+                'Capricorn-Taurus': 5, 'Capricorn-Virgo': 5, 'Capricorn-Aries': -5,
+                'Aquarius-Gemini': 5, 'Aquarius-Libra': 5, 'Aquarius-Taurus': -5,
+                'Pisces-Cancer': 5, 'Pisces-Scorpio': 5, 'Pisces-Gemini': -5
+            };
+            
+            // Apply sign-specific adjustments
+            const signKey1 = `${sign1}-${sign2}`;
+            const signKey2 = `${sign2}-${sign1}`;
+            if (signAdjustments[signKey1]) {
+                percentage += signAdjustments[signKey1];
+            } else if (signAdjustments[signKey2]) {
+                percentage += signAdjustments[signKey2];
+            }
+            
+            // Ensure percentage stays within bounds
+            percentage = Math.max(20, Math.min(95, percentage));
+            
+            // Determine level and description
+            let level, description, insight;
+            
+            if (percentage >= 80) {
+                level = 'high';
+                description = 'Excellent Match!';
+                insight = 'Your signs share wonderful chemistry and understanding. This relationship has great potential for long-term happiness and mutual growth.';
+            } else if (percentage >= 60) {
+                level = 'medium';
+                description = 'Good Potential';
+                insight = 'While you may have differences, your relationship can thrive with communication and compromise. Both signs bring valuable qualities to the partnership.';
+            } else {
+                level = 'low';
+                description = 'Challenging Match';
+                insight = 'This relationship may require extra effort and understanding. However, challenges can lead to growth if both partners are committed to making it work.';
+            }
+            
+            return { percentage, level, description, insight };
+        }
+
+        // Show lucky elements
+        function showLuckyElements() {
+            if (!validateDateInputs('lucky')) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const day = parseInt(document.getElementById('lucky-day').value);
+            const month = parseInt(document.getElementById('lucky-month').value);
+            const sign = getZodiacSign(day, month);
+            
+            // Generate lucky numbers based on sign
+            const luckyNumbers = generateLuckyNumbers(sign.name);
+            const luckyColors = getLuckyColors(sign.name);
+            const luckyDays = getLuckyDays(sign.name);
+            
+            let html = `
+                <div class="result-card">
+                    <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">
+                        <span style="font-size: 3rem; vertical-align: middle;">${sign.symbol}</span> ${sign.name} Lucky Elements
+                    </h3>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="text-align: center; margin-bottom: 20px;">
+                            <i class="fas fa-dice"></i> Lucky Numbers
+                        </h4>
+                        <div class="lucky-numbers">
+                            ${luckyNumbers.map(num => `
+                                <div class="lucky-number">${num}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="text-align: center; margin-bottom: 20px;">
+                            <i class="fas fa-palette"></i> Lucky Colors
+                        </h4>
+                        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                            ${luckyColors.map(color => `
+                                <div style="background: ${color.hex}; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative;">
+                                    <div style="position: absolute; bottom: -25px; font-size: 0.8rem; color: var(--text-color); width: 100%; text-align: center;">${color.name}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="text-align: center; margin-bottom: 20px;">
+                            <i class="fas fa-calendar-day"></i> Lucky Days
+                        </h4>
+                        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                            ${luckyDays.map(day => `
+                                <div style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 10px 20px; border-radius: 20px; font-weight: 600;">
+                                    ${day}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('lucky-result').innerHTML = html;
+        }
+
+        // Generate lucky numbers
+        function generateLuckyNumbers(signName) {
+            const baseNumbers = {
+                'Aries': [1, 8, 17],
+                'Taurus': [2, 6, 9],
+                'Gemini': [5, 14, 23],
+                'Cancer': [2, 7, 11],
+                'Leo': [1, 4, 10],
+                'Virgo': [5, 14, 15],
+                'Libra': [6, 15, 24],
+                'Scorpio': [4, 13, 22],
+                'Sagittarius': [3, 9, 12],
+                'Capricorn': [8, 10, 22],
+                'Aquarius': [4, 11, 22],
+                'Pisces': [7, 12, 16]
+            };
+            
+            return baseNumbers[signName] || [3, 7, 21];
+        }
+
+        // Get lucky colors
+        function getLuckyColors(signName) {
+            const colors = {
+                'Aries': [{name: 'Red', hex: '#FF6B6B'}, {name: 'Orange', hex: '#FFA500'}, {name: 'Gold', hex: '#FFD700'}],
+                'Taurus': [{name: 'Green', hex: '#90EE90'}, {name: 'Brown', hex: '#8B4513'}, {name: 'Gold', hex: '#FFD700'}],
+                'Gemini': [{name: 'Gold', hex: '#FFD700'}, {name: 'Sky Blue', hex: '#87CEEB'}, {name: 'Yellow', hex: '#F0E68C'}],
+                'Cancer': [{name: 'Lavender', hex: '#E6E6FA'}, {name: 'Silver', hex: '#C0C0C0'}, {name: 'Alice Blue', hex: '#F0F8FF'}],
+                'Leo': [{name: 'Gold', hex: '#FFD700'}, {name: 'Orange', hex: '#FFA500'}, {name: 'Tomato', hex: '#FF6347'}],
+                'Virgo': [{name: 'Green', hex: '#8FBC8F'}, {name: 'Wheat', hex: '#F5DEB3'}, {name: 'Light Gray', hex: '#D3D3D3'}],
+                'Libra': [{name: 'Pink', hex: '#FFB6C1'}, {name: 'Sky Blue', hex: '#87CEEB'}, {name: 'Khaki', hex: '#F0E68C'}],
+                'Scorpio': [{name: 'Dark Red', hex: '#8B0000'}, {name: 'Indigo', hex: '#4B0082'}, {name: 'Dark Gray', hex: '#2F4F4F'}],
+                'Sagittarius': [{name: 'Tomato', hex: '#FF6347'}, {name: 'Gold', hex: '#FFD700'}, {name: 'Sky Blue', hex: '#87CEEB'}],
+                'Capricorn': [{name: 'Brown', hex: '#8B4513'}, {name: 'Dark Gray', hex: '#2F4F4F'}, {name: 'Light Gray', hex: '#D3D3D3'}],
+                'Aquarius': [{name: 'Sky Blue', hex: '#87CEEB'}, {name: 'Royal Blue', hex: '#4169E1'}, {name: 'Turquoise', hex: '#00CED1'}],
+                'Pisces': [{name: 'Lavender', hex: '#E6E6FA'}, {name: 'Sky Blue', hex: '#87CEEB'}, {name: 'Sea Green', hex: '#20B2AA'}]
+            };
+            
+            return colors[signName] || [{name: 'Gold', hex: '#FFD700'}, {name: 'Sky Blue', hex: '#87CEEB'}, {name: 'Pink', hex: '#FFB6C1'}];
+        }
+
+        // Get lucky days
+        function getLuckyDays(signName) {
+            const days = {
+                'Aries': ['Tuesday', 'Sunday'],
+                'Taurus': ['Friday', 'Monday'],
+                'Gemini': ['Wednesday', 'Sunday'],
+                'Cancer': ['Monday', 'Thursday'],
+                'Leo': ['Sunday', 'Tuesday'],
+                'Virgo': ['Wednesday', 'Friday'],
+                'Libra': ['Friday', 'Sunday'],
+                'Scorpio': ['Tuesday', 'Thursday'],
+                'Sagittarius': ['Thursday', 'Sunday'],
+                'Capricorn': ['Saturday', 'Tuesday'],
+                'Aquarius': ['Saturday', 'Sunday'],
+                'Pisces': ['Thursday', 'Monday']
+            };
+            
+            return days[signName] || ['Sunday', 'Monday'];
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Setup input validation
+        function setupInputValidation() {
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    const id = this.id;
+                    const isDay = id.includes('-day');
+                    const isMonth = id.includes('-month');
+                    const isYear = id.includes('-year');
+                    
+                    if (isDay) {
+                        let value = parseInt(this.value);
+                        if (value > 31) {
+                            this.value = '31';
+                        }
+                    } else if (isMonth) {
+                        let value = parseInt(this.value);
+                        if (value > 12) {
+                            this.value = '12';
+                        }
+                    } else if (isYear) {
+                        if (this.value.length > 4) {
+                            this.value = this.value.slice(0, 4);
+                        }
+                    }
+                });
+                
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    let pasteData = (e.clipboardData || window.clipboardData).getData('text');
+                    pasteData = pasteData.replace(/[^0-9]/g, '');
+                    
+                    const id = this.id;
+                    const isYear = id.includes('-year');
+                    
+                    if (isYear) {
+                        pasteData = pasteData.slice(0, 4);
+                    } else {
+                        pasteData = pasteData.slice(0, 2);
+                    }
+                    
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    this.value = this.value.substring(0, start) + pasteData + this.value.substring(end);
+                    
+                    this.dispatchEvent(new Event('input'));
+                });
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            setupInputValidation();
+        });
+    </script>
+</body>
+</html>
