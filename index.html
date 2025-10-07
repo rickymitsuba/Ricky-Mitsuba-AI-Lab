@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky Mitsuba AI Lab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-color: #6B46C1;
+            --secondary-color: #4C1D95;
+            --accent-color: #8B5CF6;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+            --dark-color: #0F172A;
+            --light-color: #F8FAFC;
+            --text-color: #334155;
+            --text-light: #64748B;
+            --border-color: #E2E8F0;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --border-radius: 16px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #CBD5E1;
+            --text-light: #94A3B8;
+            --border-color: rgba(139, 92, 246, 0.3);
+            --bg-primary: rgba(15, 23, 42, 0.9);
+            --bg-secondary: rgba(30, 41, 59, 0.9);
+            --bg-tertiary: rgba(51, 65, 85, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            transition: var(--transition-smooth);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated background for light theme */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            transition: var(--transition-smooth);
+        }
+
+        /* Dark theme background */
+        [data-theme="dark"] body::before {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+        }
+
+        /* Animated stars for dark theme */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        [data-theme="dark"] .stars {
+            opacity: 1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Disable logo clicks on mobile */
+        .logo.mobile-disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Mobile Menu Toggle - Enhanced for better touch response */
+        .mobile-menu-toggle {
+            display: none;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 55px;
+            height: 55px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            z-index: 1001; /* Higher z-index to ensure it's always on top */
+            flex-shrink: 0;
+            touch-action: manipulation; /* Improves touch responsiveness */
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: currentColor;
+            margin: 6px auto;
+            transition: var(--transition-smooth);
+            border-radius: 3px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition-smooth);
+            margin-top: 5px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            color: var(--text-color);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition-smooth);
+            border-radius: 8px;
+            margin: 5px;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .dropdown-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 20px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Calculator Cards */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .calculator-card {
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+            animation: scaleIn 0.6s ease-out;
+            animation-fill-mode: both;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .calculator-card:nth-child(1) { animation-delay: 0.1s; }
+        .calculator-card:nth-child(2) { animation-delay: 0.2s; }
+        .calculator-card:nth-child(3) { animation-delay: 0.3s; }
+        .calculator-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: var(--accent-color);
+        }
+
+        .calculator-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .calculator-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .calculator-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calculator-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Calculator Content */
+        .calculator-content {
+            display: none;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.5s ease-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .calculator-content.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calculator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .calculator-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .close-btn {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 1.2rem;
+        }
+
+        .close-btn:hover {
+            background: var(--danger-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Placeholder Content */
+        .placeholder-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .placeholder-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .placeholder-description {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .placeholder-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .placeholder-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 0;
+            margin-top: auto;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-tertiary);
+            color: var(--text-color);
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(100px) rotateX(90deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            z-index: 2000;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        .toast.show {
+            transform: translateY(0) rotateX(0);
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-primary);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                gap: 5px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition-smooth);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid var(--border-color);
+                z-index: 999;
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                margin-top: 10px;
+                margin-left: 20px;
+                width: calc(100% - 20px);
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-content {
+                padding: 20px;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Animated stars background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" id="logo">
+                <i class="fas fa-tools"></i>
+                Ricky Mitsuba AI Studio
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showHome()">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user"></i> Personal Calculator
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item" onclick="showCalculator('age')">
+                            <i class="fas fa-birthday-cake"></i> Age Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('love')">
+                            <i class="fas fa-heart"></i> Love Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('zodiac')">
+                            <i class="fas fa-star"></i> Zodiac Sign Calculator
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-heartbeat"></i> Health Calculator
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item" onclick="showCalculator('bmr')">
+                            <i class="fas fa-fire"></i> BMR Calculator
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-line"></i> Finance Calculator
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item" onclick="showCalculator('emi')">
+                            <i class="fas fa-home"></i> EMI Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('sip')">
+                            <i class="fas fa-chart-line"></i> SIP Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('fd')">
+                            <i class="fas fa-piggy-bank"></i> FD Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('rd')">
+                            <i class="fas fa-coins"></i> RD Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('tax')">
+                            <i class="fas fa-file-invoice-dollar"></i> Income Tax Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('currency')">
+                            <i class="fas fa-exchange-alt"></i> Currency Converter
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i> Study Tools
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item" onclick="showCalculator('simple')">
+                            <i class="fas fa-calculator"></i> Simple Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('percentage')">
+                            <i class="fas fa-percentage"></i> Percentage Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('scientific')">
+                            <i class="fas fa-flask"></i> Scientific Calculator
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showCalculator('unit')">
+                            <i class="fas fa-ruler"></i> Unit Converter
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-shield-alt"></i> Policies
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="About Us Page.html" class="dropdown-item" onclick="showPolicy('about')">
+                            <i class="fas fa-info-circle"></i> About Us
+                        </a>
+                        <a href="Contact Us Page.html" class="dropdown-item" onclick="showPolicy('contact')">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                        <a href="Privacy Policy Page.html" class="dropdown-item" onclick="showPolicy('privacy')">
+                            <i class="fas fa-lock"></i> Privacy Policy
+                        </a>
+                        <a href="Terms & Conditions Page.html" class="dropdown-item" onclick="showPolicy('terms')">
+                            <i class="fas fa-file-contract"></i> Terms & Conditions
+                        </a>
+                        <a href="Disclaimer Page.html" class="dropdown-item" onclick="showPolicy('disclaimer')">
+                            <i class="fas fa-exclamation-triangle"></i> Disclaimer
+                        </a>
+                        <a href="Tutorials Page.html" class="dropdown-item" onclick="showPolicy('tutorials')">
+                            <i class="fas fa-book"></i> Tutorials
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home-section">
+            <h1>Universal Tools at Fingertip</h1>
+            <p>Your one-stop destination for all calculation needs - from personal to finance, we've got you covered!</p>
+            
+            <!-- Calculator Cards -->
+            <div class="calculator-grid">
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="calculator-title">Personal Calculators</h3>
+                    <p class="calculator-description">Calculate your age, check love compatibility, and discover your zodiac sign with our personal calculators.</p>
+                    <button class="calculator-btn" onclick="showCalculator('age')">
+                        <i class="fas fa-calculator"></i> Explore Personal
+                    </button>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="calculator-title">Health Calculators</h3>
+                    <p class="calculator-description">Monitor your health metrics with our BMR calculator and stay on top of your fitness goals.</p>
+                    <button class="calculator-btn" onclick="showCalculator('bmr')">
+                        <i class="fas fa-heartbeat"></i> Check Health
+                    </button>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="calculator-title">Finance Calculators</h3>
+                    <p class="calculator-description">Plan your finances with EMI, SIP, FD, RD calculators, tax planner, and currency converter.</p>
+                    <button class="calculator-btn" onclick="showCalculator('emi')">
+                        <i class="fas fa-dollar-sign"></i> Manage Finance
+                    </button>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="calculator-title">Study Tools</h3>
+                    <p class="calculator-description">Enhance your learning with simple calculator, percentage calculator, scientific calculator, and unit converter.</p>
+                    <button class="calculator-btn" onclick="showCalculator('simple')">
+                        <i class="fas fa-calculator"></i> Study Tools
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Content Sections (Placeholders) -->
+        <!-- Age Calculator -->
+        <div class="calculator-content" id="age-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-birthday-cake"></i> Age Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <h3 class="placeholder-title">Age Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Age Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='age calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Love Calculator -->
+        <div class="calculator-content" id="love-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-heart"></i> Love Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="placeholder-title">Love Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Love Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='love calculator.html'">
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Zodiac Sign Calculator -->
+        <div class="calculator-content" id="zodiac-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-star"></i> Zodiac Sign Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="placeholder-title">Zodiac Sign Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Zodiac Sign Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='zodiac sign calculator.html'">
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- BMR Calculator -->
+        <div class="calculator-content" id="bmr-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-fire"></i> BMR Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 class="placeholder-title">BMR Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your BMR Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='health & fitness calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- EMI Calculator -->
+        <div class="calculator-content" id="emi-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-home"></i> EMI Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="placeholder-title">EMI Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your EMI Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='emi calculator.html'">
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- SIP Calculator -->
+        <div class="calculator-content" id="sip-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-chart-line"></i> SIP Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="placeholder-title">SIP Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your SIP Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='sip calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- FD Calculator -->
+        <div class="calculator-content" id="fd-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-piggy-bank"></i> FD Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <h3 class="placeholder-title">FD Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your FD Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='fixed deposit calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- RD Calculator -->
+        <div class="calculator-content" id="rd-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-coins"></i> RD Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <h3 class="placeholder-title">RD Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your RD Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='recurring deposit calculator.html'">
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Income Tax Calculator -->
+        <div class="calculator-content" id="tax-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Income Tax Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3 class="placeholder-title">Income Tax Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Income Tax Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='work in progress.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Currency Converter -->
+        <div class="calculator-content" id="currency-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-exchange-alt"></i> Currency Converter</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3 class="placeholder-title">Currency Converter</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Currency Converter. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='work in progress.html'">
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Simple Calculator -->
+        <div class="calculator-content" id="simple-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-calculator"></i> Simple Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="placeholder-title">Simple Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Simple Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='simple calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Percentage Calculator -->
+        <div class="calculator-content" id="percentage-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-percentage"></i> Percentage Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <h3 class="placeholder-title">Percentage Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Percentage Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='percentage calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Scientific Calculator -->
+        <div class="calculator-content" id="scientific-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-flask"></i> Scientific Calculator</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3 class="placeholder-title">Scientific Calculator</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Scientific Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='advance scientific calculator.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+
+        <!-- Unit Converter -->
+        <div class="calculator-content" id="unit-calculator">
+            <div class="calculator-header">
+                <h2><i class="fas fa-ruler"></i> Unit Converter</h2>
+                <button class="close-btn" onclick="closeCalculator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="placeholder-content">
+                <div class="placeholder-icon">
+                    <i class="fas fa-ruler"></i>
+                </div>
+                <h3 class="placeholder-title">Unit Converter</h3>
+                <p class="placeholder-description">
+                    This is a placeholder for your Unit Converter. You can integrate your own calculator here by replacing this content with your calculator implementation.
+                </p>
+                <button class="placeholder-btn" onclick="window.location.href='unit converter.html'">
+
+                    <i class="fas fa-plug"></i> Connect Calculator
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-tools"></i> Ricky Mitsuba AI Studio
+            </div>
+            <div class="footer-links">
+                <a href="About Us Page.html" class="footer-link" onclick="showPolicy('about')">About Us</a>
+                <a href="Contact Us Page.html" class="footer-link" onclick="showPolicy('contact')">Contact Us</a>
+                <a href="Privacy Policy Page.html" class="footer-link" onclick="showPolicy('privacy')">Privacy Policy</a>
+                <a href="Terms & Conditions Page.html" class="footer-link" onclick="showPolicy('terms')">Terms & Conditions</a>
+                <a href="Disclaimer Page.html" class="footer-link" onclick="showPolicy('disclaimer')">Disclaimer</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Ricky Mitsuba AI Studio. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Create animated stars for dark theme
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const size = Math.random() * 3;
+                const delay = Math.random() * 4;
+                
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            const themeIcon = document.getElementById('theme-icon');
+            if (savedTheme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Check if mobile and adjust navigation
+        function checkMobile() {
+            const isMobile = window.innerWidth <= 992;
+            const logo = document.getElementById('logo');
+            
+            if (isMobile) {
+                logo.classList.add('mobile-disabled');
+            } else {
+                logo.classList.remove('mobile-disabled');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            
+            navMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        }
+
+        // Show calculator
+        function showCalculator(type) {
+            // Hide all calculators
+            document.querySelectorAll('.calculator-content').forEach(calc => {
+                calc.classList.remove('active');
+            });
+            
+            // Hide home section
+            document.getElementById('home-section').style.display = 'none';
+            
+            // Show selected calculator
+            const calculator = document.getElementById(`${type}-calculator`);
+            if (calculator) {
+                calculator.classList.add('active');
+            }
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            }
+            
+            // Update active nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+
+        // Show policy page
+        function showPolicy(type) {
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            }
+            
+            // Show toast notification for now
+            showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} page will be available soon`);
+        }
+
+        // Close calculator
+        function closeCalculator() {
+            // Hide all calculators
+            document.querySelectorAll('.calculator-content').forEach(calc => {
+                calc.classList.remove('active');
+            });
+            
+            // Show home section
+            document.getElementById('home-section').style.display = 'block';
+            
+            // Update active nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('.nav-link').classList.add('active');
+        }
+
+        // Show home
+        function showHome() {
+            closeCalculator();
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            loadTheme();
+            checkMobile();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            checkMobile();
+        });
+    </script>
+</body>
+</html>
