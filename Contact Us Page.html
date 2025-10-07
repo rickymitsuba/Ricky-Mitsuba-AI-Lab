@@ -1,0 +1,916 @@
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+
+<!-- Contact Us Page Content -->
+<div class="contact-container">
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <h1>Contact Us</h1>
+        <p>Get in touch with us - we're here to help and answer any questions you may have</p>
+    </section>
+
+    <!-- Contact Info Section -->
+    <div class="contact-section">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i>
+            Get In Touch
+        </h2>
+        <div class="contact-info-grid">
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="contact-title">Our Location</h3>
+                <p class="contact-details">Kolkata, West Bengal<br>India</p>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="contact-title">Email Us</h3>
+                <p class="contact-details">
+                    <a href="mailto:mitsubaricky@gmail.com" class="email-link">mitsubaricky@gmail.com</a><br>
+                    <a href="mailto:mitsubaricky@gmail.com" class="email-link">mitsubaricky@gmail.com</a>
+                </p>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3 class="contact-title">Call Us</h3>
+                <p class="contact-details">+91 XXXXX XXXXX<br>Mon-Fri: 9AM-6PM</p>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="contact-title">Business Hours</h3>
+                <p class="contact-details">Monday - Friday: 9AM-6PM<br>Saturday: 10AM-4PM</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="contact-section">
+        <h2 class="section-title">
+            <i class="fas fa-paper-plane"></i>
+            Send Us a Message
+        </h2>
+        <div class="contact-form-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">
+                            <i class="fas fa-user"></i> First Name
+                        </label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">
+                            <i class="fas fa-user"></i> Last Name
+                        </label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i> Phone Number
+                        </label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">
+                        <i class="fas fa-tag"></i> Subject
+                    </label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="feature">Feature Request</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fas fa-comment"></i> Message
+                    </label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span class="checkmark"></span>
+                        I'd like to receive updates about new features and tools
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                    <button type="reset" class="reset-btn">
+                        <i class="fas fa-redo"></i>
+                        Reset Form
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="contact-section">
+        <h2 class="section-title">
+            <i class="fas fa-question-circle"></i>
+            Frequently Asked Questions
+        </h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>How accurate are your calculators?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our calculators are built with precision and accuracy in mind. We use industry-standard formulas and regularly update our algorithms to ensure reliable results. However, for critical financial or health decisions, we recommend consulting with professionals.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Are your tools free to use?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! All our tools are completely free to use. We believe in making essential calculation tools accessible to everyone. There are no hidden charges or premium features.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Can I suggest new tools or features?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We love hearing from our users. You can use the contact form above to suggest new tools or features. We review all suggestions and prioritize based on user demand.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Is my data secure?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we take data security seriously. All calculations are performed locally in your browser, and we don't store any personal information unless you explicitly provide it through our contact form.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Do you offer API access?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We're currently working on API access for developers. If you're interested in integrating our calculators into your application, please contact us with your requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="contact-section">
+        <h2 class="section-title">
+            <i class="fas fa-share-alt"></i>
+            Connect With Us
+        </h2>
+        <div class="social-container">
+            <p class="social-description">Follow us on social media for updates, tips, and exclusive content</p>
+            <div class="social-links">
+                <a href="#" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="contact-section">
+        <h2 class="section-title">
+            <i class="fas fa-map"></i>
+            Find Us
+        </h2>
+        <div class="map-container">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Interactive Map Coming Soon</p>
+                <p class="map-subtitle">Kolkata, West Bengal, India</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Import the same fonts as main website */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+    --primary-color: #8B5CF6;
+    --secondary-color: #3B82F6;
+    --accent-color: #EC4899;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --border-radius: 12px;
+    --transition-smooth: all 0.3s ease;
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Contact Us Page Styles */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-hero {
+    text-align: center;
+    padding: 60px 0;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 20px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+    line-height: 1.2;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.contact-hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.contact-section {
+    background: var(--bg-secondary);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: clamp(25px, 5vw, 40px);
+    margin-bottom: clamp(20px, 4vw, 40px);
+    border: 1px solid var(--border-color);
+    animation: scaleIn 0.6s ease-out;
+    animation-fill-mode: both;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.contact-section:nth-child(2) { animation-delay: 0.1s; }
+.contact-section:nth-child(3) { animation-delay: 0.2s; }
+.contact-section:nth-child(4) { animation-delay: 0.3s; }
+.contact-section:nth-child(5) { animation-delay: 0.4s; }
+.contact-section:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    margin-bottom: clamp(20px, 4vw, 30px);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    line-height: 1.3;
+}
+
+.section-title i {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Contact Info Grid */
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(15px, 3vw, 25px);
+    margin-top: 30px;
+}
+
+.contact-info-item {
+    text-align: center;
+    padding: clamp(20px, 4vw, 30px) clamp(15px, 3vw, 20px);
+    border-radius: 16px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.contact-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.1);
+    border-color: var(--accent-color);
+}
+
+.contact-icon {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+}
+
+.contact-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.contact-details {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--text-light);
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.email-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    word-break: break-all;
+}
+
+.email-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(15px, 3vw, 20px);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(15px, 3vw, 20px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    line-height: 1.4;
+}
+
+.form-group label i {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    font-family: 'Inter', sans-serif;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-primary);
+    color: var(--text-color);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: var(--transition-smooth);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 400;
+    position: relative;
+    padding-left: 30px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+}
+
+.checkbox-label:hover input ~ .checkmark {
+    border-color: var(--accent-color);
+}
+
+.checkbox-label input:checked ~ .checkmark {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.submit-btn,
+.reset-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 14px 35px;
+    border-radius: var(--border-radius);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    cursor: pointer;
+    transition: var(--transition-bounce);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    white-space: nowrap;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+}
+
+.reset-btn {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--border-color);
+}
+
+.reset-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* FAQ Section */
+.faq-container {
+    margin-top: 30px;
+}
+
+.faq-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.faq-item:hover {
+    border-color: var(--accent-color);
+}
+
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.faq-question:hover {
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.faq-question h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.4;
+    padding-right: 15px;
+}
+
+.faq-question i {
+    color: var(--accent-color);
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.6;
+    padding: 0 20px 20px;
+    margin: 0;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Social Media */
+.social-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.social-description {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--text-light);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Map Section */
+.map-container {
+    margin-top: 30px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.map-placeholder {
+    height: 400px;
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+}
+
+.map-placeholder i {
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.map-placeholder p {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.map-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1rem) !important;
+    font-weight: 400 !important;
+    color: var(--text-light) !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+    .contact-info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .contact-info-item {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-container {
+        padding: 15px;
+    }
+    
+    .contact-hero {
+        padding: 40px 0;
+    }
+    
+    .contact-section {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .submit-btn,
+    .reset-btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    .social-links {
+        gap: 15px;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .map-placeholder {
+        height: 250px;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+// FAQ Toggle Function
+function toggleFAQ(element) {
+    const faqItem = element.parentElement;
+    const allFaqItems = document.querySelectorAll('.faq-item');
+    
+    // Close all other FAQ items
+    allFaqItems.forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+        }
+    });
+    
+    // Toggle current FAQ item
+    faqItem.classList.toggle('active');
+}
+
+// Contact Form Submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    
+    // Show success message (you can replace this with actual form submission)
+    showToast('Thank you for your message! We\'ll get back to you soon.');
+    
+    // Reset form
+    this.reset();
+});
+
+// Show toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast show';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--bg-tertiary);
+        color: var(--text-color);
+        padding: 18px 25px;
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(100px) rotateX(90deg);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 2000;
+        font-weight: 600;
+        border: 1px solid var(--border-color);
+        font-family: 'Inter', sans-serif;
+        max-width: 80%;
+        word-wrap: break-word;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.style.transform = 'translateY(0) rotateX(0)';
+        toast.style.opacity = '1';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.transform = 'translateY(100px) rotateX(90deg)';
+        toast.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 600);
+    }, 3000);
+}
+
+// Add form field animations
+document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+    field.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+    });
+    
+    field.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+    });
+});
+</script>
