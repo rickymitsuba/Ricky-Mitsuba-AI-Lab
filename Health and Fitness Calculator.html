@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<!-- Standard browser favicons -->
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curious About Your BMR? Check Here For Free</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-color: #10b981;
+            --secondary-color: #3b82f6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --text-color: #334155;
+            --border-radius: 16px;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #06b6d4 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0 40px;
+            color: white;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 18px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            white-space: nowrap;
+            position: relative;
+            border-radius: 12px;
+            margin: 0 3px;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        .tab:hover::before {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .tab:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .tab-content {
+            padding: 40px;
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input:hover, select:hover {
+            border-color: var(--secondary-color);
+        }
+
+        input.error, select.error {
+            border-color: var(--danger-color);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23334155' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary::before {
+            background: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            animation: slideUp 0.5s ease-out;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shimmerCard 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerCard {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .result-item:hover {
+            padding-left: 10px;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.05), transparent);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .result-display {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .result-unit {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            min-width: 120px;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .result-unit:hover::before {
+            transform: scaleX(1);
+        }
+
+        .result-unit:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .result-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            animation: countUp 1s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .result-label-text {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-top: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .copy-share {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--dark-color), #334155);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px) rotateX(90deg);
+            opacity: 0;
+            transition: var(--transition-bounce);
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .toast.show {
+            transform: translateY(0) rotateX(0);
+            opacity: 1;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .activity-chart {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .activity-chart th, .activity-chart td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .activity-chart th {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .activity-chart tr:last-child td {
+            border-bottom: none;
+        }
+
+        .activity-chart tr:hover {
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .activity-chart .calorie-value {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .formula-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .disclaimer {
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--warning-color);
+            font-size: 0.9rem;
+        }
+
+        .disclaimer h4 {
+            color: var(--warning-color);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .result-display {
+                flex-wrap: wrap;
+            }
+            
+            .activity-chart {
+                font-size: 0.85rem;
+            }
+            
+            .activity-chart th, .activity-chart td {
+                padding: 8px 10px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heartbeat"></i> Ricky Mitsuba AI Lab</h1>
+            <p>Calculate your health metrics with precision and style</p>
+        </header>
+
+        <div class="app-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="bmr">BMR Calculator</div>
+                <div class="tab" data-tab="calorie">Calorie Calculator</div>
+                <div class="tab" data-tab="weight">Ideal Weight</div>
+                <div class="tab" data-tab="water">Water Intake</div>
+            </div>
+
+            <!-- BMR Calculator -->
+            <div class="tab-content active" id="bmr">
+                <div class="input-group">
+                    <label for="bmr-age">Age</label>
+                    <input type="number" id="bmr-age" placeholder="Enter your age">
+                    <div class="error-message" id="bmr-age-error">Please enter a valid age</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="bmr-gender">Gender</label>
+                    <select id="bmr-gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="bmr-height">Height (cm)</label>
+                    <input type="number" id="bmr-height" placeholder="Enter your height in centimeters">
+                    <div class="error-message" id="bmr-height-error">Please enter a valid height</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="bmr-weight">Weight (kg)</label>
+                    <input type="number" id="bmr-weight" placeholder="Enter your weight in kilograms">
+                    <div class="error-message" id="bmr-weight-error">Please enter a valid weight</div>
+                </div>
+                
+                <button class="btn" onclick="calculateBMR()">
+                    <i class="fas fa-calculator"></i> Calculate BMR
+                </button>
+
+                <div id="bmr-result"></div>
+            </div>
+
+            <!-- Calorie Calculator -->
+            <div class="tab-content" id="calorie">
+                <div class="input-group">
+                    <label for="calorie-bmr">Your BMR</label>
+                    <input type="number" id="calorie-bmr" placeholder="Enter your BMR (calculate it first)">
+                    <div class="error-message" id="calorie-bmr-error">Please enter a valid BMR</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="calorie-activity">Activity Level</label>
+                    <select id="calorie-activity">
+                        <option value="1.2">Sedentary (little or no exercise)</option>
+                        <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+                        <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                        <option value="1.725">Very active (hard exercise/sports 6-7 days a week)</option>
+                        <option value="1.9">Extra active (very hard exercise/sports & physical job)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="calorie-goal">Goal</label>
+                    <select id="calorie-goal">
+                        <option value="maintain">Maintain weight</option>
+                        <option value="lose">Lose weight (0.5 kg/week)</option>
+                        <option value="lose-fast">Lose weight fast (1 kg/week)</option>
+                        <option value="gain">Gain weight (0.5 kg/week)</option>
+                        <option value="gain-fast">Gain weight fast (1 kg/week)</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="calculateCalories()">
+                    <i class="fas fa-fire"></i> Calculate Calories
+                </button>
+
+                <div id="calorie-result"></div>
+            </div>
+
+            <!-- Ideal Weight Calculator -->
+            <div class="tab-content" id="weight">
+                <div class="input-group">
+                    <label for="weight-height">Height (cm)</label>
+                    <input type="number" id="weight-height" placeholder="Enter your height in centimeters">
+                    <div class="error-message" id="weight-height-error">Please enter a valid height</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="weight-gender">Gender</label>
+                    <select id="weight-gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="weight-frame">Body Frame</label>
+                    <select id="weight-frame">
+                        <option value="small">Small Frame</option>
+                        <option value="medium">Medium Frame</option>
+                        <option value="large">Large Frame</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="calculateIdealWeight()">
+                    <i class="fas fa-weight"></i> Calculate Ideal Weight
+                </button>
+
+                <div id="weight-result"></div>
+            </div>
+
+            <!-- Water Intake Calculator -->
+            <div class="tab-content" id="water">
+                <div class="input-group">
+                    <label for="water-weight">Weight (kg)</label>
+                    <input type="number" id="water-weight" placeholder="Enter your weight in kilograms">
+                    <div class="error-message" id="water-weight-error">Please enter a valid weight</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="water-activity">Activity Level</label>
+                    <select id="water-activity">
+                        <option value="sedentary">Sedentary (little or no exercise)</option>
+                        <option value="light">Lightly active (light exercise/sports 1-3 days/week)</option>
+                        <option value="moderate">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                        <option value="active">Very active (hard exercise/sports 6-7 days a week)</option>
+                        <option value="very-active">Extra active (very hard exercise/sports & physical job)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="water-climate">Climate</label>
+                    <select id="water-climate">
+                        <option value="normal">Normal</option>
+                        <option value="hot">Hot/Humid</option>
+                        <option value="cold">Cold</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="calculateWaterIntake()">
+                    <i class="fas fa-tint"></i> Calculate Water Intake
+                </button>
+
+                <div id="water-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Tab switching with animation
+        document.querySelectorAll('.tab').forEach((tab, index) => {
+            tab.style.animationDelay = `${index * 0.1}s`;
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Helper function to validate input
+        function validateInput(inputId, errorId, min, max) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            const value = parseFloat(input.value);
+            
+            if (isNaN(value) || value < min || value > max) {
+                input.classList.add('error');
+                error.classList.add('show');
+                return false;
+            } else {
+                input.classList.remove('error');
+                error.classList.remove('show');
+                return true;
+            }
+        }
+
+        // BMR Calculator - Using Mifflin-St Jeor equation (more accurate)
+        function calculateBMR() {
+            const isAgeValid = validateInput('bmr-age', 'bmr-age-error', 1, 120);
+            const isHeightValid = validateInput('bmr-height', 'bmr-height-error', 50, 250);
+            const isWeightValid = validateInput('bmr-weight', 'bmr-weight-error', 20, 300);
+            
+            if (!isAgeValid || !isHeightValid || !isWeightValid) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const age = parseFloat(document.getElementById('bmr-age').value);
+            const gender = document.getElementById('bmr-gender').value;
+            const height = parseFloat(document.getElementById('bmr-height').value);
+            const weight = parseFloat(document.getElementById('bmr-weight').value);
+            
+            // Mifflin-St Jeor equation (more accurate than Harris-Benedict)
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+            
+            // Store BMR for use in other calculators
+            localStorage.setItem('bmr', bmr.toFixed(2));
+            
+            // Calculate TDEE for different activity levels
+            const sedentary = bmr * 1.2;
+            const light = bmr * 1.375;
+            const moderate = bmr * 1.55;
+            const active = bmr * 1.725;
+            const veryActive = bmr * 1.9;
+            
+            let html = `
+                <div class="result-display">
+                    <div class="result-unit">
+                        <span class="result-number">${bmr.toFixed(0)}</span>
+                        <span class="result-label-text">Calories/day</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Your Basal Metabolic Rate</h3>
+                    <div class="result-item">
+                        <span class="result-label">BMR</span>
+                        <span class="result-value">${bmr.toFixed(2)} calories/day</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Gender</span>
+                        <span class="result-value">${gender === 'male' ? 'Male' : 'Female'}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Age</span>
+                        <span class="result-value">${age} years</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Height</span>
+                        <span class="result-value">${height} cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Weight</span>
+                        <span class="result-value">${weight} kg</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Daily Calorie Needs by Activity Level</h3>
+                    <table class="activity-chart">
+                        <thead>
+                            <tr>
+                                <th>Activity Level</th>
+                                <th>Description</th>
+                                <th>Calories/Day</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sedentary</td>
+                                <td>Little or no exercise</td>
+                                <td class="calorie-value">${sedentary.toFixed(0)}</td>
+                            </tr>
+                            <tr>
+                                <td>Lightly Active</td>
+                                <td>Light exercise 1-3 days/week</td>
+                                <td class="calorie-value">${light.toFixed(0)}</td>
+                            </tr>
+                            <tr>
+                                <td>Moderately Active</td>
+                                <td>Moderate exercise 3-5 days/week</td>
+                                <td class="calorie-value">${moderate.toFixed(0)}</td>
+                            </tr>
+                            <tr>
+                                <td>Very Active</td>
+                                <td>Hard exercise 6-7 days/week</td>
+                                <td class="calorie-value">${active.toFixed(0)}</td>
+                            </tr>
+                            <tr>
+                                <td>Extra Active</td>
+                                <td>Very hard exercise & physical job</td>
+                                <td class="calorie-value">${veryActive.toFixed(0)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Formula Used:</strong> Mifflin-St Jeor Equation<br>
+                    ${gender === 'male' ? 
+                        'BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) + 5' : 
+                        'BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) - 161'}
+                </div>
+                
+                <div class="info-box">
+                    <h3>What is BMR?</h3>
+                    <p>Basal Metabolic Rate (BMR) is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions, such as breathing, circulation, and cell production, while at rest. The Mifflin-St Jeor equation is considered more accurate than the older Harris-Benedict equation.</p>
+                </div>
+                
+                <div class="disclaimer">
+                    <h4>Important Note</h4>
+                    <p>These calculations are estimates and may not be accurate for everyone. Factors like muscle mass, genetics, and medical conditions can affect your actual BMR. Consult with a healthcare professional for personalized advice.</p>
+                </div>
+                
+                <div class="copy-share">
+                    <button class="btn btn-secondary" onclick="copyResult('My BMR is ${bmr.toFixed(2)} calories/day')">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('bmr-result').innerHTML = html;
+        }
+
+        // Calorie Calculator
+        function calculateCalories() {
+            const isBMRValid = validateInput('calorie-bmr', 'calorie-bmr-error', 800, 4000);
+            
+            if (!isBMRValid) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const bmr = parseFloat(document.getElementById('calorie-bmr').value);
+            const activityLevel = parseFloat(document.getElementById('calorie-activity').value);
+            const goal = document.getElementById('calorie-goal').value;
+            
+            let tdee = bmr * activityLevel;
+            let targetCalories = tdee;
+            
+            // Adjust calories based on goal
+            switch(goal) {
+                case 'lose':
+                    targetCalories = tdee - 500; // 0.5 kg/week
+                    break;
+                case 'lose-fast':
+                    targetCalories = tdee - 1000; // 1 kg/week
+                    break;
+                case 'gain':
+                    targetCalories = tdee + 500; // 0.5 kg/week
+                    break;
+                case 'gain-fast':
+                    targetCalories = tdee + 1000; // 1 kg/week
+                    break;
+                default:
+                    // maintain weight
+                    break;
+            }
+            
+            // Calculate macros (40% carbs, 30% protein, 30% fat)
+            const carbs = (targetCalories * 0.4) / 4; // 4 calories per gram
+            const protein = (targetCalories * 0.3) / 4; // 4 calories per gram
+            const fat = (targetCalories * 0.3) / 9; // 9 calories per gram
+            
+            let html = `
+                <div class="result-display">
+                    <div class="result-unit">
+                        <span class="result-number">${targetCalories.toFixed(0)}</span>
+                        <span class="result-label-text">Calories/day</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Your Daily Calorie Needs</h3>
+                    <div class="result-item">
+                        <span class="result-label">BMR</span>
+                        <span class="result-value">${bmr.toFixed(2)} calories/day</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">TDEE</span>
+                        <span class="result-value">${tdee.toFixed(2)} calories/day</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Target Calories</span>
+                        <span class="result-value">${targetCalories.toFixed(2)} calories/day</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Goal</span>
+                        <span class="result-value">${goal.replace('-', ' ')}</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Recommended Macros</h3>
+                    <div class="result-item">
+                        <span class="result-label">Carbohydrates</span>
+                        <span class="result-value">${carbs.toFixed(0)}g (${(carbs*4).toFixed(0)} cal)</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Protein</span>
+                        <span class="result-value">${protein.toFixed(0)}g (${(protein*4).toFixed(0)} cal)</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Fat</span>
+                        <span class="result-value">${fat.toFixed(0)}g (${(fat*9).toFixed(0)} cal)</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>What is TDEE?</h3>
+                    <p>Total Daily Energy Expenditure (TDEE) is the total number of calories you burn in a day. It's calculated by multiplying your BMR by your activity level.</p>
+                </div>
+                
+                <div class="disclaimer">
+                    <h4>Important Note</h4>
+                    <p>These calculations are estimates. For weight loss, it's generally not recommended to consume fewer than 1200 calories per day for women or 1500 calories per day for men without medical supervision. Consult with a healthcare professional for personalized advice.</p>
+                </div>
+                
+                <div class="copy-share">
+                    <button class="btn btn-secondary" onclick="copyResult('My daily calorie needs are ${targetCalories.toFixed(0)} calories')">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('calorie-result').innerHTML = html;
+        }
+
+        // Ideal Weight Calculator - Using Robinson formula (more accurate than Devine)
+        function calculateIdealWeight() {
+            const isHeightValid = validateInput('weight-height', 'weight-height-error', 50, 250);
+            
+            if (!isHeightValid) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const height = parseFloat(document.getElementById('weight-height').value);
+            const gender = document.getElementById('weight-gender').value;
+            const frame = document.getElementById('weight-frame').value;
+            
+            // Convert height to inches for Robinson formula
+            const heightInches = height / 2.54;
+            const heightOver5ft = heightInches - 60;
+            
+            // Robinson formula (more accurate than Devine)
+            let idealWeight;
+            if (gender === 'male') {
+                idealWeight = 52 + 1.9 * heightOver5ft;
+            } else {
+                idealWeight = 49 + 1.7 * heightOver5ft;
+            }
+            
+            // Adjust for body frame
+            let frameAdjustment = 0;
+            if (frame === 'small') {
+                frameAdjustment = idealWeight * 0.1; // 10% less
+            } else if (frame === 'large') {
+                frameAdjustment = idealWeight * 0.1; // 10% more
+            }
+            
+            const adjustedWeight = idealWeight + (frame === 'small' ? -frameAdjustment : frameAdjustment);
+            
+            // Calculate BMI range for this height
+            const minBMI = 18.5;
+            const maxBMI = 24.9;
+            const minWeight = minBMI * Math.pow(height/100, 2);
+            const maxWeight = maxBMI * Math.pow(height/100, 2);
+            
+            let html = `
+                <div class="result-display">
+                    <div class="result-unit">
+                        <span class="result-number">${adjustedWeight.toFixed(1)}</span>
+                        <span class="result-label-text">kg</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Your Ideal Weight</h3>
+                    <div class="result-item">
+                        <span class="result-label">Ideal Weight</span>
+                        <span class="result-value">${adjustedWeight.toFixed(1)} kg</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Healthy Weight Range</span>
+                        <span class="result-value">${minWeight.toFixed(1)} - ${maxWeight.toFixed(1)} kg</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Gender</span>
+                        <span class="result-value">${gender === 'male' ? 'Male' : 'Female'}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Body Frame</span>
+                        <span class="result-value">${frame.charAt(0).toUpperCase() + frame.slice(1)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Height</span>
+                        <span class="result-value">${height} cm</span>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Formula Used:</strong> Robinson Formula<br>
+                    ${gender === 'male' ? 
+                        'Ideal Weight = 52 kg + 1.9 kg for each inch over 5 feet' : 
+                        'Ideal Weight = 49 kg + 1.7 kg for each inch over 5 feet'}
+                </div>
+                
+                <div class="info-box">
+                    <h3>About Ideal Weight</h3>
+                    <p>The ideal weight calculation is based on the Robinson formula, which is considered more accurate than the older Devine formula. It's adjusted for body frame size to provide a more personalized estimate.</p>
+                </div>
+                
+                <div class="disclaimer">
+                    <h4>Important Note</h4>
+                    <p>Ideal weight is just an estimate. Many factors like muscle mass, bone density, and body composition can affect what's healthy for you. Focus on a healthy lifestyle rather than a specific number on the scale.</p>
+                </div>
+                
+                <div class="copy-share">
+                    <button class="btn btn-secondary" onclick="copyResult('My ideal weight is ${adjustedWeight.toFixed(1)} kg')">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('weight-result').innerHTML = html;
+        }
+
+        // Water Intake Calculator - Using more precise calculation
+        function calculateWaterIntake() {
+            const isWeightValid = validateInput('water-weight', 'water-weight-error', 20, 300);
+            
+            if (!isWeightValid) {
+                showToast('Please fix the errors in the form');
+                return;
+            }
+            
+            const weight = parseFloat(document.getElementById('water-weight').value);
+            const activity = document.getElementById('water-activity').value;
+            const climate = document.getElementById('water-climate').value;
+            
+            // Base water intake: 30-35 ml per kg of body weight (more precise range)
+            let waterIntake = weight * 32.5; // Average of 30-35 ml
+            
+            // Adjust for activity level
+            let activityAdjustment = 0;
+            switch(activity) {
+                case 'light':
+                    activityAdjustment = 400; // ml
+                    break;
+                case 'moderate':
+                    activityAdjustment = 800; // ml
+                    break;
+                case 'active':
+                    activityAdjustment = 1200; // ml
+                    break;
+                case 'very-active':
+                    activityAdjustment = 1600; // ml
+                    break;
+                default:
+                    // sedentary - no adjustment
+                    break;
+            }
+            
+            // Adjust for climate
+            let climateAdjustment = 0;
+            if (climate === 'hot') {
+                climateAdjustment = 500; // ml
+            } else if (climate === 'cold') {
+                climateAdjustment = -200; // ml
+            }
+            
+            const totalWaterIntake = waterIntake + activityAdjustment + climateAdjustment;
+            
+            // Convert to glasses (250ml per glass)
+            const glasses = Math.round(totalWaterIntake / 250);
+            
+            // Calculate water intake in liters
+            const liters = totalWaterIntake / 1000;
+            
+            let html = `
+                <div class="result-display">
+                    <div class="result-unit">
+                        <span class="result-number">${glasses}</span>
+                        <span class="result-label-text">Glasses</span>
+                    </div>
+                    <div class="result-unit">
+                        <span class="result-number">${liters.toFixed(1)}</span>
+                        <span class="result-label-text">Liters</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Your Daily Water Intake</h3>
+                    <div class="result-item">
+                        <span class="result-label">Base Intake</span>
+                        <span class="result-value">${waterIntake.toFixed(0)} ml</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Activity Adjustment</span>
+                        <span class="result-value">${activityAdjustment > 0 ? '+' : ''}${activityAdjustment} ml</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Climate Adjustment</span>
+                        <span class="result-value">${climateAdjustment > 0 ? '+' : ''}${climateAdjustment} ml</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Intake</span>
+                        <span class="result-value">${totalWaterIntake.toFixed(0)} ml</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">In Glasses</span>
+                        <span class="result-value">${glasses} glasses (250ml each)</span>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Formula Used:</strong> Base intake of 32.5ml per kg of body weight<br>
+                    Plus adjustments for activity level and climate conditions
+                </div>
+                
+                <div class="info-box">
+                    <h3>Why Stay Hydrated?</h3>
+                    <p>Proper hydration is essential for maintaining body temperature, lubricating joints, delivering nutrients to cells, and improving sleep quality, cognition, and mood.</p>
+                </div>
+                
+                <div class="disclaimer">
+                    <h4>Important Note</h4>
+                    <p>Individual water needs can vary based on health conditions, medications, and other factors. Listen to your body and drink when you feel thirsty. Consult with a healthcare professional if you have specific health concerns.</p>
+                </div>
+                
+                <div class="copy-share">
+                    <button class="btn btn-secondary" onclick="copyResult('I should drink ${glasses} glasses of water daily')">
+                        <i class="fas fa-copy"></i> Copy Result
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('water-result').innerHTML = html;
+        }
+
+        // Copy result to clipboard
+        function copyResult(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Result copied to clipboard!');
+            });
+        }
+
+        // Share result
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Health Calculator Results',
+                    text: 'Check out my health metrics!',
+                    url: window.location.href
+                });
+            } else {
+                showToast('Sharing not supported on this device');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto-fill BMR from previous calculation
+        document.getElementById('calorie-bmr').addEventListener('focus', function() {
+            const storedBMR = localStorage.getItem('bmr');
+            if (storedBMR && !this.value) {
+                this.value = storedBMR;
+            }
+        });
+    </script>
+</body>
+</html>
