@@ -1,38 +1,108 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
-<url>
-<loc>https://www.rickymitsuba.in/</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/about%20us%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/contact%20us%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/privacy%20policy%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/terms%20and%20conditions%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/disclaimer%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.rickymitsuba.in/tutorials%20page</loc>
-<lastmod>2025-10-08T10:15:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+    <url>
+        <loc>https://www.rickymitsuba.in/</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/about%20us%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/contact%20us%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/privacy%20policy%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/terms%20and%20conditions%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/disclaimer%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/tutorials%20page</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/age%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/love%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/zodiac%20sign%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/health%20and%20fitness%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/emi%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/sip%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/unit%20converter.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/fixed%20deposit%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/recurring%20deposit%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/work%20in%20progress.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.50</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/simple%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/percentage%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://www.rickymitsuba.in/advance%20scientific%20calculator.html</loc>
+        <lastmod>2025-10-08T06:48:08+00:00</lastmod>
+        <priority>0.90</priority>
+    </url>
 </urlset>
