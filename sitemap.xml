@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Pages -->
+  <url>
+    <loc>https://rickymitsuba.in/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://rickymitsuba.in/About Us Page.html</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://rickymitsuba.in/Contact Us Page.html</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Other Pages -->
+  <url><loc>https://rickymitsuba.in/Advance Scientific Calculator.html</loc><priority>0.85</priority></url>
+  <url><loc>https://rickymitsuba.in/Age Calculator.HTML</loc><priority>0.85</priority></url>
+  <url><loc>https://rickymitsuba.in/Disclaimer Page.html</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Emi Calculator.html</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Fixed Deposit Calculator.html</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Health & Fitness Calculator.html</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Love Calculator.HTML</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Percentage Calculator.html</loc><priority>0.80</priority></url>
+  <url><loc>https://rickymitsuba.in/Privacy Policy Page.html</loc><priority>0.75</priority></url>
+  <url><loc>https://rickymitsuba.in/Recurring Deposit Calculator.html</loc><priority>0.75</priority></url>
+  <url><loc>https://rickymitsuba.in/SIP Calculator.html</loc><priority>0.75</priority></url>
+  <url><loc>https://rickymitsuba.in/Simple Calculator.html</loc><priority>0.75</priority></url>
+  <url><loc>https://rickymitsuba.in/Terms & Conditions Page.html</loc><priority>0.70</priority></url>
+  <url><loc>https://rickymitsuba.in/Tutorials Page.html</loc><priority>0.70</priority></url>
+  <url><loc>https://rickymitsuba.in/Unit Converter.html</loc><priority>0.70</priority></url>
+  <url><loc>https://rickymitsuba.in/Work in Progress.html</loc><priority>0.65</priority></url>
+  <url><loc>https://rickymitsuba.in/Zodiac Sign Calculator.HTML</loc><priority>0.65</priority></url>
+
+</urlset>
