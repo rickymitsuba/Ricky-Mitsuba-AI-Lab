@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta name="google-site-verification" content="7UNWu5emljuGD-uUBqC2xWmn7uxtsFFOYjfrEa_ahUU" />
-
-
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9605719869233732"
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9605719869233732"
      crossorigin="anonymous"></script>
 
-<!-- Standard browser favicons -->
-<link rel="icon" type="image/png" href="favicon-32x32.png">
+     <link rel="icon" type="image/png" href="favicon-32x32.png">
 
-
-    <!-- Google tag (gtag.js) -->
+         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -22,43 +16,10 @@
 
   gtag('config', 'G-4TBHH4Z8MW');
 </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricky Mitsuba AI Lab</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>The Dark Journey</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        :root {
-            --primary-color: #6B46C1;
-            --secondary-color: #4C1D95;
-            --accent-color: #8B5CF6;
-            --success-color: #10B981;
-            --warning-color: #F59E0B;
-            --danger-color: #EF4444;
-            --dark-color: #0F172A;
-            --light-color: #F8FAFC;
-            --text-color: #334155;
-            --text-light: #64748B;
-            --border-color: #E2E8F0;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F9FAFB;
-            --bg-tertiary: #F3F4F6;
-            --border-radius: 16px;
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        [data-theme="dark"] {
-            --text-color: #CBD5E1;
-            --text-light: #94A3B8;
-            --border-color: rgba(139, 92, 246, 0.3);
-            --bg-primary: rgba(15, 23, 42, 0.9);
-            --bg-secondary: rgba(30, 41, 59, 0.9);
-            --bg-tertiary: rgba(51, 65, 85, 0.9);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -66,1411 +27,1846 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            background-color: #000;
+            color: #fff;
+            height: 100vh;
             position: relative;
-            transition: var(--transition-smooth);
-            min-height: 100vh;
+            cursor: none; /* Initially disable cursor */
+        }
+
+        body.cursor-enabled {
+            cursor: auto; /* Enable cursor after name input */
+        }
+
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s ease;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        .message {
+            font-size: 2.5rem;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            text-align: center;
+            max-width: 80%;
+            z-index: 10;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .message.visible {
+            opacity: 1;
+        }
+
+        .horizontal-message {
+            font-size: 2.5rem;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            text-align: center;
+            max-width: 80%;
+            z-index: 10;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .horizontal-message.visible {
+            opacity: 1;
+        }
+
+        .eyes-container {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            margin-bottom: 2rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .eyes-container.visible {
+            opacity: 1;
+        }
+
+        .eye {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .eye.left {
+            left: 0;
+        }
+
+        .eye.right {
+            right: 0;
+        }
+
+        .pupil {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .input-container {
             display: flex;
             flex-direction: column;
-        }
-
-        /* Animated background for light theme */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-            transition: var(--transition-smooth);
-        }
-
-        /* Dark theme background */
-        [data-theme="dark"] body::before {
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
-        }
-
-        /* Animated stars for dark theme */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+            align-items: center;
             opacity: 0;
-            transition: var(--transition-smooth);
+            transition: opacity 1.5s ease;
+            z-index: 10;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        [data-theme="dark"] .stars {
+        .input-container.visible {
             opacity: 1;
         }
 
-        .star {
-            position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle 4s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--bg-primary);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            animation: slideDown 0.8s ease-out;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #fff;
+            color: #fff;
             font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding: 0.5rem;
+            text-align: center;
+            outline: none;
+            font-family: 'Courier New', monospace;
+            width: 250px;
+            transition: all 0.3s ease;
         }
 
-        /* Disable logo clicks on mobile */
-        .logo.mobile-disabled {
-            pointer-events: none;
-            cursor: default;
+        input:focus {
+            border-bottom-color: #aaa;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 10px;
-            align-items: center;
+        input.error {
+            border-bottom-color: #ff0000;
+            animation: shake 0.5s ease-in-out;
         }
 
-        .nav-item {
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        button {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            z-index: 20;
             position: relative;
+            min-width: 100px;
         }
 
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: var(--transition-smooth);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-link:hover {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--accent-color);
+        button:hover {
+            background: #fff;
+            color: #000;
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
         }
 
-        .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+        button:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-size: 1.2rem;
-            margin-left: 10px;
-        }
-
-        .theme-toggle:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: rotate(180deg);
-        }
-
-        /* Mobile Menu Toggle - Enhanced for better touch response */
-        .mobile-menu-toggle {
-            display: none;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            width: 55px;
-            height: 55px;
-            border-radius: 8px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-            z-index: 1001; /* Higher z-index to ensure it's always on top */
-            flex-shrink: 0;
-            touch-action: manipulation; /* Improves touch responsiveness */
-        }
-
-        .mobile-menu-toggle:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .mobile-menu-toggle:active {
-            transform: scale(0.95);
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background-color: currentColor;
-            margin: 6px auto;
-            transition: var(--transition-smooth);
-            border-radius: 3px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        /* Dropdown */
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--bg-primary);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: var(--transition-smooth);
-            margin-top: 5px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
+        button:active {
             transform: translateY(0);
         }
 
-        .dropdown-item {
-            color: var(--text-color);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            transition: var(--transition-smooth);
-            border-radius: 8px;
-            margin: 5px;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        .dropdown-item i {
-            margin-right: 10px;
-            width: 20px;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px 20px;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 0;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        /* Calculator Cards */
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .calculator-card {
-            background: var(--bg-secondary);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            transition: var(--transition-smooth);
-            animation: scaleIn 0.6s ease-out;
-            animation-fill-mode: both;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .calculator-card:nth-child(1) { animation-delay: 0.1s; }
-        .calculator-card:nth-child(2) { animation-delay: 0.2s; }
-        .calculator-card:nth-child(3) { animation-delay: 0.3s; }
-        .calculator-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .calculator-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
-            border-color: var(--accent-color);
-        }
-
-        .calculator-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        .calculator-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-color);
-        }
-
-        .calculator-description {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .calculator-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
+        .age-confirm-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            margin-top: 1.5rem;
             cursor: pointer;
-            transition: var(--transition-bounce);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            z-index: 20;
+            position: relative;
+            min-width: 120px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        .calculator-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+        .age-confirm-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* Calculator Content */
-        .calculator-content {
+        .age-confirm-btn:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .age-confirm-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .red-light {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff0000, #8b0000);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 20px 10px #ff0000;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .red-light.visible {
+            opacity: 1;
+            animation: moveRight 5s linear forwards;
+        }
+
+        @keyframes moveRight {
+            0% {
+                left: -20px;
+            }
+            100% {
+                left: calc(100% + 20px);
+            }
+        }
+
+        .split-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: none;
-            background: var(--bg-secondary);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 40px;
-            margin-top: 30px;
-            border: 1px solid var(--border-color);
-            animation: slideUp 0.5s ease-out;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 2s ease;
         }
 
-        .calculator-content.active {
-            display: block;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .calculator-header {
+        .split-screen.active {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            opacity: 1;
         }
 
-        .calculator-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .blue-half {
+            height: 50%;
+            background-color: #001a33;
+            position: relative;
+            overflow: hidden;
         }
 
-        .close-btn {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--danger-color);
-            color: var(--danger-color);
+        .green-half {
+            height: 50%;
+            background-color: #003300;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .cloud.visible {
+            opacity: 0.7;
+        }
+
+        .cloud:before {
+            content: '';
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 20%;
+            left: 20%;
+        }
+
+        .cloud1:before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud2 {
+            width: 80px;
+            height: 35px;
+            top: 30%;
+            right: 30%;
+        }
+
+        .cloud2:before {
+            width: 60px;
+            height: 40px;
+            top: -20px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 90px;
+            height: 30px;
+            top: 15%;
+            left: 50%;
+        }
+
+        .cloud3:before {
             width: 40px;
             height: 40px;
+            top: -20px;
+            left: 25px;
+        }
+
+        .valley {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background-color: #000;
+            opacity: 0;
+            transition: opacity 2s ease;
+            clip-path: polygon(0 50%, 15% 30%, 30% 40%, 45% 20%, 60% 35%, 75% 25%, 90% 40%, 100% 30%, 100% 100%, 0 100%);
+        }
+
+        .valley.visible {
+            opacity: 1;
+        }
+
+        .human-figure {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            bottom: 50%;
+            left: 10%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            cursor: pointer;
+        }
+
+        .human-figure.visible {
+            opacity: 1;
+            animation: walk 8s linear forwards;
+        }
+
+        .human-figure.falling {
+            animation: fall 2s ease-in forwards;
+        }
+
+        @keyframes walk {
+            0% {
+                left: 10%;
+                bottom: 50%;
+            }
+            90% {
+                left: 85%;
+                bottom: 50%;
+            }
+            100% {
+                left: 90%;
+                bottom: 150px;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(300px) rotate(180deg);
+            }
+        }
+
+        .human-head {
+            width: 15px;
+            height: 15px;
+            border: 2px solid #fff;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-size: 1.2rem;
-        }
-
-        .close-btn:hover {
-            background: var(--danger-color);
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        /* Placeholder Content */
-        .placeholder-content {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .placeholder-icon {
-            font-size: 4rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .placeholder-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-color);
-        }
-
-        .placeholder-description {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .placeholder-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-bounce);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .placeholder-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-tertiary);
-            border-top: 1px solid var(--border-color);
-            padding: 30px 0;
-            margin-top: auto;
-            transition: var(--transition-smooth);
-        }
-
-        .footer-content {
-            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+        }
+
+        .human-body {
+            width: 3px;
+            height: 25px;
+            background: #fff;
+            margin: 0 auto;
+        }
+
+        .human-legs {
+            display: flex;
+            justify-content: center;
+        }
+
+        .human-leg {
+            width: 2px;
+            height: 15px;
+            background: #fff;
+            margin: 0 2px;
+        }
+
+        .human-arms {
+            display: flex;
+            justify-content: center;
+            height: 10px;
+            position: relative;
+            top: -5px;
+        }
+
+        .human-arm {
+            width: 10px;
+            height: 2px;
+            background: #fff;
+            margin: 0 1px;
+        }
+
+        .final-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            max-width: 80%;
+        }
+
+        .final-message.visible {
+            opacity: 1;
+        }
+
+        .age-input-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 10;
+        }
+
+        .age-input-container.visible {
+            opacity: 1;
+        }
+
+        .sorry-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            z-index: 20;
+        }
+
+        .sorry-container.visible {
+            opacity: 1;
+        }
+
+        .sorry-text {
+            font-size: 2rem;
+            margin: 10px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .sorry-text.falling {
+            animation: fallToBottom 2s ease forwards;
+        }
+
+        @keyframes fallToBottom {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .dark-conversation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .dark-conversation.visible {
+            opacity: 1;
+        }
+
+        .dark-message {
+            margin-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 1s ease;
+            font-size: 2rem;
             text-align: center;
         }
 
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
+        .dark-message.visible {
+            opacity: 1;
+        }
+
+        .dark-message.left {
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        .dark-message.right {
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .choices-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .choices-container.visible {
+            opacity: 1;
+        }
+
+        .horizontal-choices {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .choice {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .choice:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .choice:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .choice:active {
+            transform: translateY(0);
+        }
+
+        .choice.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .choice.disabled:hover {
+            background: transparent;
+            color: #fff;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .light-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            color: #000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            z-index: 15;
+        }
+
+        .light-screen.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .light-message {
+            font-size: 2rem;
+            text-align: center;
+            max-width: 80%;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .light-message.visible {
+            opacity: 1;
+        }
+
+        .light-choices {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .light-choice {
+            background: transparent;
+            border: 2px solid #000;
+            color: #000;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .light-choice:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-choice:focus {
+            outline: 2px solid #000;
+            outline-offset: 2px;
+        }
+
+        .light-choice:active {
+            transform: translateY(0);
+        }
+
+        .light-choice.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .light-choice.disabled:hover {
+            background: transparent;
+            color: #000;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .split-light-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            opacity: 0;
+            z-index: 20;
+        }
+
+        .split-light-screen.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .split-light-left {
+            width: 50%;
+            background-color: #fff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .split-light-right {
+            width: 50%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform 5s ease-in-out;
+            z-index: 10;
+        }
+
+        .dark-overlay.active {
+            transform: scaleX(1);
+        }
+
+        .disruption {
+            animation: disrupt 0.2s infinite;
+        }
+
+        @keyframes disrupt {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .round-button {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            animation: moveButton 3s infinite alternate;
+        }
+
+        @keyframes moveButton {
+            0% {
+                top: 20%;
+                left: 20%;
+            }
+            25% {
+                top: 20%;
+                left: 70%;
+            }
+            50% {
+                top: 70%;
+                left: 70%;
+            }
+            75% {
+                top: 70%;
+                left: 20%;
+            }
+            100% {
+                top: 20%;
+                left: 20%;
+            }
+        }
+
+        .huge-button {
+            width: 90%;
+            height: 90%;
+            font-size: 3rem;
+        }
+
+        .spinning {
+            animation: spin 0.2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .final-choices {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 30;
+        }
+
+        .final-choices.visible {
+            opacity: 1;
+        }
+
+        .final-choice {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
             font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #8B5CF6, #3B82F6, #EC4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            display: inline-block;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .final-choice:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .final-choice:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .final-choice:active {
+            transform: translateY(0);
+        }
+
+        .result-message {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            max-width: 80%;
+            z-index: 40;
+        }
+
+        .result-message.visible {
+            opacity: 1;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .footer.visible {
+            opacity: 1;
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            gap: 2rem;
         }
 
         .footer-link {
-            color: var(--text-light);
+            color: #fff;
             text-decoration: none;
-            transition: var(--transition-smooth);
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            color: var(--accent-color);
+            color: #aaa;
         }
 
-        .copyright {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--bg-tertiary);
-            color: var(--text-color);
-            padding: 18px 25px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transform: translateY(100px) rotateX(90deg);
-            opacity: 0;
-            transition: var(--transition-bounce);
-            z-index: 2000;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-        }
-
-        .toast.show {
-            transform: translateY(0) rotateX(0);
-            opacity: 1;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 992px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--bg-primary);
-                backdrop-filter: blur(20px);
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .message {
+                font-size: 1.8rem;
+            }
+            
+            .final-message {
+                font-size: 1.5rem;
+            }
+            
+            .light-message {
+                font-size: 1.5rem;
+            }
+            
+            .dark-message {
+                font-size: 1.5rem;
+            }
+            
+            .choice, .light-choice {
+                font-size: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+            
+            input {
+                width: 200px;
+                font-size: 1.2rem;
+            }
+            
+            .horizontal-choices {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 20px;
-                gap: 5px;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition-smooth);
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                border-bottom: 1px solid var(--border-color);
-                z-index: 999;
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
+                gap: 1rem;
             }
-
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
+            
+            .light-choices {
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                gap: 1rem;
             }
 
-            .dropdown {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background: transparent;
-                border: none;
-                margin-top: 10px;
-                margin-left: 20px;
-                width: calc(100% - 20px);
-            }
-
-            .nav-item {
-                width: 100%;
-            }
-
-            .nav-link {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .calculator-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
+            .final-choices {
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .footer-links {
                 flex-direction: column;
-                gap: 10px;
+                gap: 0.5rem;
+                text-align: center;
             }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .calculator-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .calculator-card {
-                padding: 20px;
-            }
-
-            .calculator-content {
-                padding: 20px;
-            }
-
-            .nav-container {
-                padding: 0 15px;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
     </style>
 </head>
-<body data-theme="light">
-    <!-- Animated stars background -->
-    <div class="stars" id="stars"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo" id="logo">
-                <i class="fas fa-tools"></i>
-                Ricky Mitsuba AI Studio
+<body>
+    <div class="screen active" id="blackScreen">
+        <div class="message" id="message1">Hello....</div>
+        <div class="message" id="message2">How Are You...</div>
+        <div class="eyes-container" id="eyesContainer">
+            <div class="eye left">
+                <div class="pupil"></div>
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" onclick="showHome()">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-user"></i> Personal Calculator
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item" onclick="showCalculator('age')">
-                            <i class="fas fa-birthday-cake"></i> Age Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('love')">
-                            <i class="fas fa-heart"></i> Love Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('zodiac')">
-                            <i class="fas fa-star"></i> Zodiac Sign Calculator
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-heartbeat"></i> Health Calculator
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item" onclick="showCalculator('bmr')">
-                            <i class="fas fa-fire"></i> BMR Calculator
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-chart-line"></i> Finance Calculator
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item" onclick="showCalculator('emi')">
-                            <i class="fas fa-home"></i> EMI Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('sip')">
-                            <i class="fas fa-chart-line"></i> SIP Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('fd')">
-                            <i class="fas fa-piggy-bank"></i> FD Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('rd')">
-                            <i class="fas fa-coins"></i> RD Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('tax')">
-                            <i class="fas fa-file-invoice-dollar"></i> Income Tax Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('currency')">
-                            <i class="fas fa-exchange-alt"></i> Currency Converter
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-graduation-cap"></i> Study Tools
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item" onclick="showCalculator('simple')">
-                            <i class="fas fa-calculator"></i> Simple Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('percentage')">
-                            <i class="fas fa-percentage"></i> Percentage Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('scientific')">
-                            <i class="fas fa-flask"></i> Scientific Calculator
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="showCalculator('unit')">
-                            <i class="fas fa-ruler"></i> Unit Converter
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-shield-alt"></i> Policies
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="About Us Page.html" class="dropdown-item" onclick="showPolicy('about')">
-                            <i class="fas fa-info-circle"></i> About Us
-                        </a>
-                        <a href="Contact Us Page.html" class="dropdown-item" onclick="showPolicy('contact')">
-                            <i class="fas fa-envelope"></i> Contact Us
-                        </a>
-                        <a href="Privacy Policy Page.html" class="dropdown-item" onclick="showPolicy('privacy')">
-                            <i class="fas fa-lock"></i> Privacy Policy
-                        </a>
-                        <a href="Terms and Conditions Page.html" class="dropdown-item" onclick="showPolicy('terms')">
-                            <i class="fas fa-file-contract"></i> Terms & Conditions
-                        </a>
-                        <a href="Disclaimer Page.html" class="dropdown-item" onclick="showPolicy('disclaimer')">
-                            <i class="fas fa-exclamation-triangle"></i> Disclaimer
-                        </a>
-                        <a href="Tutorials Page.html" class="dropdown-item" onclick="showPolicy('tutorials')">
-                            <i class="fas fa-book"></i> Tutorials
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
-                        <i class="fas fa-moon" id="theme-icon"></i>
-                    </button>
-                </li>
-            </ul>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero" id="home-section">
-            <h1>Universal Tools at Fingertip</h1>
-            <p>Your one-stop destination for all calculation needs - from personal to finance, we've got you covered!</p>
-            
-            <!-- Calculator Cards -->
-            <div class="calculator-grid">
-                <div class="calculator-card">
-                    <div class="calculator-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3 class="calculator-title">Personal Calculators</h3>
-                    <p class="calculator-description">Calculate your age, check love compatibility, and discover your zodiac sign with our personal calculators.</p>
-                    <button class="calculator-btn" onclick="showCalculator('age')">
-                        <i class="fas fa-calculator"></i> Explore Personal
-                    </button>
-                </div>
-
-                <div class="calculator-card">
-                    <div class="calculator-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3 class="calculator-title">Health Calculators</h3>
-                    <p class="calculator-description">Monitor your health metrics with our BMR calculator and stay on top of your fitness goals.</p>
-                    <button class="calculator-btn" onclick="showCalculator('bmr')">
-                        <i class="fas fa-heartbeat"></i> Check Health
-                    </button>
-                </div>
-
-                <div class="calculator-card">
-                    <div class="calculator-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="calculator-title">Finance Calculators</h3>
-                    <p class="calculator-description">Plan your finances with EMI, SIP, FD, RD calculators, tax planner, and currency converter.</p>
-                    <button class="calculator-btn" onclick="showCalculator('emi')">
-                        <i class="fas fa-dollar-sign"></i> Manage Finance
-                    </button>
-                </div>
-
-                <div class="calculator-card">
-                    <div class="calculator-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="calculator-title">Study Tools</h3>
-                    <p class="calculator-description">Enhance your learning with simple calculator, percentage calculator, scientific calculator, and unit converter.</p>
-                    <button class="calculator-btn" onclick="showCalculator('simple')">
-                        <i class="fas fa-calculator"></i> Study Tools
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Calculator Content Sections (Placeholders) -->
-        <!-- Age Calculator -->
-        <div class="calculator-content" id="age-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-birthday-cake"></i> Age Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-birthday-cake"></i>
-                </div>
-                <h3 class="placeholder-title">Age Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Age Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='age calculator.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
+            <div class="eye right">
+                <div class="pupil"></div>
             </div>
         </div>
+        <div class="message" id="question">What's Your Name?</div>
+        <div class="input-container" id="inputContainer1">
+            <input type="text" id="nameInput1" placeholder="Your name..." autocomplete="off">
+        </div>
+        <div class="message" id="message3">Did I Take It Back Soon?... Write Again.</div>
+        <div class="input-container" id="inputContainer2">
+            <input type="text" id="nameInput2" placeholder="Your name..." autocomplete="off">
+            <button id="confirmBtn">Confirm</button>
+        </div>
+        <div class="message" id="message4"></div>
+        <div class="message" id="message5"></div>
+        <div class="message" id="message6"></div>
+        <div class="message" id="message7"></div>
+        <div class="message" id="message8">follow me.</div>
+        <div class="red-light" id="redLight"></div>
+    </div>
 
-        <!-- Love Calculator -->
-        <div class="calculator-content" id="love-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-heart"></i> Love Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-heart"></i>
+    <div class="split-screen" id="splitScreen">
+        <div class="blue-half">
+            <div class="cloud cloud1" id="cloud1"></div>
+            <div class="cloud cloud2" id="cloud2"></div>
+            <div class="cloud cloud3" id="cloud3"></div>
+        </div>
+        <div class="green-half" id="greenHalf">
+            <div class="valley" id="valley"></div>
+            <div class="human-figure" id="humanFigure">
+                <div class="human-head"></div>
+                <div class="human-arms">
+                    <div class="human-arm"></div>
+                    <div class="human-arm"></div>
                 </div>
-                <h3 class="placeholder-title">Love Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Love Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='love calculator.html'">
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
+                <div class="human-body"></div>
+                <div class="human-legs">
+                    <div class="human-leg"></div>
+                    <div class="human-leg"></div>
+                </div>
             </div>
         </div>
+        <div class="final-message" id="finalMessage">Why Did You Follow Me?</div>
+    </div>
 
-        <!-- Zodiac Sign Calculator -->
-        <div class="calculator-content" id="zodiac-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-star"></i> Zodiac Sign Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3 class="placeholder-title">Zodiac Sign Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Zodiac Sign Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='zodiac sign calculator.html'">
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+    <div class="screen" id="ageScreen">
+        <div class="final-message" id="ageQuestion">Tell Me Your Age Because...This Journey Isn't For Everyone...</div>
+        <div class="age-input-container" id="ageInputContainer">
+            <input type="number" id="ageInput" placeholder="Your age..." autocomplete="off">
+            <button id="ageConfirmBtn" class="age-confirm-btn">Confirm</button>
         </div>
+    </div>
 
-        <!-- BMR Calculator -->
-        <div class="calculator-content" id="bmr-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-fire"></i> BMR Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-fire"></i>
-                </div>
-                <h3 class="placeholder-title">BMR Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your BMR Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='health and fitness calculator.html'">
+    <div class="screen" id="sorryScreen">
+        <div class="final-message" id="sorryMessage">Sorry...</div>
+        <div class="sorry-container" id="sorryContainer"></div>
+    </div>
 
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+    <div class="screen" id="darkConversationScreen">
+        <div class="dark-conversation" id="darkConversation">
+            <div class="dark-message" id="darkMessage1">Are You Thinking The Same Thing Dark?</div>
+            <div class="dark-message" id="darkMessage2">Yes Dark, I Am Thinking About Trapping Them In This Darkness Of Despair.</div>
+            <div class="dark-message" id="darkMessage3">But How Will You Do That?</div>
+            <div class="dark-message" id="darkMessage4">Shut Up And Watch, Dark.</div>
+            <div class="dark-message" id="darkMessage5">Okk...</div>
         </div>
+    </div>
 
-        <!-- EMI Calculator -->
-        <div class="calculator-content" id="emi-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-home"></i> EMI Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-home"></i>
-                </div>
-                <h3 class="placeholder-title">EMI Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your EMI Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='emi calculator.html'">
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+    <div class="choices-container" id="choicesContainer">
+        <div class="horizontal-message" id="choiceQuestion">Do You Want To Continue This?</div>
+        <div class="horizontal-choices">
+            <button class="choice" id="choice1" tabindex="0">Yes</button>
+            <button class="choice" id="choice2" tabindex="0">Yes</button>
         </div>
+    </div>
 
-        <!-- SIP Calculator -->
-        <div class="calculator-content" id="sip-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-chart-line"></i> SIP Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="placeholder-title">SIP Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your SIP Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='sip calculator.html'">
+    <div class="screen" id="darkResponseScreen">
+        <div class="final-message" id="darkResponse1">Were You Looking For Option 'No'?...</div>
+        <div class="final-message" id="darkResponse2">Why?... Didn't You Agreed To Follow Me Rest Of Your Life?</div>
+    </div>
 
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+    <div class="light-screen" id="lightScreen">
+        <div class="light-message" id="lightMessage1">Don't Fall Into His Trap, Please Go Back..</div>
+        <div class="light-message" id="lightMessage2">Pleasee......</div>
+        <div class="light-message" id="lightMessage3">Do You...Do You Need, 'No' Button? .... I-Iwilll Give You...</div>
+        <div class="light-message" id="lightMessage4">Here...</div>
+        <div class="light-choices" id="lightChoices">
+            <button class="light-choice" id="lightChoice1" tabindex="0">Yes</button>
+            <button class="light-choice" id="lightChoice2" tabindex="0">No</button>
         </div>
+        <div class="light-message" id="lightMessage5">What Happened? Hurry Up And Save Yourself <span id="userNameInLight"></span></div>
+    </div>
 
-        <!-- FD Calculator -->
-        <div class="calculator-content" id="fd-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-piggy-bank"></i> FD Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-piggy-bank"></i>
-                </div>
-                <h3 class="placeholder-title">FD Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your FD Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='fd calculator.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+    <div class="split-light-screen" id="splitLightScreen">
+        <div class="split-light-left">
+            <div class="light-message" id="finalLightMessage">I Cannot Save You Anymore...He is Coming... You Have To Run... You Have To Live For Us...</div>
+            <div class="dark-overlay" id="darkOverlay"></div>
         </div>
-
-        <!-- RD Calculator -->
-        <div class="calculator-content" id="rd-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-coins"></i> RD Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-coins"></i>
-                </div>
-                <h3 class="placeholder-title">RD Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your RD Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='recurring deposit calculator.html'">
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+        <div class="split-light-right">
+            <div class="light-message" id="finalDarkMessage">If You Die, Our Sacrifices Will be in Vain. You Will Drown Into The Depth of The Darkness</div>
         </div>
-
-        <!-- Income Tax Calculator -->
-        <div class="calculator-content" id="tax-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-file-invoice-dollar"></i> Income Tax Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
-                <h3 class="placeholder-title">Income Tax Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Income Tax Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='work in progress.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
+        <div class="final-choices" id="finalChoices">
+            <button class="final-choice" id="stayChoice" tabindex="0">Stay</button>
+            <button class="final-choice" id="leaveChoice" tabindex="0">Leave</button>
         </div>
-
-        <!-- Currency Converter -->
-        <div class="calculator-content" id="currency-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-exchange-alt"></i> Currency Converter</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-exchange-alt"></i>
-                </div>
-                <h3 class="placeholder-title">Currency Converter</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Currency Converter. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='work in progress.html'">
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
-        </div>
-
-        <!-- Simple Calculator -->
-        <div class="calculator-content" id="simple-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-calculator"></i> Simple Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <h3 class="placeholder-title">Simple Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Simple Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='simple calculator.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
-        </div>
-
-        <!-- Percentage Calculator -->
-        <div class="calculator-content" id="percentage-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-percentage"></i> Percentage Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-percentage"></i>
-                </div>
-                <h3 class="placeholder-title">Percentage Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Percentage Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='percentage calculator.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
-        </div>
-
-        <!-- Scientific Calculator -->
-        <div class="calculator-content" id="scientific-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-flask"></i> Scientific Calculator</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-flask"></i>
-                </div>
-                <h3 class="placeholder-title">Scientific Calculator</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Scientific Calculator. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='advance scientific calculator.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
-            </div>
-        </div>
-
-        <!-- Unit Converter -->
-        <div class="calculator-content" id="unit-calculator">
-            <div class="calculator-header">
-                <h2><i class="fas fa-ruler"></i> Unit Converter</h2>
-                <button class="close-btn" onclick="closeCalculator()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="placeholder-content">
-                <div class="placeholder-icon">
-                    <i class="fas fa-ruler"></i>
-                </div>
-                <h3 class="placeholder-title">Unit Converter</h3>
-                <p class="placeholder-description">
-                    This is a placeholder for your Unit Converter. You can integrate your own calculator here by replacing this content with your calculator implementation.
-                </p>
-                <button class="placeholder-btn" onclick="window.location.href='unit converter.html'">
-
-                    <i class="fas fa-plug"></i> Connect Calculator
-                </button>
+        <div class="result-message" id="resultMessage"></div>
+        <div class="footer" id="footer">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link" id="aboutLink">About Us</a>
+                <a href="contact.html" class="footer-link" id="contactLink">Contact Us</a>
+                <a href="privacy.html" class="footer-link" id="privacyLink">Privacy Policy</a>
+                <a href="terms.html" class="footer-link" id="termsLink">Terms and Conditions</a>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-tools"></i> Ricky Mitsuba AI Studio
-            </div>
-            <div class="footer-links">
-                <a href="About Us Page.html" class="footer-link" onclick="showPolicy('about')">About Us</a>
-                <a href="Contact Us Page.html" class="footer-link" onclick="showPolicy('contact')">Contact Us</a>
-                <a href="Privacy Policy Page.html" class="footer-link" onclick="showPolicy('privacy')">Privacy Policy</a>
-                <a href="Terms & Conditions Page.html" class="footer-link" onclick="showPolicy('terms')">Terms & Conditions</a>
-                <a href="Disclaimer Page.html" class="footer-link" onclick="showPolicy('disclaimer')">Disclaimer</a>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Ricky Mitsuba AI Studio. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
     <script>
-        // Create animated stars for dark theme
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const starCount = 100;
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const size = Math.random() * 3;
-                const delay = Math.random() * 4;
-                
-                star.style.left = `${left}%`;
-                star.style.top = `${top}%`;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.animationDelay = `${delay}s`;
-                
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Theme Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            
-            const themeIcon = document.getElementById('theme-icon');
-            if (savedTheme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-            }
-        }
-
-        // Check if mobile and adjust navigation
-        function checkMobile() {
-            const isMobile = window.innerWidth <= 992;
-            const logo = document.getElementById('logo');
-            
-            if (isMobile) {
-                logo.classList.add('mobile-disabled');
-            } else {
-                logo.classList.remove('mobile-disabled');
-            }
-        }
-
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('nav-menu');
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            
-            navMenu.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
-        }
-
-        // Show calculator
-        function showCalculator(type) {
-            // Hide all calculators
-            document.querySelectorAll('.calculator-content').forEach(calc => {
-                calc.classList.remove('active');
-            });
-            
-            // Hide home section
-            document.getElementById('home-section').style.display = 'none';
-            
-            // Show selected calculator
-            const calculator = document.getElementById(`${type}-calculator`);
-            if (calculator) {
-                calculator.classList.add('active');
-            }
-            
-            // Close mobile menu if open
-            const navMenu = document.getElementById('nav-menu');
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileToggle.classList.remove('active');
-            }
-            
-            // Update active nav
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-        }
-
-        // Show policy page
-        function showPolicy(type) {
-            // Close mobile menu if open
-            const navMenu = document.getElementById('nav-menu');
-            const mobileToggle = document.getElementById('mobile-menu-toggle');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileToggle.classList.remove('active');
-            }
-            
-            // Show toast notification for now
-            showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} page will be available soon`);
-        }
-
-        // Close calculator
-        function closeCalculator() {
-            // Hide all calculators
-            document.querySelectorAll('.calculator-content').forEach(calc => {
-                calc.classList.remove('active');
-            });
-            
-            // Show home section
-            document.getElementById('home-section').style.display = 'block';
-            
-            // Update active nav
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            document.querySelector('.nav-link').classList.add('active');
-        }
-
-        // Show home
-        function showHome() {
-            closeCalculator();
-        }
-
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            loadTheme();
-            checkMobile();
-        });
+            // Elements
+            const blackScreen = document.getElementById('blackScreen');
+            const message1 = document.getElementById('message1');
+            const message2 = document.getElementById('message2');
+            const eyesContainer = document.getElementById('eyesContainer');
+            const question = document.getElementById('question');
+            const inputContainer1 = document.getElementById('inputContainer1');
+            const nameInput1 = document.getElementById('nameInput1');
+            const message3 = document.getElementById('message3');
+            const inputContainer2 = document.getElementById('inputContainer2');
+            const nameInput2 = document.getElementById('nameInput2');
+            const confirmBtn = document.getElementById('confirmBtn');
+            const message4 = document.getElementById('message4');
+            const message5 = document.getElementById('message5');
+            const message6 = document.getElementById('message6');
+            const message7 = document.getElementById('message7');
+            const message8 = document.getElementById('message8');
+            const redLight = document.getElementById('redLight');
+            const splitScreen = document.getElementById('splitScreen');
+            const cloud1 = document.getElementById('cloud1');
+            const cloud2 = document.getElementById('cloud2');
+            const cloud3 = document.getElementById('cloud3');
+            const greenHalf = document.getElementById('greenHalf');
+            const humanFigure = document.getElementById('humanFigure');
+            const valley = document.getElementById('valley');
+            const finalMessage = document.getElementById('finalMessage');
+            const ageScreen = document.getElementById('ageScreen');
+            const ageQuestion = document.getElementById('ageQuestion');
+            const ageInputContainer = document.getElementById('ageInputContainer');
+            const ageInput = document.getElementById('ageInput');
+            const ageConfirmBtn = document.getElementById('ageConfirmBtn');
+            const sorryScreen = document.getElementById('sorryScreen');
+            const sorryMessage = document.getElementById('sorryMessage');
+            const sorryContainer = document.getElementById('sorryContainer');
+            const darkConversationScreen = document.getElementById('darkConversationScreen');
+            const darkConversation = document.getElementById('darkConversation');
+            const darkMessage1 = document.getElementById('darkMessage1');
+            const darkMessage2 = document.getElementById('darkMessage2');
+            const darkMessage3 = document.getElementById('darkMessage3');
+            const darkMessage4 = document.getElementById('darkMessage4');
+            const darkMessage5 = document.getElementById('darkMessage5');
+            const choicesContainer = document.getElementById('choicesContainer');
+            const choiceQuestion = document.getElementById('choiceQuestion');
+            const choice1 = document.getElementById('choice1');
+            const choice2 = document.getElementById('choice2');
+            const darkResponseScreen = document.getElementById('darkResponseScreen');
+            const darkResponse1 = document.getElementById('darkResponse1');
+            const darkResponse2 = document.getElementById('darkResponse2');
+            const lightScreen = document.getElementById('lightScreen');
+            const lightMessage1 = document.getElementById('lightMessage1');
+            const lightMessage2 = document.getElementById('lightMessage2');
+            const lightMessage3 = document.getElementById('lightMessage3');
+            const lightMessage4 = document.getElementById('lightMessage4');
+            const lightChoices = document.getElementById('lightChoices');
+            const lightChoice1 = document.getElementById('lightChoice1');
+            const lightChoice2 = document.getElementById('lightChoice2');
+            const lightMessage5 = document.getElementById('lightMessage5');
+            const userNameInLight = document.getElementById('userNameInLight');
+            const splitLightScreen = document.getElementById('splitLightScreen');
+            const finalLightMessage = document.getElementById('finalLightMessage');
+            const finalDarkMessage = document.getElementById('finalDarkMessage');
+            const darkOverlay = document.getElementById('darkOverlay');
+            const finalChoices = document.getElementById('finalChoices');
+            const stayChoice = document.getElementById('stayChoice');
+            const leaveChoice = document.getElementById('leaveChoice');
+            const resultMessage = document.getElementById('resultMessage');
+            const footer = document.getElementById('footer');
+            const aboutLink = document.getElementById('aboutLink');
+            const contactLink = document.getElementById('contactLink');
+            const privacyLink = document.getElementById('privacyLink');
+            const termsLink = document.getElementById('termsLink');
+            
+            // State variables
+            let userName = '';
+            let inputTimeout;
+            let age = 0;
+            let isDisrupting = false;
+            let disruptionInterval;
+            let isSpinning = false;
+            let isHuge = false;
+            let choiceMade = false;
+            let lightChoiceMade = false;
+            let sorryAnimationStarted = false;
+            let finalChoiceMade = false;
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            checkMobile();
+            // Helper function to show and hide messages with proper sequencing
+            function showMessage(element, duration, callback) {
+                // First, ensure all other messages are hidden
+                hideAllMessages();
+                
+                // Then show the current message
+                setTimeout(() => {
+                    element.classList.add('visible');
+                    
+                    // After the duration, hide the message and call the callback
+                    setTimeout(() => {
+                        element.classList.remove('visible');
+                        
+                        // Wait for fade out to complete before calling callback
+                        setTimeout(() => {
+                            if (callback) callback();
+                        }, 1500); // Match the transition duration
+                    }, duration);
+                }, 300); // Small delay to ensure previous messages are fully hidden
+            }
+
+            // Helper function to hide all messages
+            function hideAllMessages() {
+                const messages = document.querySelectorAll('.message, .final-message, .light-message, .horizontal-message');
+                messages.forEach(msg => msg.classList.remove('visible'));
+            }
+
+            // Helper function to show element with fade in
+            function showElement(element, callback) {
+                element.classList.add('visible');
+                if (callback) {
+                    setTimeout(callback, 1500); // Wait for fade in to complete
+                }
+            }
+
+            // Helper function to hide element with fade out
+            function hideElement(element, callback) {
+                element.classList.remove('visible');
+                if (callback) {
+                    setTimeout(callback, 1500); // Wait for fade out to complete
+                }
+            }
+
+            // Show first message
+            setTimeout(() => {
+                showMessage(message1, 3000, () => {
+                    showMessage(message2, 4000, () => {
+                        showElement(eyesContainer, () => {
+                            setTimeout(() => {
+                                hideElement(eyesContainer, () => {
+                                    showMessage(question, 4000, () => {
+                                        showElement(inputContainer1, () => {
+                                            nameInput1.focus();
+                                            
+                                            // Auto-hide first input after 8 seconds
+                                            inputTimeout = setTimeout(() => {
+                                                hideElement(inputContainer1, () => {
+                                                    showMessage(message3, 3000, () => {
+                                                        showElement(inputContainer2, () => {
+                                                            nameInput2.focus();
+                                                        });
+                                                    });
+                                                });
+                                            }, 8000);
+                                            
+                                            // Handle first input submission
+                                            nameInput1.addEventListener('input', function() {
+                                                if (this.value.trim() !== '') {
+                                                    clearTimeout(inputTimeout);
+                                                    userName = this.value.trim();
+                                                    hideElement(inputContainer1, () => {
+                                                        showMessage(message3, 3000, () => {
+                                                            showElement(inputContainer2, () => {
+                                                                nameInput2.value = userName;
+                                                                nameInput2.focus();
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            });
+                                        });
+                                    });
+                                });
+                            }, 4000);
+                        });
+                    });
+                });
+            }, 2000);
+
+            // Handle second input submission
+            confirmBtn.addEventListener('click', handleNameConfirmation);
+            nameInput2.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleNameConfirmation();
+                }
+            });
+
+            function handleNameConfirmation() {
+                userName = nameInput2.value.trim();
+                if (userName !== '') {
+                    // Enable cursor after name input
+                    document.body.classList.add('cursor-enabled');
+                    
+                    hideElement(inputContainer2, () => {
+                        message4.textContent = `oh ${userName} is your name....`;
+                        showMessage(message4, 3500, () => {
+                            message5.textContent = 'splendid....';
+                            showMessage(message5, 3000, () => {
+                                message6.textContent = `why are you here ${userName}?`;
+                                showMessage(message6, 4000, () => {
+                                    message7.textContent = 'are you lost?.......';
+                                    showMessage(message7, 4500, () => {
+                                        showMessage(message8, 3000, () => {
+                                            redLight.classList.add('visible');
+                                            setTimeout(() => {
+                                                blackScreen.classList.remove('active');
+                                                splitScreen.classList.add('active');
+                                                
+                                                setTimeout(() => {
+                                                    showElement(cloud1, () => {
+                                                        showElement(cloud2, () => {
+                                                            showElement(cloud3, () => {
+                                                                greenHalf.style.cursor = 'none';
+                                                                showElement(humanFigure, () => {
+                                                                    setTimeout(() => {
+                                                                        showElement(valley, () => {
+                                                                            setTimeout(() => {
+                                                                                humanFigure.classList.add('falling');
+                                                                                
+                                                                                setTimeout(() => {
+                                                                                    showElement(finalMessage, () => {
+                                                                                        setTimeout(() => {
+                                                                                            hideElement(finalMessage, () => {
+                                                                                                splitScreen.classList.remove('active');
+                                                                                                blackScreen.classList.add('active');
+                                                                                                hideAllMessages();
+                                                                                                
+                                                                                                setTimeout(() => {
+                                                                                                    blackScreen.classList.remove('active');
+                                                                                                    ageScreen.classList.add('active');
+                                                                                                    showMessage(ageQuestion, 4000, () => {
+                                                                                                        // Show age input container after the question has fully faded in
+                                                                                                        setTimeout(() => {
+                                                                                                            showElement(ageInputContainer, () => {
+                                                                                                                ageInput.focus();
+                                                                                                                setupAgeInputListeners();
+                                                                                                            });
+                                                                                                        }, 1500);
+                                                                                                    });
+                                                                                                }, 3000);
+                                                                                            });
+                                                                                        }, 4000);
+                                                                                    });
+                                                                                }, 3000);
+                                                                            }, 8000);
+                                                                        });
+                                                                    }, 2000);
+                                                                });
+                                                            }, 3000);
+                                                        });
+                                                    });
+                                                }, 6000);
+                                            }, 2000);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }
+            }
+
+            // Set up age input event listeners
+            function setupAgeInputListeners() {
+                // Remove existing listeners to avoid duplicates
+                ageConfirmBtn.removeEventListener('click', handleAgeConfirmation);
+                ageInput.removeEventListener('keydown', handleAgeInputKeydown);
+                
+                // Add fresh listeners
+                ageConfirmBtn.addEventListener('click', handleAgeConfirmation);
+                ageInput.addEventListener('keydown', handleAgeInputKeydown);
+            }
+
+            // Handle age input keydown
+            function handleAgeInputKeydown(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleAgeConfirmation();
+                }
+            }
+
+            // Handle age input submission
+            function handleAgeConfirmation() {
+                const ageValue = ageInput.value.trim();
+                
+                // Check if age is a valid number
+                if (ageValue === '' || isNaN(ageValue) || parseInt(ageValue) <= 0) {
+                    // Show error message
+                    ageInput.classList.add('error');
+                    ageInput.placeholder = 'Please enter a valid age';
+                    ageInput.value = '';
+                    ageInput.focus();
+                    
+                    // Remove error class after animation
+                    setTimeout(() => {
+                        ageInput.classList.remove('error');
+                    }, 500);
+                    return;
+                }
+                
+                age = parseInt(ageValue);
+                
+                // Handle different age groups
+                if (age < 13) {
+                    // Under 13: button disappears after one click
+                    ageConfirmBtn.style.display = 'none';
+                    proceedWithAge();
+                } else if (age >= 13 && age < 18) {
+                    // 13-18: button spins until clicked again
+                    if (!isSpinning) {
+                        isSpinning = true;
+                        ageConfirmBtn.classList.add('spinning');
+                        ageConfirmBtn.textContent = 'STOP';
+                        
+                        // Change event handler to stop spinning
+                        ageConfirmBtn.removeEventListener('click', handleAgeConfirmation);
+                        ageConfirmBtn.addEventListener('click', stopSpinning);
+                        ageConfirmBtn.addEventListener('keydown', function(event) {
+                            if (event.key === 'Enter') {
+                                event.preventDefault();
+                                stopSpinning();
+                            }
+                        });
+                    }
+                } else {
+                    // Above 18: button gets huge
+                    if (!isHuge) {
+                        isHuge = true;
+                        ageConfirmBtn.classList.add('huge-button');
+                        ageConfirmBtn.textContent = 'CLICK ME';
+                        
+                        // Change event handler to proceed after click
+                        ageConfirmBtn.removeEventListener('click', handleAgeConfirmation);
+                        ageConfirmBtn.addEventListener('click', proceedWithAge);
+                        ageConfirmBtn.addEventListener('keydown', function(event) {
+                            if (event.key === 'Enter') {
+                                event.preventDefault();
+                                proceedWithAge();
+                            }
+                        });
+                    }
+                }
+            }
+            
+            // Stop spinning function for 13-18 age group
+            function stopSpinning() {
+                isSpinning = false;
+                ageConfirmBtn.classList.remove('spinning');
+                ageConfirmBtn.style.display = 'none';
+                proceedWithAge();
+            }
+            
+            // Proceed with age verification
+            function proceedWithAge() {
+                // Hide age input container first
+                hideElement(ageInputContainer, () => {
+                    // Then hide age question
+                    hideElement(ageQuestion, () => {
+                        setTimeout(() => {
+                            ageScreen.classList.remove('active');
+                            ageScreen.style.display = 'none';
+                            sorryScreen.classList.add('active');
+                            sorryScreen.style.display = 'flex';
+                            showElement(sorryMessage, () => {
+                                setTimeout(() => {
+                                    hideElement(sorryMessage, () => {
+                                        // Start the sorry animation
+                                        startSorryAnimation();
+                                    }, 2000); // Increased time to ensure sorry message is fully visible
+                                });
+                            });
+                        }, 2000);
+                    });
+                });
+            }
+
+            // Start the sorry animation
+            function startSorryAnimation() {
+                if (sorryAnimationStarted) return;
+                sorryAnimationStarted = true;
+                
+                // Create the first sorry text
+                const firstSorryText = document.createElement('div');
+                firstSorryText.className = 'sorry-text';
+                firstSorryText.textContent = 'sorry';
+                firstSorryText.style.left = '50%';
+                firstSorryText.style.top = '50%';
+                firstSorryText.style.transform = 'translate(-50%, -50%)';
+                sorryContainer.appendChild(firstSorryText);
+                
+                // Show the first sorry text
+                setTimeout(() => {
+                    firstSorryText.classList.add('visible');
+                    
+                    // After the first sorry text is visible, create 100 more sorry texts
+                    setTimeout(() => {
+                        // Create 100 sorry texts at once
+                        for (let i = 0; i < 100; i++) {
+                            const sorryText = document.createElement('div');
+                            sorryText.className = 'sorry-text';
+                            sorryText.textContent = 'sorry';
+                            sorryText.style.left = `${Math.random() * 90 + 5}%`;
+                            sorryText.style.top = `${Math.random() * 90 + 5}%`;
+                            sorryContainer.appendChild(sorryText);
+                            
+                            // Make them visible immediately
+                            setTimeout(() => {
+                                sorryText.classList.add('visible');
+                                
+                                // Make them fall after a short delay
+                                setTimeout(() => {
+                                    sorryText.classList.add('falling');
+                                }, 500 + Math.random() * 1000);
+                            }, 100);
+                        }
+                        
+                        // Make the first sorry text fall as well
+                        setTimeout(() => {
+                            firstSorryText.classList.add('falling');
+                        }, 500);
+                        
+                        // Continue with the story after all sorry texts have fallen
+                        setTimeout(() => {
+                            sorryScreen.classList.remove('active');
+                            sorryScreen.style.display = 'none';
+                            darkConversationScreen.classList.add('active');
+                            darkConversationScreen.style.display = 'flex';
+                            showElement(darkConversation, () => {
+                                // Show dark messages one by one, slower and centered
+                                setTimeout(() => {
+                                    darkMessage1.classList.add('visible');
+                                    
+                                    setTimeout(() => {
+                                        darkMessage1.classList.remove('visible');
+                                        setTimeout(() => {
+                                            darkMessage2.classList.add('visible');
+                                            
+                                            setTimeout(() => {
+                                                darkMessage2.classList.remove('visible');
+                                                setTimeout(() => {
+                                                    darkMessage3.classList.add('visible');
+                                                    
+                                                    setTimeout(() => {
+                                                        darkMessage3.classList.remove('visible');
+                                                        setTimeout(() => {
+                                                            darkMessage4.classList.add('visible');
+                                                            
+                                                            setTimeout(() => {
+                                                                darkMessage4.classList.remove('visible');
+                                                                setTimeout(() => {
+                                                                    darkMessage5.classList.add('visible');
+                                                                    
+                                                                    setTimeout(() => {
+                                                                        darkMessage5.classList.remove('visible');
+                                                                        setTimeout(() => {
+                                                                            darkConversationScreen.classList.remove('active');
+                                                                            darkConversationScreen.style.display = 'none';
+                                                                            showElement(choicesContainer, () => {
+                                                                                showElement(choiceQuestion, () => {
+                                                                                    // Set focus on first choice button for keyboard navigation
+                                                                                    choice1.focus();
+                                                                                });
+                                                                            });
+                                                                        }, 1500);
+                                                                    }, 4000);
+                                                                }, 1500);
+                                                            }, 4000);
+                                                        }, 1500);
+                                                    }, 4000);
+                                                }, 1500);
+                                            }, 4000);
+                                        }, 1500);
+                                    }, 4000);
+                                }, 2000);
+                            });
+                        }, 10000); // Increased wait time for all sorry texts to fall
+                    }, 2000); // Wait for the first sorry text to be fully visible
+                }, 1000); // Wait for the first sorry text to start appearing
+            }
+
+            // Handle choice buttons
+            choice1.addEventListener('click', handleChoice);
+            choice2.addEventListener('click', handleChoice);
+            
+            // Add keyboard support for choice buttons
+            choice1.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleChoice();
+                }
+            });
+            
+            choice2.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleChoice();
+                }
+            });
+
+            function handleChoice() {
+                if (choiceMade) return; // Prevent multiple clicks
+                choiceMade = true;
+                
+                // Disable both choices initially
+                choice1.classList.add('disabled');
+                choice2.classList.add('disabled');
+                choice1.disabled = true;
+                choice2.disabled = true;
+                
+                // Re-enable the yes button after a short delay
+                setTimeout(() => {
+                    choice1.classList.remove('disabled');
+                    choice1.disabled = false;
+                    choice1.focus();
+                }, 500);
+                
+                // Only proceed when yes is clicked
+                choice1.addEventListener('click', function proceedAfterYes() {
+                    choice1.removeEventListener('click', proceedAfterYes);
+                    
+                    hideElement(choicesContainer, () => {
+                        hideElement(choiceQuestion, () => {
+                            darkResponseScreen.classList.add('active');
+                            darkResponseScreen.style.display = 'flex';
+                            
+                            setTimeout(() => {
+                                showElement(darkResponse1, () => {
+                                    setTimeout(() => {
+                                        hideElement(darkResponse1, () => {
+                                            setTimeout(() => {
+                                                showElement(darkResponse2, () => {
+                                                    setTimeout(() => {
+                                                        hideElement(darkResponse2, () => {
+                                                            darkResponseScreen.classList.remove('active');
+                                                            darkResponseScreen.style.display = 'none';
+                                                            lightScreen.classList.add('active');
+                                                            lightScreen.style.display = 'flex';
+                                                            
+                                                            setTimeout(() => {
+                                                                showElement(lightMessage1, () => {
+                                                                    setTimeout(() => {
+                                                                        hideElement(lightMessage1, () => {
+                                                                            setTimeout(() => {
+                                                                                showElement(lightMessage2, () => {
+                                                                                    setTimeout(() => {
+                                                                                        hideElement(lightMessage2, () => {
+                                                                                            setTimeout(() => {
+                                                                                                showElement(lightMessage3, () => {
+                                                                                                    setTimeout(() => {
+                                                                                                        hideElement(lightMessage3, () => {
+                                                                                                            setTimeout(() => {
+                                                                                                                showElement(lightMessage4, () => {
+                                                                                                                        setTimeout(() => {
+                                                                                                                            hideElement(lightMessage4, () => {
+                                                                                                                                showElement(lightChoices, () => {
+                                                                                                                                    // Set focus on first choice button for keyboard navigation
+                                                                                                                                    lightChoice1.focus();
+                                                                                                                                
+                                                                                                                                    // Disable the no button
+                                                                                                                                    lightChoice2.classList.add('disabled');
+                                                                                                                                    lightChoice2.disabled = true;
+                                                                                                                                });
+                                                                                                                            }, 1500);
+                                                                                                                        }, 3000);
+                                                                                                                });
+                                                                                                            }, 1500);
+                                                                                                        });
+                                                                                                    }, 3000);
+                                                                                                });
+                                                                                            }, 3000);
+                                                                                        });
+                                                                                    }, 3000);
+                                                                                });
+                                                                            }, 1500);
+                                                                        });
+                                                                    }, 3000);
+                                                                });
+                                                            }, 2000);
+                                                        }, 4000);
+                                                    }, 1500);
+                                                });
+                                            }, 1500);
+                                        });
+                                    }, 3000);
+                                });
+                            }, 2000);
+                        });
+                    });
+                });
+            }
+
+            // Handle light choice buttons
+            lightChoice1.addEventListener('click', handleLightChoice);
+            lightChoice2.addEventListener('click', handleLightChoice);
+            
+            // Add keyboard support for light choice buttons
+            lightChoice1.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleLightChoice();
+                }
+            });
+            
+            lightChoice2.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleLightChoice();
+                }
+            });
+
+            function handleLightChoice() {
+                if (lightChoiceMade) return; // Prevent multiple clicks
+                lightChoiceMade = true;
+                
+                hideElement(lightChoices, () => {
+                    userNameInLight.textContent = userName;
+                    
+                    setTimeout(() => {
+                        showElement(lightMessage5, () => {
+                            setTimeout(() => {
+                                hideElement(lightMessage5, () => {
+                                    // Start screen disruption
+                                    isDisrupting = true;
+                                    disruptionInterval = setInterval(() => {
+                                        if (isDisrupting) {
+                                            lightScreen.classList.toggle('disruption');
+                                        }
+                                    }, 200);
+                                    
+                                    setTimeout(() => {
+                                        clearInterval(disruptionInterval);
+                                        lightScreen.classList.remove('active');
+                                        lightScreen.style.display = 'none';
+                                        splitLightScreen.classList.add('active');
+                                        splitLightScreen.style.display = 'flex';
+                                        
+                                        setTimeout(() => {
+                                            showElement(finalLightMessage, () => {
+                                                showElement(finalDarkMessage, () => {
+                                                    // Start the dark overlay animation after a delay
+                                                    setTimeout(() => {
+                                                        darkOverlay.classList.add('active');
+                                                    }, 2000);
+                                                    
+                                                    // Show final choices after 5 seconds
+                                                    setTimeout(() => {
+                                                        hideElement(finalLightMessage, () => {
+                                                            hideElement(finalDarkMessage, () => {
+                                                                showElement(finalChoices, () => {
+                                                                    // Show footer
+                                                                    footer.classList.add('visible');
+                                                                    
+                                                                    // Set focus on stay button
+                                                                    stayChoice.focus();
+                                                                });
+                                                            }, 1500);
+                                                        }, 1500);
+                                                    }, 5000);
+                                                });
+                                            });
+                                        }, 2000);
+                                    }, 4000);
+                                }, 3000); // Increased time before the last message fades away
+                            });
+                        }, 2000);
+                    });
+                });
+            }
+
+            // Handle final choice buttons
+            stayChoice.addEventListener('click', handleFinalChoice);
+            leaveChoice.addEventListener('click', handleFinalChoice);
+            
+            // Add keyboard support for final choice buttons
+            stayChoice.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleFinalChoice();
+                }
+            });
+            
+            leaveChoice.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    handleFinalChoice();
+                }
+            });
+
+            function handleFinalChoice() {
+                if (finalChoiceMade) return; // Prevent multiple clicks
+                finalChoiceMade = true;
+                
+                // Hide both choices
+                finalChoices.classList.remove('visible');
+                
+                if (event.target === stayChoice) {
+                    // User chose to stay
+                    resultMessage.textContent = 'stayed';
+                    showElement(resultMessage, () => {
+                        // Keep everything visible
+                    });
+                } else if (event.target === leaveChoice) {
+                    // User chose to leave - redirect away from the website
+                    resultMessage.textContent = 'leaving...';
+                    showElement(resultMessage, () => {
+                        setTimeout(() => {
+                            // Redirect to an external site
+                            window.location.href = 'https://www.google.com';
+                        }, 2000);
+                    });
+                }
+            }
+
+            // Handle footer links
+           aboutLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Navigate to about.html instead of showing an alert
+    window.location.href = 'about.html';
+});
+            
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'contact.html';
+            });
+            
+            privacyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'privacy.html';
+            });
+            
+            termsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'terms.html';
+            });
         });
     </script>
 </body>
-
 </html>
-
-
-
-
