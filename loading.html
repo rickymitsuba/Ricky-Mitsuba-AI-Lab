@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TBHH4Z8MW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4TBHH4Z8MW');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature in Development - Ricky Mitsuba AI Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            opacity: 0.1;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .highlight {
+            color: #aaa;
+            font-weight: bold;
+        }
+
+        .dark-eyes {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            opacity: 0.7;
+        }
+
+        .eye {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            animation: blink 4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .pupil {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: look 6s infinite;
+        }
+
+        @keyframes look {
+            0%, 100% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-30%, -50%); }
+            75% { transform: translate(-70%, -50%); }
+        }
+
+        .typing-effect {
+            border-right: 2px solid #fff;
+            animation: typing 2s steps(40) 1s 1 normal both,
+                       blinkCursor 0.75s infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .option-btn {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+        }
+
+        .option-btn:hover:before {
+            left: 0;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .option-btn:focus {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fff, #aaa, #fff);
+            background-size: 200% 100%;
+            animation: progress 2s ease-in-out infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; background-position: 0% 50%; }
+            50% { width: 70%; background-position: 100% 50%; }
+            100% { width: 100%; background-position: 0% 50%; }
+        }
+
+        .floating-text {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 1rem;
+            animation: float 10s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #aaa;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .dark-eyes {
+                gap: 2rem;
+            }
+            
+            .eye {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .pupil {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-code">404</div>
+    
+    <!-- Floating text elements for atmosphere -->
+    <div class="floating-text" style="left: 10%; animation-delay: 0s;">...working...</div>
+    <div class="floating-text" style="left: 30%; animation-delay: 2s;">...developing...</div>
+    <div class="floating-text" style="left: 50%; animation-delay: 4s;">...creating...</div>
+    <div class="floating-text" style="left: 70%; animation-delay: 6s;">...building...</div>
+    <div class="floating-text" style="left: 90%; animation-delay: 8s;">...crafting...</div>
+
+    <div class="container">
+        <div class="content">
+            <h1>The Journey Continues...</h1>
+            
+            <div class="dark-eyes">
+                <div class="eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye">
+                    <div class="pupil"></div>
+                </div>
+            </div>
+
+            <div class="message">
+                <p class="typing-effect">The feature you're looking for is still in the darkness...</p>
+            </div>
+
+            <p class="message">
+                We're <span class="highlight">working</span> on bringing this experience to life. 
+                Sometimes the best things take time to emerge from the shadows.
+            </p>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <p class="message" style="font-size: 1rem; opacity: 0.7;">
+                "In the depths of development, great features are born..."
+            </p>
+
+            <div class="options">
+                <a href="index.html" class="option-btn">← Return to The Dark Journey</a>
+                <a href="about.html" class="option-btn">Learn About Our Lab</a>
+                <a href="contact.html" class="option-btn">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="contact.html" class="footer-link">Contact Us</a>
+            <a href="privacy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-link">Terms and Conditions</a>
+        </div>
+        <div class="copyright">© 2025 Ricky Mitsuba AI Lab. All rights reserved.</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive elements
+            const eyes = document.querySelectorAll('.eye');
+            const pupils = document.querySelectorAll('.pupil');
+            
+            // Mouse tracking for pupils
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                eyes.forEach((eye, index) => {
+                    const rect = eye.getBoundingClientRect();
+                    const eyeX = rect.left + rect.width / 2;
+                    const eyeY = rect.top + rect.height / 2;
+                    
+                    const angle = Math.atan2(mouseY - eyeY, mouseX - eyeX);
+                    const distance = Math.min(15, Math.hypot(mouseX - eyeX, mouseY - eyeY) / 10);
+                    
+                    const pupilX = Math.cos(angle) * distance;
+                    const pupilY = Math.sin(angle) * distance;
+                    
+                    pupils[index].style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+                });
+            });
+
+            // Random glitch effect
+            setInterval(() => {
+                if (Math.random() > 0.95) {
+                    document.body.style.animation = 'disrupt 0.2s';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                    }, 200);
+                }
+            }, 3000);
+
+            // Typing effect restart
+            const typingElement = document.querySelector('.typing-effect');
+            setInterval(() => {
+                typingElement.style.animation = 'none';
+                setTimeout(() => {
+                    typingElement.style.animation = 'typing 2s steps(40) 1s 1 normal both, blinkCursor 0.75s infinite';
+                }, 100);
+            }, 10000);
+        });
+
+        // Add glitch animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes disrupt {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.8; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
